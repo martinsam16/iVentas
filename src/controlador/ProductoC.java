@@ -125,7 +125,7 @@ public class ProductoC {
             cmbModPro.setSelectedItem(datos[3]);
             inptSerPro.setText(datos[4]);
             inptPrePro.setText(datos[5]);
-//            cargarImg(datos[6]);
+            lblImg.setIcon(cargarImg(datos[6]));
         }
     }    
     

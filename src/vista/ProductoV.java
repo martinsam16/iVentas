@@ -552,7 +552,7 @@ public class ProductoV extends javax.swing.JFrame {
 
     private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
         productoC.llenarCampos();
-//        this.repaint();
+        this.repaint();
     }//GEN-LAST:event_tblProductosMouseClicked
 
     /**
