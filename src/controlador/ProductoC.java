@@ -1,6 +1,7 @@
 package controlador;
 
 import dao.ProductoD;
+import dao.ReporteD;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +29,7 @@ public class ProductoC {
 
     ProductoM producto = new ProductoM();
     ProductoD dao = new ProductoD();
+    ReporteD daoR = new ReporteD();
     
     public void accionMarca(String accion){
         try {
@@ -131,6 +133,10 @@ public class ProductoC {
     
     public void buscar(String consulta, JTable tbl){
         TablasS.buscar(consulta, tbl);
+    }
+    
+    public void generarReporteDeTodosLosProductos(){
+        daoR.generarReporteProductos();
     }
 
     public void limpiar() {
