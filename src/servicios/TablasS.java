@@ -29,7 +29,8 @@ public class TablasS {
             } else {
 
                 for (int i = 0; i < tbl.getColumnCount(); i++) {
-                    datos += String.valueOf(tbl.getValueAt(fila, i)) + "^";
+                        datos += String.valueOf(tbl.getValueAt(fila, i)) + "^";
+                    
                 }
                 datos = datos.substring(0, datos.length() - 1);
             }

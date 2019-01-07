@@ -11,6 +11,9 @@ public class ProductoV extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+//Acordadme Optimizar
+
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -46,6 +49,8 @@ public class ProductoV extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         btnRegMar = new principal.MaterialButton();
+        btnEditarMarca = new principal.MaterialButton();
+        btnEliminarMarca = new principal.MaterialButton();
         inptMarPro = new principal.MaterialTextField();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -67,6 +72,7 @@ public class ProductoV extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("iProductos");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -329,7 +335,7 @@ public class ProductoV extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmbMarPro1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(inptModPro, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
+                    .addComponent(inptModPro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -359,18 +365,43 @@ public class ProductoV extends javax.swing.JFrame {
             }
         });
 
+        btnEditarMarca.setBackground(new java.awt.Color(255, 255, 51));
+        btnEditarMarca.setText("E");
+        btnEditarMarca.setFont(new java.awt.Font("Roboto", 0, 8)); // NOI18N
+        btnEditarMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarMarcaActionPerformed(evt);
+            }
+        });
+
+        btnEliminarMarca.setBackground(new java.awt.Color(255, 51, 51));
+        btnEliminarMarca.setText("E");
+        btnEliminarMarca.setFont(new java.awt.Font("Roboto", 0, 8)); // NOI18N
+        btnEliminarMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarMarcaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(btnRegMar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(btnEditarMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEliminarMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnRegMar, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+            .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btnRegMar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEditarMarca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(btnEliminarMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
         inptMarPro.setToolTipText("Marca");
@@ -534,8 +565,7 @@ public class ProductoV extends javax.swing.JFrame {
         try {
             productoC.variablesM('2');
             productoC.accionMarca("RE");
-            productoC.actCmb();
-            productoC.limpiar();
+            productoC.actualizar();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnRegMarActionPerformed
@@ -544,8 +574,7 @@ public class ProductoV extends javax.swing.JFrame {
         try {
             productoC.variablesM('3');
             productoC.accionModelo("RE");
-            productoC.actCmb();
-            productoC.limpiar();
+            productoC.actualizar();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnRegModActionPerformed
@@ -554,8 +583,7 @@ public class ProductoV extends javax.swing.JFrame {
         try {
             productoC.variablesM('1');
             productoC.accionProducto("RE");
-            productoC.limpiar();
-            tblProductos.setModel(this.productoC.listarProductos());
+            productoC.actualizar();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_materialButton1ActionPerformed
@@ -572,6 +600,16 @@ public class ProductoV extends javax.swing.JFrame {
     private void btnNewPro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPro1ActionPerformed
         productoC.generarReporteDeTodosLosProductos();
     }//GEN-LAST:event_btnNewPro1ActionPerformed
+
+    private void btnEditarMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarMarcaActionPerformed
+        productoC.nuevo = inptMarPro.getText().toUpperCase();
+        productoC.accionMarca("ED");
+        productoC.actualizar();
+    }//GEN-LAST:event_btnEditarMarcaActionPerformed
+
+    private void btnEliminarMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMarcaActionPerformed
+
+    }//GEN-LAST:event_btnEliminarMarcaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -610,6 +648,8 @@ public class ProductoV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private principal.MaterialButton btnEditarMarca;
+    private principal.MaterialButton btnEliminarMarca;
     public static principal.MaterialButtonCircle btnNewPro;
     public static principal.MaterialButtonCircle btnNewPro1;
     public static principal.MaterialButton btnRegMar;

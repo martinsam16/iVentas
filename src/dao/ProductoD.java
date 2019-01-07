@@ -28,12 +28,13 @@ public class ProductoD extends Conexion {
         }
     }
 
-    public void accionMarca(ProductoM producto, String tipAc) throws Exception {
+    public void accionMarca(ProductoM producto,String nommarmod, String tipAc) throws Exception {
         try {
-            String sql = "CALL ACCIONMARCA(?,?)";
+            String sql = "CALL ACCIONMARCA(?,?,?)";
             PreparedStatement ps = this.conectar().prepareCall(sql);
             ps.setString(1, producto.getNommar());
-            ps.setString(2, tipAc);
+            ps.setString(2, nommarmod);
+            ps.setString(3, tipAc);
             ps.executeQuery();
             ps.close();
             this.desconectar();

@@ -58,11 +58,11 @@ public class ProductoM {
     }
     
     public void clear(){
-        this.nommar = null;
-        this.nommod = null;
-        this.nompro = null;
+        this.nommar = "";
+        this.nommod = "";
+        this.nompro = "";
         this.prepo = 0;
-        this.serpro = null;
+        this.serpro = "";
 //        this.urlimgpro=null;
         
     }
