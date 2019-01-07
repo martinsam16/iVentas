@@ -1,7 +1,7 @@
 package controlador;
 
 import dao.ProductoD;
-import dao.ReporteD;
+import servicios.ReporteS;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +29,7 @@ public class ProductoC {
 
     ProductoM producto = new ProductoM();
     ProductoD dao = new ProductoD();
-    ReporteD daoR = new ReporteD();
+    ReporteS daoR = new ReporteS();
     
     public void accionMarca(String accion){
         try {
