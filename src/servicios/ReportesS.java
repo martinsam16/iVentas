@@ -1,4 +1,5 @@
 package servicios;
+
 import dao.Conexion;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -7,7 +8,9 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-public class ReporteS extends Conexion{
+
+public class ReportesS extends Conexion{
+    
     public void generarReporteProductos(){
         try {
             JasperReport reporte= null;
@@ -28,13 +31,8 @@ public class ReporteS extends Conexion{
             System.out.println("error reporteProductos R " + e.getMessage());
         }
     }
-    
-     public static void generarCotizacionProductos(){
-        
-    }//s<zzsbhb
-    
-    /*Jasper is rial, ademàs se puede desde table.print() :v*/
-//      public void toPdfFromTable(JTable tabla, String titulo) throws Exception {
+
+//    public void toPdf(JTable tabla, String titulo) throws Exception {
 //        Document document = new Document();
 //        try {
 //
@@ -72,7 +70,4 @@ public class ReporteS extends Conexion{
 //        document.close();
 //
 //    }
-      
-   
-    
 }

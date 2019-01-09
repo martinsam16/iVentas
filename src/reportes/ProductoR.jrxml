@@ -27,10 +27,6 @@ FROM
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
-			<image>
-				<reportElement x="473" y="0" width="82" height="79" uuid="4982904a-da96-41a4-bf22-c8b77892e60c"/>
-				<imageExpression><![CDATA["E:\\Fx\\SistComp\\src\\img\\inventario.jpg"]]></imageExpression>
-			</image>
 			<textField pattern="dd/MM/yyyy h.mm a">
 				<reportElement x="0" y="9" width="119" height="20" uuid="91f74c31-5563-4a23-a8a6-2990069488a5"/>
 				<textElement>
@@ -45,6 +41,10 @@ FROM
 				</textElement>
 				<text><![CDATA[iVentas - Productos]]></text>
 			</staticText>
+			<image>
+				<reportElement x="468" y="9" width="77" height="64" uuid="a3bb7ea9-78a6-456d-9eb8-51c5fefe399a"/>
+				<imageExpression><![CDATA["E:\\Fx\\iVentas\\src\\img\\inventario.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
