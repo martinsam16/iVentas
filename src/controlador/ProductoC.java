@@ -42,7 +42,7 @@ public class ProductoC {
 
     public void accionModelo(String accion) {
         try {
-            dao.accionModelo(producto, accion);
+            dao.accionModelo(producto, nuevo, accion);
         } catch (Exception e) {
         }
     }
@@ -61,7 +61,7 @@ public class ProductoC {
             return null;
         }
     }
-    
+
     public void actualizar() {
         actCmb();
         limpiar();
@@ -86,6 +86,7 @@ public class ProductoC {
         try {
             cmbMarPro1.setModel(dao.listarCmb('1', ""));
             cmbMarPro.setModel(dao.listarCmb('1', ""));
+            cmbModPro.removeAllItems();
         } catch (Exception e) {
         }
     }
@@ -109,6 +110,7 @@ public class ProductoC {
         switch (tip) {
             case '1':
                 producto.setNompro(inptNomPro.getText());
+                producto.setNommar(cmbMarPro.getSelectedItem().toString());
                 producto.setNommod(cmbModPro.getSelectedItem().toString());
                 producto.setSerpro(inptSerPro.getText().toUpperCase());
                 producto.setPrepo(Double.parseDouble(inptPrePro.getText()));
@@ -123,7 +125,7 @@ public class ProductoC {
             default:
                 break;
         }
-        System.out.println(producto.toString());
+        System.out.println("VariablesM" + producto.toString());
 
     }
 
@@ -139,16 +141,15 @@ public class ProductoC {
             inptPrePro.setText(datos[5]);
 
             variablesM('1');
-            producto.setNommar(datos[2]);
+//            producto.setNommod(datos[3]);
             try {
                 producto.setUrlimgpro(datos[6]);
                 lblImg.setIcon(cargarImg(datos[6]));
             } catch (Exception e) {
                 System.out.println("error link vacio xd");
             }
-            
 
-            System.out.println(producto.toString());
+            System.out.println("variablesm editar" + producto.toString());
         }
     }
 

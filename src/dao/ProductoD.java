@@ -42,13 +42,14 @@ public class ProductoD extends Conexion {
         }
     }
 
-    public void accionModelo(ProductoM producto, String tipAc) throws Exception {
+    public void accionModelo(ProductoM producto, String nommod ,String tipAc) throws Exception {
         try {
-            String sql = "CALL ACCIONMODELO(?,?,?)";
+            String sql = "CALL ACCIONMODELO(?,?,?,?)";
             PreparedStatement ps = this.conectar().prepareCall(sql);
             ps.setString(1, producto.getNommar());
             ps.setString(2, producto.getNommod());
-            ps.setString(3, tipAc);
+            ps.setString(3, nommod);
+            ps.setString(4, tipAc);
             ps.executeQuery();
             ps.close();
             this.desconectar();

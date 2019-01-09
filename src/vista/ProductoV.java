@@ -39,18 +39,19 @@ public class ProductoV extends javax.swing.JFrame {
         inptNomPro = new principal.MaterialTextField();
         jPanel3 = new javax.swing.JPanel();
         btnNewPro = new principal.MaterialButtonCircle();
-        materialButton1 = new principal.MaterialButton();
+        btnRegistrarProducto = new principal.MaterialButton();
+        btnEditarProducto = new principal.MaterialButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         btnRegMod = new principal.MaterialButton();
+        btnEditarModelo = new principal.MaterialButton();
         cmbMarPro1 = new javax.swing.JComboBox<>();
         inptModPro = new principal.MaterialTextField();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         btnRegMar = new principal.MaterialButton();
         btnEditarMarca = new principal.MaterialButton();
-        btnEliminarMarca = new principal.MaterialButton();
         inptMarPro = new principal.MaterialTextField();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -230,13 +231,23 @@ public class ProductoV extends javax.swing.JFrame {
             }
         });
 
-        materialButton1.setBackground(new java.awt.Color(102, 255, 51));
-        materialButton1.setText("R");
-        materialButton1.setToolTipText("Registrar");
-        materialButton1.setFont(new java.awt.Font("Roboto", 0, 8)); // NOI18N
-        materialButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarProducto.setBackground(new java.awt.Color(102, 255, 51));
+        btnRegistrarProducto.setText("R");
+        btnRegistrarProducto.setToolTipText("Registrar Producto");
+        btnRegistrarProducto.setFont(new java.awt.Font("Roboto", 0, 8)); // NOI18N
+        btnRegistrarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                materialButton1ActionPerformed(evt);
+                btnRegistrarProductoActionPerformed(evt);
+            }
+        });
+
+        btnEditarProducto.setBackground(new java.awt.Color(255, 204, 0));
+        btnEditarProducto.setText("E");
+        btnEditarProducto.setToolTipText("Editar Producto");
+        btnEditarProducto.setFont(new java.awt.Font("Roboto", 0, 8)); // NOI18N
+        btnEditarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarProductoActionPerformed(evt);
             }
         });
 
@@ -245,8 +256,10 @@ public class ProductoV extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 77, Short.MAX_VALUE)
-                .addComponent(materialButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 34, Short.MAX_VALUE)
+                .addComponent(btnEditarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRegistrarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNewPro, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -254,7 +267,8 @@ public class ProductoV extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(btnNewPro, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                .addComponent(materialButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnRegistrarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -302,20 +316,34 @@ public class ProductoV extends javax.swing.JFrame {
             }
         });
 
+        btnEditarModelo.setBackground(new java.awt.Color(255, 255, 0));
+        btnEditarModelo.setText("E");
+        btnEditarModelo.setToolTipText("Editar Modelo");
+        btnEditarModelo.setFont(new java.awt.Font("Roboto", 0, 8)); // NOI18N
+        btnEditarModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarModeloActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnRegMod, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegMod, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditarModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnRegMod, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEditarModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -353,7 +381,7 @@ public class ProductoV extends javax.swing.JFrame {
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel14.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
         btnRegMar.setBackground(new java.awt.Color(102, 255, 51));
         btnRegMar.setText("R");
@@ -374,34 +402,22 @@ public class ProductoV extends javax.swing.JFrame {
             }
         });
 
-        btnEliminarMarca.setBackground(new java.awt.Color(255, 51, 51));
-        btnEliminarMarca.setText("E");
-        btnEliminarMarca.setFont(new java.awt.Font("Roboto", 0, 8)); // NOI18N
-        btnEliminarMarca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarMarcaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRegMar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(48, 48, 48)
                 .addComponent(btnEditarMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEliminarMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(btnRegMar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEditarMarca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(btnEliminarMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
         inptMarPro.setToolTipText("Marca");
@@ -418,7 +434,7 @@ public class ProductoV extends javax.swing.JFrame {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(inptMarPro, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -470,7 +486,7 @@ public class ProductoV extends javax.swing.JFrame {
 
         btnNewPro1.setBackground(new java.awt.Color(0, 204, 153));
         btnNewPro1.setText("R");
-        btnNewPro1.setToolTipText("Nuevo");
+        btnNewPro1.setToolTipText("Generar Reporte de Todos Los Productos");
         btnNewPro1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewPro1ActionPerformed(evt);
@@ -579,14 +595,14 @@ public class ProductoV extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRegModActionPerformed
 
-    private void materialButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton1ActionPerformed
+    private void btnRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProductoActionPerformed
         try {
             productoC.variablesM('1');
             productoC.accionProducto("RE");
             productoC.actualizar();
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_materialButton1ActionPerformed
+    }//GEN-LAST:event_btnRegistrarProductoActionPerformed
 
     private void inptBusProCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_inptBusProCaretUpdate
         productoC.buscar(inptBusPro.getText().toUpperCase(), tblProductos);
@@ -607,9 +623,23 @@ public class ProductoV extends javax.swing.JFrame {
         productoC.actualizar();
     }//GEN-LAST:event_btnEditarMarcaActionPerformed
 
-    private void btnEliminarMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMarcaActionPerformed
+    private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
+       try {
+            productoC.variablesM('1');
+            productoC.accionProducto("ED");
+            productoC.actualizar();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnEditarProductoActionPerformed
 
-    }//GEN-LAST:event_btnEliminarMarcaActionPerformed
+    private void btnEditarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarModeloActionPerformed
+        try {
+            productoC.nuevo=inptModPro.getText().toUpperCase();
+            productoC.accionModelo("ED");
+            productoC.actualizar();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnEditarModeloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -649,11 +679,13 @@ public class ProductoV extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButton btnEditarMarca;
-    private principal.MaterialButton btnEliminarMarca;
+    public static principal.MaterialButton btnEditarModelo;
+    public static principal.MaterialButton btnEditarProducto;
     public static principal.MaterialButtonCircle btnNewPro;
     public static principal.MaterialButtonCircle btnNewPro1;
     public static principal.MaterialButton btnRegMar;
     public static principal.MaterialButton btnRegMod;
+    public static principal.MaterialButton btnRegistrarProducto;
     public static javax.swing.JButton btnUrlImgPro;
     public static javax.swing.JComboBox<String> cmbMarPro;
     public static javax.swing.JComboBox<String> cmbMarPro1;
@@ -684,7 +716,6 @@ public class ProductoV extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     public static javax.swing.JLabel lblImg;
-    public static principal.MaterialButton materialButton1;
     public static javax.swing.JTable tblProductos;
     // End of variables declaration//GEN-END:variables
 }
