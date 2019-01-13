@@ -30,21 +30,17 @@ FROM
 			<textField pattern="dd/MM/yyyy h.mm a">
 				<reportElement x="0" y="9" width="119" height="20" uuid="91f74c31-5563-4a23-a8a6-2990069488a5"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Roboto" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="29" width="555" height="35" uuid="563fe04f-f539-44b8-ae70-4ff9f9b9a783"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Roboto Bk" size="26" isBold="true" isItalic="false"/>
+					<font fontName="Roboto" size="26" isBold="true" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[iVentas - Productos]]></text>
 			</staticText>
-			<image>
-				<reportElement x="468" y="9" width="77" height="64" uuid="a3bb7ea9-78a6-456d-9eb8-51c5fefe399a"/>
-				<imageExpression><![CDATA["E:\\Fx\\iVentas\\src\\img\\inventario.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -55,35 +51,35 @@ FROM
 			<staticText>
 				<reportElement x="0" y="0" width="119" height="20" uuid="e8841031-6b69-4ffd-8402-ccdec31da564"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Roboto" size="16" isBold="true"/>
+					<font fontName="Roboto Condensed" size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NOMBRE]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="119" y="0" width="100" height="20" uuid="bc24e215-ee78-481e-8a07-9e948899290c"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Roboto" size="16" isBold="true"/>
+					<font fontName="Roboto Condensed" size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MARCA]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="219" y="0" width="100" height="20" uuid="440b54df-1049-455b-87d4-c618755a3852"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Roboto" size="16" isBold="true"/>
+					<font fontName="Roboto Condensed" size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MODELO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="319" y="0" width="136" height="20" uuid="636a2ad7-5080-4ae9-a410-55767cc8681b"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Roboto" size="16" isBold="true"/>
+					<font fontName="Roboto Condensed" size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SERIE]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="455" y="0" width="100" height="20" uuid="1b768f25-5450-477c-a86e-02d6ce775bf3"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Roboto" size="16" isBold="true"/>
+					<font fontName="Roboto Condensed" size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PRECIO]]></text>
 			</staticText>
