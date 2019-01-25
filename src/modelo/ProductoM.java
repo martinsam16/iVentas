@@ -1,8 +1,8 @@
 package modelo;
 
+import java.sql.Date;
+
 public class ProductoM {
-    private String nompro, serpro, urlimgpro, nommar, nommod;
-    private double prepo;
 
     public String getNompro() {
         return nompro;
@@ -44,6 +44,30 @@ public class ProductoM {
         this.nommod = nommod;
     }
 
+    public String getProveedor_codprov() {
+        return proveedor_codprov;
+    }
+
+    public void setProveedor_codprov(String proveedor_codprov) {
+        this.proveedor_codprov = proveedor_codprov;
+    }
+
+    public String getDespro() {
+        return despro;
+    }
+
+    public void setDespro(String despro) {
+        this.despro = despro;
+    }
+
+    public String getEstpro() {
+        return estpro;
+    }
+
+    public void setEstpro(String estpro) {
+        this.estpro = estpro;
+    }
+
     public double getPrepo() {
         return prepo;
     }
@@ -51,19 +75,35 @@ public class ProductoM {
     public void setPrepo(double prepo) {
         this.prepo = prepo;
     }
-    
-    @Override
-    public String toString(){
-        return "["+this.nompro+","+this.nommar+","+this.nommod+","+this.serpro+","+this.urlimgpro+"]";
+
+    public Date getFecgarpro() {
+        return fecgarpro;
     }
-    
-    public void clear(){
+
+    public void setFecgarpro(Date fecgarpro) {
+        this.fecgarpro = fecgarpro;
+    }
+
+    private String nompro, serpro, urlimgpro, nommar, nommod, proveedor_codprov, despro, estpro;
+    private double prepo;
+    Date fecgarpro;
+
+    @Override
+    public String toString() {
+        return "[" + this.proveedor_codprov + this.nompro + "," + this.nommar + "," + this.nommod + "," + this.serpro + "," + this.urlimgpro + "," + this.despro + "," + this.estpro + "," + this.prepo + "," + this.fecgarpro + "]";
+    }
+
+    public void clear() {
         this.nommar = "";
         this.nommod = "";
         this.nompro = "";
         this.prepo = 0;
         this.serpro = "";
+        this.despro = "";
+        this.estpro = "";
+        this.prepo = 0;
+        this.fecgarpro = null;
 //        this.urlimgpro=null;
-        
+
     }
 }

@@ -1,6 +1,9 @@
 package vista;
 
-import javax.swing.table.DefaultTableModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 public class VentaV extends javax.swing.JFrame {
 
@@ -20,7 +23,7 @@ public class VentaV extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProductos = new javax.swing.JTable();
         lblFechaHoraVenta = new javax.swing.JLabel();
-        materialTextField1 = new principal.MaterialTextField();
+        inptDoc = new principal.MaterialTextField();
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -56,7 +59,7 @@ public class VentaV extends javax.swing.JFrame {
 
         lblFechaHoraVenta.setText("12/12/2019 14:00");
 
-        materialTextField1.setToolTipText("DNI");
+        inptDoc.setToolTipText("DNI");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -68,7 +71,7 @@ public class VentaV extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(lblFechaHoraVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(materialTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(inptDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -79,7 +82,7 @@ public class VentaV extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(materialTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inptDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFechaHoraVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,7 +172,21 @@ public class VentaV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        try {
+            JSONObject datos = null;
+            if (inptDoc.getText().length()==8) {
+                datos = servicios.ConsultaGob.getDatosDni(inptDoc.getText());
+                System.out.println(datos.get("nombres")+" "+datos.get("apellido_paterno")+" "+datos.get("apellido_materno"));
+            }else if(inptDoc.getText().length()==11){
+                datos = servicios.ConsultaGob.getDatosRuc(inptDoc.getText());
+                //RUC de prueba -> 20523612141
+                System.out.println(datos.get("nombre_comercial")+","+datos.get("representante_legal"));
+            }
+            
+            
+        } catch (ParseException ex) {
+            System.out.println(ex.getMessage());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -216,6 +233,7 @@ public class VentaV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private principal.MaterialTextField inptDoc;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -224,7 +242,6 @@ public class VentaV extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblFechaHoraVenta;
-    private principal.MaterialTextField materialTextField1;
     private javax.swing.JTable tblProductos;
     // End of variables declaration//GEN-END:variables
 }

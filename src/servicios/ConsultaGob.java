@@ -8,7 +8,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 public class ConsultaGob {
-
     protected static JSONParser parser = new JSONParser();
 
     public static JSONObject getDatosRuc(String RUC) throws ParseException {        
@@ -40,4 +39,5 @@ public class ConsultaGob {
             return null;
         }
     }
+    
 }
