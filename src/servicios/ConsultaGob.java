@@ -5,7 +5,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
 public class ConsultaGob {
     protected static JSONParser parser = new JSONParser();
@@ -18,8 +17,7 @@ public class ConsultaGob {
          */
         try {
             Document doc = Jsoup.connect("https://api.sunat.cloud/ruc/" + RUC).ignoreContentType(true).get();
-            Element el = doc.body();
-            String datos = el.text();
+            String datos  = doc.body().text();
             return (JSONObject) parser.parse(datos);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -31,8 +29,7 @@ public class ConsultaGob {
         /*dni, cui, apellido_paterno, apellido_materno, nombres*/
         try {
             Document doc = Jsoup.connect("https://api.reniec.cloud/dni/" + DNI).ignoreContentType(true).get();
-            Element el = doc.body();
-            String datos = el.text();
+            String datos = doc.body().text();
             return (JSONObject) parser.parse(datos);
         } catch (Exception e) {
             System.out.println(e.getMessage());

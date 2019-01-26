@@ -88,7 +88,7 @@ public class PersonaC {
 
     public void llenarCampos(JTable tbl) {
         int fila = tbl.getSelectedRow();
-        if (fila != -1){
+        if (fila != -1) {
             //"CODIGO","NOMBRES", "APELLIDOS", "DNI", "TELEFONO","TIPO"
             PersonaV.inptNomPer.setText(String.valueOf(tbl.getValueAt(fila, 1)));
             PersonaV.inptApePer.setText(String.valueOf(tbl.getValueAt(fila, 2)));
@@ -117,11 +117,14 @@ public class PersonaC {
             }
         }
     }
-    
-    public void autorrellenarCamposPorDni() throws ParseException{
-        JSONObject datos = ConsultaGob.getDatosDni(PersonaV.inptDniPer.getText());
-        PersonaV.inptApePer.setText(datos.get("apellido_paterno").toString()+" "+datos.get("apellido_materno").toString());
-        PersonaV.inptNomPer.setText(datos.get("nombres").toString());
+
+    public void autorrellenarCamposPorDni() throws ParseException {
+        if (PersonaV.inptDniPer.getText().length() == 8) {
+            JSONObject datos = ConsultaGob.getDatosDni(PersonaV.inptDniPer.getText());
+            PersonaV.inptApePer.setText(datos.get("apellido_paterno").toString() + " " + datos.get("apellido_materno").toString());
+            PersonaV.inptNomPer.setText(datos.get("nombres").toString());
+        }
+
     }
 
     public void buscar(String consulta, JTable tbl) {
