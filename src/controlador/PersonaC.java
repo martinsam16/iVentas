@@ -6,6 +6,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.LoginM;
 import modelo.PersonaM;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
+import servicios.ConsultaGob;
 import servicios.TablasS;
 import vista.PersonaV;
 
@@ -62,8 +65,8 @@ public class PersonaC {
     }
 
     public void variablesM() {
-        persona.setNomper(PersonaV.inptNomPer.getText());
-        persona.setApeper(PersonaV.inptApePer.getText());
+        persona.setNomper(PersonaV.inptNomPer.getText().toUpperCase());
+        persona.setApeper(PersonaV.inptApePer.getText().toUpperCase());
         persona.setDniper(PersonaV.inptDniPer.getText());
         persona.setTelfper(PersonaV.cmbCodTel.getItemAt(PersonaV.cmbCodTel.getSelectedIndex()) + PersonaV.inpTlfPer.getText());
         String tipo = "N";
@@ -113,6 +116,12 @@ public class PersonaC {
                     break;
             }
         }
+    }
+    
+    public void autorrellenarCamposPorDni() throws ParseException{
+        JSONObject datos = ConsultaGob.getDatosDni(PersonaV.inptDniPer.getText());
+        PersonaV.inptApePer.setText(datos.get("apellido_paterno").toString()+" "+datos.get("apellido_materno").toString());
+        PersonaV.inptNomPer.setText(datos.get("nombres").toString());
     }
 
     public void buscar(String consulta, JTable tbl) {
