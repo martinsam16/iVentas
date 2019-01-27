@@ -49,11 +49,29 @@ public class PersonaM {
     public void setTipper(String tipper) {
         this.tipper = tipper;
     }
+
+    public String getNomdis() {
+        return nomdis;
+    }
+
+    public void setNomdis(String nomdis) {
+        this.nomdis = nomdis;
+    }
+
+    public String getDir() {
+        return dir;
+    }
+
+    public void setDir(String dir) {
+        this.dir = dir;
+    }
+    
     private int codper;
     private String nomper, apeper, dniper, telfper, tipper;
+    private String nomdis, dir;
 
     @Override
     public String toString() {
-        return "[" + this.codper + "," + this.nomper + "," + this.apeper + "," + this.dniper + "," + this.telfper + "," + this.tipper + "]";
+        return "[" + this.codper + "," + this.nomper + "," + this.apeper + "," + this.dniper + "," + this.telfper + "," + this.tipper + ","+this.nomdis+","+this.dir+"]";
     }
 }

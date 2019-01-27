@@ -26,6 +26,7 @@ public class ConsultaGob {
     }
 
     public static JSONObject getDatosDni(String DNI) throws ParseException {
+        //No para encendido en la madrugada
         /*dni, cui, apellido_paterno, apellido_materno, nombres*/
         try {
             Document doc = Jsoup.connect("https://api.reniec.cloud/dni/" + DNI).ignoreContentType(true).get();

@@ -10,14 +10,16 @@ public class PersonaD extends Conexion {
 
     public void accionPersona(PersonaM PerM, String tipAc) throws Exception {
         try {
-            String sql = "CALL ACCIONPERSONA(?,?,?,?,?,?)";
+            String sql = "CALL ACCIONPERSONA(?,?,?,?,?,?,?,?)";
             PreparedStatement ps = this.conectar().prepareCall(sql);
             ps.setString(1, PerM.getNomper());
             ps.setString(2, PerM.getApeper());
             ps.setString(3, PerM.getDniper());
             ps.setString(4, PerM.getTelfper());
             ps.setString(5, PerM.getTipper());
-            ps.setString(6, tipAc);
+            ps.setString(6, PerM.getNomdis());
+            ps.setString(7, PerM.getDir());
+            ps.setString(8, tipAc);
             ps.executeQuery();
             ps.close();
             this.desconectar();

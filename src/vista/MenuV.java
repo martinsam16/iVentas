@@ -58,6 +58,11 @@ public class MenuV extends javax.swing.JFrame {
         pnlVentas.setBackground(new java.awt.Color(255, 255, 255));
 
         btnVentas.setText("Ventas");
+        btnVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlVentasLayout = new javax.swing.GroupLayout(pnlVentas);
         pnlVentas.setLayout(pnlVentasLayout);
@@ -145,7 +150,7 @@ public class MenuV extends javax.swing.JFrame {
 try {
             PersonaV persona = new PersonaV();
 //            persona.setVisible(true);
-            persona.show(true);
+            persona.setVisible(true);
         } catch (Exception e) {
             System.out.println(e.getCause() + e.getMessage());
         }
@@ -154,10 +159,18 @@ try {
     private void btnVentas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentas1ActionPerformed
         try {
             ProductoV producto = new ProductoV();
-            producto.show(true);
+            producto.setVisible(true);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnVentas1ActionPerformed
+
+    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
+        try {
+            VentaV venta = new VentaV();
+            venta.setVisible(true);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnVentasActionPerformed
 
     /**
      * @param args the command line arguments

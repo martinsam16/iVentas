@@ -2,12 +2,14 @@ package controlador;
 
 import dao.LoginD;
 import dao.PersonaD;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.LoginM;
 import modelo.PersonaM;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
+import servicios.CombosAnidados;
 import servicios.ConsultaGob;
 import servicios.TablasS;
 import vista.PersonaV;
@@ -78,6 +80,8 @@ public class PersonaC {
             tipo = "C";
         }
         persona.setTipper(tipo);
+        persona.setNomdis(PersonaV.comboDistrito.getSelectedItem().toString());
+        persona.setDir(PersonaV.inptDirPer.getText());
 //        System.out.println(persona.toString());
     }
 
@@ -126,6 +130,15 @@ public class PersonaC {
         }
 
     }
+    
+    public DefaultComboBoxModel llenarComboUbigeo(char tipo, String nombre){
+        try {
+            servicios.CombosAnidados combo = new CombosAnidados();
+            return combo.listarCombo(tipo, nombre);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     public void buscar(String consulta, JTable tbl) {
         TablasS.buscar(consulta, tbl);
@@ -136,8 +149,10 @@ public class PersonaC {
         PersonaV.inptApePer.setText("");
         PersonaV.inptDniPer.setText("");
         PersonaV.inpTlfPer.setText("");
-        PersonaV.inptUsr.setText("");
         PersonaV.btnGroupTipPer.clearSelection();
+        PersonaV.inptDirPer.setText("");
+        
+        
         PersonaV.inptUsr.setText("");
         PersonaV.inptPssw.setText("");
         PersonaV.pnlCredenciales.setVisible(false);

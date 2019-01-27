@@ -26,8 +26,8 @@ public class ProductoV extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cmbMarPro = new javax.swing.JComboBox<>();
-        cmbModPro = new javax.swing.JComboBox<>();
+        cmbMarPro = new javax.swing.JComboBox<String>();
+        cmbModPro = new javax.swing.JComboBox<String>();
         btnUrlImgPro = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         inptSerPro = new principal.MaterialTextField();
@@ -46,7 +46,7 @@ public class ProductoV extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         btnRegMod = new principal.MaterialButton();
         btnEditarModelo = new principal.MaterialButton();
-        cmbMarPro1 = new javax.swing.JComboBox<>();
+        cmbMarPro1 = new javax.swing.JComboBox<String>();
         inptModPro = new principal.MaterialTextField();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -90,6 +90,7 @@ public class ProductoV extends javax.swing.JFrame {
 
         cmbMarPro.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         cmbMarPro.setModel(this.productoC.listarCmb('1', " "));
+        cmbMarPro.setToolTipText("");
         cmbMarPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbMarProActionPerformed(evt);

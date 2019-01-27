@@ -58,46 +58,6 @@ public class ProductoD extends Conexion {
         }
     }
 
-    public DefaultComboBoxModel listarCmb(char tip, String nommar) throws Exception {
-        /*
-        1   Marca
-        2   Modelo
-        3   Modelo dependiente de marca
-         */
-        DefaultComboBoxModel cmbTemp = null;
-        try {
-            String sql = null;
-            switch (tip) {
-                case '1':
-                    sql = "SELECT MARCA.NOMMAR FROM MARCA ORDER BY MARCA.NOMMAR ASC";
-                    break;
-                case '2':
-                    sql = "SELECT MODELO.NOMMOD FROM MODELO";
-                    break;
-                case '3':
-                    sql = "SELECT MODELO.NOMMOD FROM MODELO INNER JOIN MARCA ON MODELO.MARCA_CODMAR = MARCA.CODMAR WHERE MARCA.NOMMAR= '" + nommar + "' ORDER BY MODELO.NOMMOD ASC";
-                    break;
-                default:
-                    break;
-            }
-
-            Statement s = this.conectar().prepareStatement(sql);
-            ResultSet rs = s.executeQuery(sql);
-            Vector dts = new Vector();
-            while (rs.next()) {
-                dts.add(rs.getString(1));
-            }
-            cmbTemp = new DefaultComboBoxModel(dts);
-            s.close();
-            rs.close();
-            this.desconectar();
-
-        } catch (Exception e) {
-            System.out.println("Error ListarCmb() D " + e.getMessage() );
-        }
-
-        return cmbTemp;
-    }
 
     public DefaultTableModel listarPro() throws Exception {
         DefaultTableModel tblTemp = null;

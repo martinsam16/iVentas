@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.ProductoM;
+import servicios.CombosAnidados;
 import servicios.TablasS;
 import static vista.ProductoV.cmbMarPro;
 import static vista.ProductoV.cmbMarPro1;
@@ -30,6 +31,7 @@ public class ProductoC {
     ProductoM producto = new ProductoM();
     ProductoD dao = new ProductoD();
     ReportesS servicioR = new ReportesS();
+    servicios.CombosAnidados combo = new CombosAnidados();
 
     public String nuevo = "";
 
@@ -84,8 +86,8 @@ public class ProductoC {
 
     public void actCmb() {
         try {
-            cmbMarPro1.setModel(dao.listarCmb('1', ""));
-            cmbMarPro.setModel(dao.listarCmb('1', ""));
+            cmbMarPro1.setModel(combo.listarCombo('1', ""));
+            cmbMarPro.setModel(combo.listarCombo('1', ""));
             cmbModPro.removeAllItems();
         } catch (Exception e) {
         }
@@ -93,7 +95,7 @@ public class ProductoC {
 
     public DefaultComboBoxModel listarCmb(char tip, String nommar) {
         try {
-            return dao.listarCmb(tip, nommar);
+            return combo.listarCombo(tip, nommar);
         } catch (Exception e) {
             return null;
         }
