@@ -1,23 +1,21 @@
 package controlador;
 
+import dao.PersonaD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import modelo.LoginM;
 import modelo.PersonaM;
 import vista.MenuV;
-import dao.LoginD;
 import javafx.scene.control.CheckBox;
 
 /**
  *
  * @author Martin Alexis Saman Arata
  */
-public class LoginC extends LoginM{
+public class LoginC {
 
-    private final LoginM LOGIN = new LoginM();
-    private final LoginD DAO = new LoginD();
+    private final PersonaD DAO = new PersonaD();
     private final PersonaM PERSONA = new PersonaM();
 
     @FXML
@@ -32,10 +30,10 @@ public class LoginC extends LoginM{
     @FXML
     private void btnIngresar(ActionEvent e) {
         try {
-            LOGIN.setUsrper(inptUsr.getText());
-            LOGIN.setPswper(inptPsw.getText());
+            PERSONA.setUsrper(inptUsr.getText());
+            PERSONA.setPswper(inptPsw.getText());
 
-            if (DAO.autenticacion(LOGIN, PERSONA)) {
+            if (DAO.autenticar(PERSONA)) {
 
                 if (!btnRcrd.isSelected()) {
                     inptUsr.clear();
@@ -48,13 +46,13 @@ public class LoginC extends LoginM{
                         menu.setVisible(true);
                         break;
                     case "V":
-                        menu.pnlPersonas.setVisible(false);
-                        menu.pnlProducto.setVisible(false);
+                        MenuV.pnlPersonas.setVisible(false);
+                        MenuV.pnlProducto.setVisible(false);
                         menu.setVisible(true);
                         break;
                     case "I":
-                        menu.pnlPersonas.setVisible(false);
-                        menu.pnlVentas.setVisible(false);
+                        MenuV.pnlPersonas.setVisible(false);
+                        MenuV.pnlVentas.setVisible(false);
                         menu.setVisible(true);
                         break;
                     default:

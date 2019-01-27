@@ -1,11 +1,9 @@
 package controlador;
 
-import dao.LoginD;
 import dao.PersonaD;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.LoginM;
 import modelo.PersonaM;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -17,11 +15,9 @@ import vista.PersonaV;
 public class PersonaC {
 
     PersonaM persona = new PersonaM();
-    LoginM login = new LoginM();
     PersonaD dao = new PersonaD();
-    LoginD daoL = new LoginD();
 
-    public void accionPersona(String tipoDeAccion) {
+    public void accionPersona(char tipoDeAccion) {
         try {
             dao.accionPersona(persona, tipoDeAccion);
         } catch (Exception e) {
@@ -31,7 +27,7 @@ public class PersonaC {
 
     public void editartLogin() {
         try {
-            daoL.editarLogin(login, persona.getDniper());
+            dao.accionPersona(persona, '2');
         } catch (Exception e) {
             System.out.println("Error EditLog()");
             System.out.println(e.getMessage());
@@ -82,13 +78,10 @@ public class PersonaC {
         persona.setTipper(tipo);
         persona.setNomdis(PersonaV.comboDistrito.getSelectedItem().toString());
         persona.setDir(PersonaV.inptDirPer.getText());
-//        System.out.println(persona.toString());
+        persona.setUsrper(PersonaV.inptUsr.getText());
+        persona.setPswper(PersonaV.inptPssw.getText());       
     }
 
-    public void variablesMl() {
-        login.setUsrper(PersonaV.inptUsr.getText());
-        login.setPswper(PersonaV.inptPssw.getText());
-    }
 
     public void llenarCampos(JTable tbl) {
         int fila = tbl.getSelectedRow();

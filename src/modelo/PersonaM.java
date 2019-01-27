@@ -50,14 +50,6 @@ public class PersonaM {
         this.tipper = tipper;
     }
 
-    public String getNomdis() {
-        return nomdis;
-    }
-
-    public void setNomdis(String nomdis) {
-        this.nomdis = nomdis;
-    }
-
     public String getDir() {
         return dir;
     }
@@ -65,13 +57,55 @@ public class PersonaM {
     public void setDir(String dir) {
         this.dir = dir;
     }
+    public String getUsrper() {
+        return usrper;
+    }
+
+    public void setUsrper(String usrper) {
+        this.usrper = usrper;
+    }
+
+    public String getPswper() {
+        return pswper;
+    }
+
+    public void setPswper(String pswper) {
+        this.pswper = pswper;
+    }
     
-    private int codper;
+
+    public int getCoddis() {
+        return coddis;
+    }
+
+    public void setCoddis(int coddis) {
+        this.coddis = coddis;
+    }    
+
+    public String getEstlog() {
+        return estlog;
+    }
+
+    public void setEstlog(String estlog) {
+        this.estlog = estlog;
+    }    
+
+    public String getNomdis() {
+        return nomdis;
+    }
+
+    public void setNomdis(String nomdis) {
+        this.nomdis = nomdis;
+    }
+    
+    
+    private int codper, coddis;
     private String nomper, apeper, dniper, telfper, tipper;
     private String nomdis, dir;
+    private String usrper, pswper, estlog;
 
     @Override
     public String toString() {
-        return "[" + this.codper + "," + this.nomper + "," + this.apeper + "," + this.dniper + "," + this.telfper + "," + this.tipper + ","+this.nomdis+","+this.dir+"]";
+        return "[" + this.codper + "," + this.nomper + "," + this.apeper + "," + this.dniper + "," + this.telfper + "," + this.tipper + ","+this.nomdis+","+this.dir+","+this.usrper+","+this.pswper+"]";
     }
 }

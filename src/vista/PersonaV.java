@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 import java.awt.print.PrinterException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import org.json.simple.parser.ParseException;
 
 public class PersonaV extends javax.swing.JFrame {
@@ -619,9 +618,9 @@ public class PersonaV extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         try {
             tblPer.clearSelection();
-            if (personaC.validar()) {
+            if (!"".equals(inptDniPer.getText())) {
                 personaC.variablesM();
-                personaC.accionPersona("EL");
+                personaC.accionPersona('3');
                 personaC.limpiar();
                 btnBusTipper.setSelectedIndex(btnBusTipper.getSelectedIndex());
             }
@@ -634,17 +633,13 @@ public class PersonaV extends javax.swing.JFrame {
         try {
             tblPer.clearSelection();
             if (personaC.validar()) {
-                personaC.variablesM();
-                personaC.accionPersona("ED");
                 if (pnlCredenciales.isVisible()) {
-                    if (personaC.validarLogin()) {
-                        personaC.variablesMl();
-                        personaC.editartLogin();
-                        personaC.accionPersona("ED");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se actualizarón las credenciales porque los campos estaban vacios.", "Error", JOptionPane.ERROR_MESSAGE);
+                    if (!personaC.validarLogin()) {
+                        return;
                     }
                 }
+                personaC.variablesM();
+                personaC.accionPersona('2');
                 personaC.limpiar();
                 btnBusTipper.setSelectedIndex(btnBusTipper.getSelectedIndex());
             }
@@ -657,7 +652,7 @@ public class PersonaV extends javax.swing.JFrame {
         try {
             if (personaC.validar()) {
                 personaC.variablesM();
-                personaC.accionPersona("RE");
+                personaC.accionPersona('1');
                 personaC.limpiar();
                 btnBusTipper.setSelectedIndex(btnBusTipper.getSelectedIndex());
             }
