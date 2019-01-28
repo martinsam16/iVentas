@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.PersonaM;
 
 public class PersonaD extends Conexion {
-    
+
     public boolean autenticar(PersonaM persona) {
         boolean autentica = false;
         try {
@@ -31,13 +31,12 @@ public class PersonaD extends Conexion {
         }
         return autentica;
     }
-    
+
     public void accionPersona(PersonaM persona, char tipo) throws Exception {
         try {
             String sql = null;
             persona.setCoddis(devolverCodigoDistrito(persona.getNomdis()));
             boolean temp = false;
-            System.out.println("Coddis=" + persona.getCoddis());
             switch (tipo) {
                 case '1':
                     if (existeDni(persona.getDniper())) {
@@ -47,13 +46,16 @@ public class PersonaD extends Conexion {
                     sql = "INSERT INTO PERSONA (NOMPER, APEPER, DNIPER, TLFPER, TIPPER, DISTRITO_CODDIS_DISPER, DIRPER, USRLOGPER, PSWLOGPER, ESTLOGPER) VALUES (?,?,?,?,?,?,?,?,?,?)";
                     if (!"C".equals(persona.getTipper())) {
                         persona.setUsrper(persona.getDniper());
-                        persona.setPswper("@" + persona.getDniper());
+                        persona.setPswper("@" + persona.getDniper());                        
+                        persona.setEstlog("A");
                     }
                     break;
                 case '2':
                     sql = "UPDATE PERSONA SET NOMPER=?, APEPER=?, DNIPER=?, TLFPER=?, TIPPER=?, DISTRITO_CODDIS_DISPER=?, DIRPER=?, USRLOGPER=?, PSWLOGPER=?, ESTLOGPER=? WHERE DNIPER='" + persona.getDniper() + "'";
                     if ("C".equals(persona.getTipper())) {
                         persona.setEstlog("I");
+                    }else{
+                        persona.setEstlog("A");
                     }
                     break;
                 case '3':
@@ -78,17 +80,17 @@ public class PersonaD extends Conexion {
             } else {
                 ps.setString(1, persona.getDniper());
             }
-            
+
             ps.executeUpdate();
             ps.close();
             this.desconectar();
-            
+
         } catch (Exception e) {
             System.out.println("error AccionPer()");
             System.out.println(e.getMessage());
         }
     }
-    
+
     public int devolverCodigoDistrito(String nombreDelDistrito) {
         try {
             int cod = 0;
@@ -103,7 +105,7 @@ public class PersonaD extends Conexion {
             return 0;
         }
     }
-    
+
     public boolean existeDni(String dni) {
         boolean existe = false;
         try {
@@ -128,28 +130,31 @@ public class PersonaD extends Conexion {
         }
         return existe;
     }
-    
+
     public DefaultTableModel listarPersonas(char tipper, boolean estado) throws Exception {
-        
+
         DefaultTableModel tblTemp = null;
         try {
-            String clmsTemp = "CÓDIGO,NOMBRES,APELLIDOS,DNI,TELÉFONO,TIPO";
+            String clmsTemp = "CÓDIGO,NOMBRES,APELLIDOS,DNI,TELÉFONO,DEPARTAMENTO,PROVINCIA,DISTRITO,DIRECCION,TIPO";
             String sql;
-            
-            sql = "SELECT CODPER, NOMPER, APEPER, DNIPER, TLFPER, TIPPER FROM PERSONA ";
+            String inner = "INNER JOIN DISTRITO ON PERSONA.DISTRITO_CODDIS_DISPER=DISTRITO.CODDIS INNER JOIN PROVINCIA ON DISTRITO.PROVINCIA_CODPROV = PROVINCIA.CODPROV INNER JOIN DEPARTAMENTO ON PROVINCIA.DEPARTAMENTO_CODDEP = DEPARTAMENTO.CODDEP";
+
+            sql = "SELECT PERSONA.CODPER, PERSONA.NOMPER, PERSONA.APEPER, PERSONA.DNIPER, PERSONA.TLFPER, DEPARTAMENTO.NOMDEP,PROVINCIA.NOMPROV,DISTRITO.NOMDIS,PERSONA.DIRPER,PERSONA.TIPPER";
             if (estado) {
-                if (tipper == 'V') {
+                if (tipper == 'V' || tipper == 'I') {
                     clmsTemp += ",USUARIO,CONTRA";
-                    sql = "SELECT PERSONA.CODPER, PERSONA.NOMPER, PERSONA.APEPER, PERSONA.DNIPER, PERSONA.TLFPER, PERSONA.TIPPER, PERSONA.USRLOGPER, PERSONA.PSWLOGPER FROM PERSONA ";
+                    sql += ", PERSONA.USRLOGPER, PERSONA.PSWLOGPER";
                 }
-                sql += "WHERE TIPPER = '" + tipper + "'";
+                sql += " FROM PERSONA " + inner +" WHERE PERSONA.TIPPER = '" + tipper + "'";
+            } else {
+                sql += " FROM PERSONA " + inner;
             }
             String clms[] = clmsTemp.split(",");
             tblTemp = new DefaultTableModel(null, clms);
             Statement s = this.conectar().prepareStatement(sql);
             ResultSet rs = s.executeQuery(sql);
             String dts[] = new String[clms.length];
-            
+
             while (rs.next()) {
                 for (int i = 0; i < dts.length; i++) {
                     dts[i] = rs.getString(i + 1);
@@ -159,12 +164,12 @@ public class PersonaD extends Conexion {
             s.close();
             rs.close();
             this.desconectar();
-            
+
         } catch (Exception e) {
             System.out.println(e.getMessage() + e.getMessage());
             System.out.println("Error ListarPer()");
         }
         return tblTemp;
     }
-    
+
 }

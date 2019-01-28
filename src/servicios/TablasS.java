@@ -12,7 +12,7 @@ public class TablasS {
             DefaultTableModel dm = (DefaultTableModel) tbl.getModel();
             TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
             tbl.setRowSorter(tr);
-            tr.setRowFilter(RowFilter.regexFilter(consulta));
+            tr.setRowFilter(RowFilter.regexFilter(consulta.toUpperCase()));
         } catch (Exception e) {
             System.out.println("Error buscar() s");
             return;

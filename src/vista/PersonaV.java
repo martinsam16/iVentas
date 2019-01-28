@@ -1,7 +1,6 @@
 package vista;
 
 import controlador.PersonaC;
-import java.awt.HeadlessException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.print.PrinterException;
@@ -15,17 +14,9 @@ public class PersonaV extends javax.swing.JFrame {
 
     public PersonaV() throws Exception {
         initComponents();
-//        this.setLocationRelativeTo(this);
-        this.setExtendedState(MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(this);
+        //this.setExtendedState(MAXIMIZED_BOTH);
         pnlCredenciales.setVisible(false);
-    }
-
-    public void btnAccion() {
-        if (tblPer.getSelectedRow() != -1) {
-            pnlCredenciales.setVisible(true);
-            inptUsr.setText("");
-            inptPssw.setText("");
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -41,13 +32,11 @@ public class PersonaV extends javax.swing.JFrame {
         inptDniPer = new principal.MaterialTextField();
         inpTlfPer = new principal.MaterialTextField();
         jPanel2 = new javax.swing.JPanel();
-        btnTipPerAdministrador = new javax.swing.JRadioButton();
-        btnTipPerVendedor = new javax.swing.JRadioButton();
-        btnTipPerCliente = new javax.swing.JRadioButton();
         jPanel6 = new javax.swing.JPanel();
         pnlCredenciales = new javax.swing.JPanel();
         inptUsr = new principal.MaterialTextField();
         inptPssw = new principal.MaterialTextField();
+        comboTipoDePersona = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         btnNew = new principal.MaterialButtonCircle();
         pnlBtns = new javax.swing.JPanel();
@@ -71,7 +60,6 @@ public class PersonaV extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Persona");
         setBackground(new java.awt.Color(255, 255, 255));
-        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -111,39 +99,6 @@ public class PersonaV extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnTipPerAdministrador.setBackground(new java.awt.Color(255, 255, 255));
-        btnGroupTipPer.add(btnTipPerAdministrador);
-        btnTipPerAdministrador.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        btnTipPerAdministrador.setText("Administrador");
-        btnTipPerAdministrador.setNextFocusableComponent(btnTipPerVendedor);
-        btnTipPerAdministrador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTipPerAdministradorActionPerformed(evt);
-            }
-        });
-
-        btnTipPerVendedor.setBackground(new java.awt.Color(255, 255, 255));
-        btnGroupTipPer.add(btnTipPerVendedor);
-        btnTipPerVendedor.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        btnTipPerVendedor.setText("Vendedor");
-        btnTipPerVendedor.setNextFocusableComponent(btnTipPerCliente);
-        btnTipPerVendedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTipPerVendedorActionPerformed(evt);
-            }
-        });
-
-        btnTipPerCliente.setBackground(new java.awt.Color(255, 255, 255));
-        btnGroupTipPer.add(btnTipPerCliente);
-        btnTipPerCliente.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        btnTipPerCliente.setText("Cliente");
-        btnTipPerCliente.setNextFocusableComponent(inptUsr);
-        btnTipPerCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTipPerClienteActionPerformed(evt);
-            }
-        });
-
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel6.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -181,7 +136,7 @@ public class PersonaV extends javax.swing.JFrame {
         pnlCredencialesLayout.setVerticalGroup(
             pnlCredencialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCredencialesLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(20, 20, 20)
                 .addGroup(pnlCredencialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inptUsr, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inptPssw, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -195,7 +150,7 @@ public class PersonaV extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(pnlCredenciales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,29 +159,30 @@ public class PersonaV extends javax.swing.JFrame {
                 .addComponent(pnlCredenciales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        comboTipoDePersona.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Inventariador", "Vendedor", "Cliente" }));
+        comboTipoDePersona.setToolTipText("Tipo de Persona");
+        comboTipoDePersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoDePersonaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnTipPerAdministrador, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnTipPerVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTipPerCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addComponent(comboTipoDePersona, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTipPerAdministrador)
-                    .addComponent(btnTipPerVendedor)
-                    .addComponent(btnTipPerCliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboTipoDePersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -392,7 +348,7 @@ public class PersonaV extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inptApePer, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inptNomPer, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -403,20 +359,20 @@ public class PersonaV extends javax.swing.JFrame {
                         .addComponent(btnAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(inpTlfPer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cmbCodTel))
-                .addGap(18, 24, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboDistrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
-                .addComponent(inptDirPer, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inptDirPer, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBtns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -429,13 +385,14 @@ public class PersonaV extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pnlEdEl.setBackground(new java.awt.Color(255, 255, 255));
 
+        tblPer.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
         tblPer.setModel(this.personaC.listarPersonas('n', false)
         );
         tblPer.setGridColor(new java.awt.Color(204, 204, 204));
@@ -450,7 +407,7 @@ public class PersonaV extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnBusTipper.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todo", "Admin", "Vendedor", "Cliente" }));
+        btnBusTipper.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todo", "Admin", "Inventariador", "Vendedor", "Cliente" }));
         btnBusTipper.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBusTipperActionPerformed(evt);
@@ -488,7 +445,7 @@ public class PersonaV extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -508,10 +465,10 @@ public class PersonaV extends javax.swing.JFrame {
             .addGroup(pnlEdElLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlEdElLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEdElLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 767, Short.MAX_VALUE)
                         .addComponent(txtCantReg, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -520,9 +477,9 @@ public class PersonaV extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEdElLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCantReg)
                 .addContainerGap())
         );
@@ -565,18 +522,6 @@ public class PersonaV extends javax.swing.JFrame {
         btnEditar.setEnabled(true);
         btnEliminar.setEnabled(true);
     }//GEN-LAST:event_tblPerMouseClicked
-
-    private void btnTipPerVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTipPerVendedorActionPerformed
-        btnAccion();
-    }//GEN-LAST:event_btnTipPerVendedorActionPerformed
-
-    private void btnTipPerAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTipPerAdministradorActionPerformed
-        btnAccion();
-    }//GEN-LAST:event_btnTipPerAdministradorActionPerformed
-
-    private void btnTipPerClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTipPerClienteActionPerformed
-        pnlCredenciales.setVisible(false);
-    }//GEN-LAST:event_btnTipPerClienteActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         personaC.limpiar();
@@ -630,22 +575,7 @@ public class PersonaV extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        try {
-            tblPer.clearSelection();
-            if (personaC.validar()) {
-                if (pnlCredenciales.isVisible()) {
-                    if (!personaC.validarLogin()) {
-                        return;
-                    }
-                }
-                personaC.variablesM();
-                personaC.accionPersona('2');
-                personaC.limpiar();
-                btnBusTipper.setSelectedIndex(btnBusTipper.getSelectedIndex());
-            }
-        } catch (HeadlessException e) {
-            System.out.println("Error btnEditar" +e.getMessage());
-        }
+        personaC.editarPersona();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnRegPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegPerActionPerformed
@@ -678,8 +608,9 @@ public class PersonaV extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReporteActionPerformed
 
     private void btnAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutoActionPerformed
-try {
+        try {
             personaC.autorrellenarCamposPorDni();
+
         } catch (ParseException ex) {
             Logger.getLogger(PersonaV.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -691,8 +622,12 @@ try {
     }//GEN-LAST:event_cmbDepartamentoActionPerformed
 
     private void comboProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboProvinciaActionPerformed
-       comboDistrito.setModel(this.personaC.llenarComboUbigeo('6', comboProvincia.getSelectedItem().toString()));
+        comboDistrito.setModel(this.personaC.llenarComboUbigeo('6', comboProvincia.getSelectedItem().toString()));
     }//GEN-LAST:event_comboProvinciaActionPerformed
+
+    private void comboTipoDePersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoDePersonaActionPerformed
+
+    }//GEN-LAST:event_comboTipoDePersonaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -742,13 +677,11 @@ try {
     public static principal.MaterialButtonCircle btnNew;
     private principal.MaterialButtomRectangle btnRegPer;
     private principal.MaterialButtomRectangle btnReporte;
-    public static javax.swing.JRadioButton btnTipPerAdministrador;
-    public static javax.swing.JRadioButton btnTipPerCliente;
-    public static javax.swing.JRadioButton btnTipPerVendedor;
     public static javax.swing.JComboBox<String> cmbCodTel;
     public static javax.swing.JComboBox cmbDepartamento;
     public static javax.swing.JComboBox comboDistrito;
     public static javax.swing.JComboBox comboProvincia;
+    public static javax.swing.JComboBox comboTipoDePersona;
     public static principal.MaterialTextField inpTlfPer;
     public static principal.MaterialTextField inptApePer;
     private principal.MaterialTextField inptBuscar;

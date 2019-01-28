@@ -1,7 +1,9 @@
 package controlador;
 
 import dao.PersonaD;
+import java.awt.HeadlessException;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.PersonaM;
@@ -11,6 +13,9 @@ import servicios.CombosAnidados;
 import servicios.ConsultaGob;
 import servicios.TablasS;
 import vista.PersonaV;
+import static vista.PersonaV.btnBusTipper;
+import static vista.PersonaV.pnlCredenciales;
+import static vista.PersonaV.tblPer;
 
 public class PersonaC {
 
@@ -24,6 +29,7 @@ public class PersonaC {
             System.out.println("Error RegPer() C" + e.getMessage());
         }
     }
+    
 
     public void editartLogin() {
         try {
@@ -47,9 +53,7 @@ public class PersonaC {
     public boolean validar() {
         boolean est = false;
         if (!"".equals(PersonaV.inptNomPer.getText()) && !"".equals(PersonaV.inptApePer.getText()) && PersonaV.inptDniPer.getText().length() == 8) {
-            if (PersonaV.btnTipPerAdministrador.isSelected() || PersonaV.btnTipPerCliente.isSelected() || PersonaV.btnTipPerVendedor.isSelected()) {
-                est = true;
-            }
+            est = true;
         }
         return est;
     }
@@ -61,70 +65,108 @@ public class PersonaC {
         }
         return est;
     }
+    
+    public void editarPersona(){
+        try {
+            tblPer.clearSelection();
+            if (validar()) {                
+                variablesM();
+                if (pnlCredenciales.isVisible()) {
+                    if (!validarLogin()) {
+                        return;
+                    }
+                }else{
+                    persona.setUsrper(persona.getDniper());
+                    persona.setPswper("@"+persona.getDniper());
+                }
+                accionPersona('2');
+                limpiar();
+                btnBusTipper.setSelectedIndex(btnBusTipper.getSelectedIndex());
+            }
+        } catch (HeadlessException e) {
+            System.out.println("Error Editar" + e.getMessage());
+        }
+    }
 
     public void variablesM() {
         persona.setNomper(PersonaV.inptNomPer.getText().toUpperCase());
         persona.setApeper(PersonaV.inptApePer.getText().toUpperCase());
         persona.setDniper(PersonaV.inptDniPer.getText());
         persona.setTelfper(PersonaV.cmbCodTel.getItemAt(PersonaV.cmbCodTel.getSelectedIndex()) + PersonaV.inpTlfPer.getText());
-        String tipo = "N";
-        if (PersonaV.btnTipPerVendedor.isSelected()) {
-            tipo = "V";
-        } else if (PersonaV.btnTipPerAdministrador.isSelected()) {
-            tipo = "A";
-        } else if (PersonaV.btnTipPerCliente.isSelected()) {
-            tipo = "C";
-        }
+        String tipo = String.valueOf(PersonaV.comboTipoDePersona.getSelectedItem().toString().charAt(0));
         persona.setTipper(tipo);
         persona.setNomdis(PersonaV.comboDistrito.getSelectedItem().toString());
-        persona.setDir(PersonaV.inptDirPer.getText());
+        persona.setDir(PersonaV.inptDirPer.getText().toUpperCase());
         persona.setUsrper(PersonaV.inptUsr.getText());
-        persona.setPswper(PersonaV.inptPssw.getText());       
+        persona.setPswper(PersonaV.inptPssw.getText());
     }
-
 
     public void llenarCampos(JTable tbl) {
         int fila = tbl.getSelectedRow();
         if (fila != -1) {
-            //"CODIGO","NOMBRES", "APELLIDOS", "DNI", "TELEFONO","TIPO"
+            //CÓDIGO,NOMBRES,APELLIDOS,DNI,TELÉFONO,DEPARTAMENTO,PROVINCIA,DISTRITO,DIRECCION,TIPO
+            //USUARIO, CONTRA
             PersonaV.inptNomPer.setText(String.valueOf(tbl.getValueAt(fila, 1)));
             PersonaV.inptApePer.setText(String.valueOf(tbl.getValueAt(fila, 2)));
             PersonaV.inptDniPer.setText(String.valueOf(tbl.getValueAt(fila, 3)));
+
             PersonaV.cmbCodTel.setSelectedItem(String.valueOf(tbl.getValueAt(fila, 4)).substring(0, 3));
             PersonaV.inpTlfPer.setText(String.valueOf(tbl.getValueAt(fila, 4)).substring(3));
-            switch (String.valueOf(tbl.getValueAt(fila, 5))) {
+
+            PersonaV.cmbDepartamento.setSelectedItem(String.valueOf(tbl.getValueAt(fila, 5)));
+            PersonaV.comboProvincia.setSelectedItem(String.valueOf(tbl.getValueAt(fila, 6)));
+            PersonaV.comboDistrito.setSelectedItem(String.valueOf(tbl.getValueAt(fila, 7)));
+            PersonaV.inptDirPer.setText(String.valueOf(tbl.getValueAt(fila, 8)));
+
+            String tipoDePersona = String.valueOf(tbl.getValueAt(fila, 9));
+            if (null != tipoDePersona) {
+                switch (tipoDePersona) {
+                    case "A":
+                    case "C":
+                        PersonaV.pnlCredenciales.setVisible(false);
+                        break;
+                    case "V":
+                    case "I":
+                        if (PersonaV.btnBusTipper.getSelectedIndex() == 2 || PersonaV.btnBusTipper.getSelectedIndex() == 3) {
+                            PersonaV.pnlCredenciales.setVisible(true);
+                            PersonaV.inptUsr.setText(String.valueOf(tbl.getValueAt(fila, 10)));
+                            PersonaV.inptPssw.setText(String.valueOf(tbl.getValueAt(fila, 11)));
+                        }
+                        break;
+                }
+            }
+            switch (tipoDePersona) {
                 case "A":
-                    PersonaV.pnlCredenciales.setVisible(false);
-                    PersonaV.btnTipPerAdministrador.setSelected(true);
-                    break;
-                case "V":
-                    if (PersonaV.btnBusTipper.getSelectedIndex() == 2) {
-                        PersonaV.pnlCredenciales.setVisible(true);
-                        PersonaV.inptUsr.setText(String.valueOf(tbl.getValueAt(fila, 6)));
-                        PersonaV.inptPssw.setText(String.valueOf(tbl.getValueAt(fila, 7)));
-                    }
-                    PersonaV.btnTipPerVendedor.setSelected(true);
+                    tipoDePersona = "Administrador";
                     break;
                 case "C":
-                    PersonaV.pnlCredenciales.setVisible(false);
-                    PersonaV.btnTipPerCliente.setSelected(true);
+                    tipoDePersona = "Cliente";
                     break;
-                default:
+                case "I":
+                    tipoDePersona = "Inventariador";
+                    break;
+                case "V":
+                    tipoDePersona = "Vendedor";
                     break;
             }
+            PersonaV.comboTipoDePersona.setSelectedItem(tipoDePersona);
         }
     }
 
     public void autorrellenarCamposPorDni() throws ParseException {
         if (PersonaV.inptDniPer.getText().length() == 8) {
+            if(!dao.existeDni(PersonaV.inptDniPer.getText())){
             JSONObject datos = ConsultaGob.getDatosDni(PersonaV.inptDniPer.getText());
             PersonaV.inptApePer.setText(datos.get("apellido_paterno").toString() + " " + datos.get("apellido_materno").toString());
             PersonaV.inptNomPer.setText(datos.get("nombres").toString());
+            }else{
+                JOptionPane.showMessageDialog(null, "El DNI ingresado ya existe en la Base de Datos");
+            }
         }
 
     }
-    
-    public DefaultComboBoxModel llenarComboUbigeo(char tipo, String nombre){
+
+    public DefaultComboBoxModel llenarComboUbigeo(char tipo, String nombre) {
         try {
             servicios.CombosAnidados combo = new CombosAnidados();
             return combo.listarCombo(tipo, nombre);
@@ -144,8 +186,7 @@ public class PersonaC {
         PersonaV.inpTlfPer.setText("");
         PersonaV.btnGroupTipPer.clearSelection();
         PersonaV.inptDirPer.setText("");
-        
-        
+
         PersonaV.inptUsr.setText("");
         PersonaV.inptPssw.setText("");
         PersonaV.pnlCredenciales.setVisible(false);
