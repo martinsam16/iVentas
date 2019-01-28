@@ -2,9 +2,12 @@ package controlador;
 
 import dao.PersonaD;
 import java.awt.HeadlessException;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelo.PersonaM;
 import org.json.simple.JSONObject;
@@ -14,6 +17,7 @@ import servicios.ConsultaGob;
 import servicios.TablasS;
 import vista.PersonaV;
 import static vista.PersonaV.btnBusTipper;
+import static vista.PersonaV.inptDniPer;
 import static vista.PersonaV.pnlCredenciales;
 import static vista.PersonaV.tblPer;
 
@@ -66,6 +70,29 @@ public class PersonaC {
         return est;
     }
     
+    public void registrarPersona(){
+         try {
+            if (validar()) {
+                variablesM();
+                accionPersona('1');
+                limpiar();
+                btnBusTipper.setSelectedIndex(btnBusTipper.getSelectedIndex());
+            }
+        } catch (Exception e) {
+            System.out.println("Error btnRegPErV");
+        }
+    }
+    
+    public void botonBuscarTipper(){
+        boolean temp = true;
+        PersonaV.inptBuscar.setText("");
+        if (btnBusTipper.getSelectedIndex() == 0) {
+            temp = false;
+        }
+        tblPer.setModel(listarPersonas(btnBusTipper.getItemAt(btnBusTipper.getSelectedIndex()).charAt(0), temp));
+        PersonaV.txtCantReg.setText(String.valueOf(tblPer.getRowCount()));
+    }
+    
     public void editarPersona(){
         try {
             tblPer.clearSelection();
@@ -85,6 +112,20 @@ public class PersonaC {
             }
         } catch (HeadlessException e) {
             System.out.println("Error Editar" + e.getMessage());
+        }
+    }
+    
+    public void eliminarPersona(){
+        try {
+            tblPer.clearSelection();
+            if (!"".equals(inptDniPer.getText())) {
+                variablesM();
+                accionPersona('3');
+                limpiar();
+                btnBusTipper.setSelectedIndex(btnBusTipper.getSelectedIndex());
+            }
+        } catch (Exception e) {
+            System.out.println("Error btnEliminar");
         }
     }
 
@@ -178,7 +219,19 @@ public class PersonaC {
     public void buscar(String consulta, JTable tbl) {
         TablasS.buscar(consulta, tbl);
     }
-
+    
+    public void inputSoloDigitos(JTextField input,int cantidadDeDigitos){
+        input.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (((caracter < '0') || (caracter > '9')) && (caracter != '\b') || input.getText().length() >= cantidadDeDigitos) {
+                    e.consume();
+                }
+            }
+        });
+    }
+    
     public void limpiar() {
         PersonaV.inptNomPer.setText("");
         PersonaV.inptApePer.setText("");

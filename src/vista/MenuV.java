@@ -149,7 +149,6 @@ public class MenuV extends javax.swing.JFrame {
     private void materialButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton1ActionPerformed
 try {
             PersonaV persona = new PersonaV();
-//            persona.setVisible(true);
             persona.setVisible(true);
         } catch (Exception e) {
             System.out.println(e.getCause() + e.getMessage());

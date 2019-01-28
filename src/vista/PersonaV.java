@@ -1,8 +1,6 @@
 package vista;
 
 import controlador.PersonaC;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.print.PrinterException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,8 +12,8 @@ public class PersonaV extends javax.swing.JFrame {
 
     public PersonaV() throws Exception {
         initComponents();
-        this.setLocationRelativeTo(this);
-        //this.setExtendedState(MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
+        this.setExtendedState(MAXIMIZED_BOTH);
         pnlCredenciales.setVisible(false);
     }
 
@@ -288,14 +286,14 @@ public class PersonaV extends javax.swing.JFrame {
             }
         });
 
-        comboProvincia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboProvincia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         comboProvincia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboProvinciaActionPerformed(evt);
             }
         });
 
-        comboDistrito.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboDistrito.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
 
         inptDirPer.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         inptDirPer.setToolTipText("");
@@ -327,11 +325,11 @@ public class PersonaV extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(inpTlfPer, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(inptNomPer, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(42, 42, 42)
-                                        .addComponent(inptApePer, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(inptNomPer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(inptApePer, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(cmbDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -507,13 +505,7 @@ public class PersonaV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBusTipperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusTipperActionPerformed
-        boolean temp = true;
-        inptBuscar.setText("");
-        if (btnBusTipper.getSelectedIndex() == 0) {
-            temp = false;
-        }
-        tblPer.setModel(personaC.listarPersonas(btnBusTipper.getItemAt(btnBusTipper.getSelectedIndex()).charAt(0), temp));
-        PersonaV.txtCantReg.setText(String.valueOf(tblPer.getRowCount()));
+        personaC.botonBuscarTipper();
     }//GEN-LAST:event_btnBusTipperActionPerformed
 
     private void tblPerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPerMouseClicked
@@ -533,27 +525,11 @@ public class PersonaV extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void inptDniPerCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_inptDniPerCaretUpdate
-        inptDniPer.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                char caracter = e.getKeyChar();
-                if (((caracter < '0') || (caracter > '9')) && (caracter != '\b') || inptDniPer.getText().length() >= 8) {
-                    e.consume();
-                }
-            }
-        });
+        personaC.inputSoloDigitos(inptDniPer, 8);
     }//GEN-LAST:event_inptDniPerCaretUpdate
 
     private void inpTlfPerCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_inpTlfPerCaretUpdate
-        inpTlfPer.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                char caracter = e.getKeyChar();
-                if (((caracter < '0') || (caracter > '9')) && (caracter != '\b') || inpTlfPer.getText().length() >= 9) {
-                    e.consume();
-                }
-            }
-        });
+        personaC.inputSoloDigitos(inpTlfPer, 9);
     }//GEN-LAST:event_inpTlfPerCaretUpdate
 
     private void inptPsswCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_inptPsswCaretUpdate
@@ -561,17 +537,7 @@ public class PersonaV extends javax.swing.JFrame {
     }//GEN-LAST:event_inptPsswCaretUpdate
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        try {
-            tblPer.clearSelection();
-            if (!"".equals(inptDniPer.getText())) {
-                personaC.variablesM();
-                personaC.accionPersona('3');
-                personaC.limpiar();
-                btnBusTipper.setSelectedIndex(btnBusTipper.getSelectedIndex());
-            }
-        } catch (Exception e) {
-            System.out.println("Error btnEliminar");
-        }
+        personaC.eliminarPersona();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -579,16 +545,7 @@ public class PersonaV extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnRegPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegPerActionPerformed
-        try {
-            if (personaC.validar()) {
-                personaC.variablesM();
-                personaC.accionPersona('1');
-                personaC.limpiar();
-                btnBusTipper.setSelectedIndex(btnBusTipper.getSelectedIndex());
-            }
-        } catch (Exception e) {
-            System.out.println("Error btnRegPErV");
-        }
+        personaC.registrarPersona();
     }//GEN-LAST:event_btnRegPerActionPerformed
 
     private void inptBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inptBuscarKeyReleased
@@ -599,8 +556,6 @@ public class PersonaV extends javax.swing.JFrame {
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         try {
-//            servicios.report r = new report();
-//            r.toPdf(tblPer,JOptionPane.showInputDialog("Ingrese el nombre con el que desea guardarlo"));
             tblPer.print();//Solucion más eficiente
         } catch (PrinterException e) {
             System.out.println(e.getMessage() + e.getMessage());
@@ -610,7 +565,6 @@ public class PersonaV extends javax.swing.JFrame {
     private void btnAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutoActionPerformed
         try {
             personaC.autorrellenarCamposPorDni();
-
         } catch (ParseException ex) {
             Logger.getLogger(PersonaV.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -659,7 +613,8 @@ public class PersonaV extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
+                try {                    
+                    inptDniPer.setRequestFocusEnabled(true);
                     new PersonaV().setVisible(true);
                 } catch (Exception e) {
                     System.out.println(e.getMessage() + e.getCause());
@@ -684,7 +639,7 @@ public class PersonaV extends javax.swing.JFrame {
     public static javax.swing.JComboBox comboTipoDePersona;
     public static principal.MaterialTextField inpTlfPer;
     public static principal.MaterialTextField inptApePer;
-    private principal.MaterialTextField inptBuscar;
+    public static principal.MaterialTextField inptBuscar;
     public static principal.MaterialTextField inptDirPer;
     public static principal.MaterialTextField inptDniPer;
     public static principal.MaterialTextField inptNomPer;

@@ -5,6 +5,8 @@ import servicios.ReportesS;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
@@ -13,7 +15,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.ProductoM;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 import servicios.CombosAnidados;
+import servicios.ConsultaGob;
 import servicios.TablasS;
 import static vista.ProductoV.cmbMarPro;
 import static vista.ProductoV.cmbMarPro1;
@@ -22,7 +27,10 @@ import static vista.ProductoV.inptMarPro;
 import static vista.ProductoV.inptModPro;
 import static vista.ProductoV.inptNomPro;
 import static vista.ProductoV.inptPrePro;
+import static vista.ProductoV.inptRucPro;
 import static vista.ProductoV.inptSerPro;
+import static vista.ProductoV.inputAtributosDelProducto;
+import static vista.ProductoV.inputFecGarPro;
 import static vista.ProductoV.lblImg;
 import static vista.ProductoV.tblProductos;
 
@@ -35,21 +43,21 @@ public class ProductoC {
 
     public String nuevo = "";
 
-    public void accionMarca(String accion) {
+    public void accionMarca(char accion) {
         try {
             dao.accionMarca(producto, nuevo, accion);
         } catch (Exception e) {
         }
     }
 
-    public void accionModelo(String accion) {
+    public void accionModelo(char accion) {
         try {
             dao.accionModelo(producto, nuevo, accion);
         } catch (Exception e) {
         }
     }
 
-    public void accionProducto(String accion) {
+    public void accionProducto(char accion) {
         try {
             dao.accionProducto(producto, accion);
         } catch (Exception e) {
@@ -104,13 +112,17 @@ public class ProductoC {
     public void variablesM(char tip) {
         // Para registrar
         /*
-        1   Producto
-        2   Marca
-        3   Modelo
+         1   Producto
+         2   Marca
+         3   Modelo
          */
         producto.clear();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         switch (tip) {
             case '1':
+                producto.setRucprov(inptRucPro.getText());
+                producto.setDespro(inputAtributosDelProducto.getText());
+                producto.setFecgarpro(df.format(inputFecGarPro.getDate()));
                 producto.setNompro(inptNomPro.getText());
                 producto.setNommar(cmbMarPro.getSelectedItem().toString());
                 producto.setNommod(cmbModPro.getSelectedItem().toString());
@@ -129,6 +141,26 @@ public class ProductoC {
         }
         System.out.println("VariablesM" + producto.toString());
 
+    }
+
+    public DefaultComboBoxModel llenarComboUbigeo(char tipo, String nombre) {
+        try {
+            servicios.CombosAnidados combo = new CombosAnidados();
+            return combo.listarCombo(tipo, nombre);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public void autorrellenarCamposPorRuc() throws ParseException {
+        if (inptRucPro.getText().length() == 11) {
+            if (!dao.existeRuc(inptRucPro.getText())) {
+                JSONObject datos = ConsultaGob.getDatosRuc(inptRucPro.getText());
+                System.out.println(datos.toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "El DNI ingresado ya existe en la Base de Datos");
+            }
+        }
     }
 
     public void llenarCampos() {

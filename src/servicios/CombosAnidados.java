@@ -28,7 +28,7 @@ public class CombosAnidados extends Conexion {
                     sql = "SELECT MODELO.NOMMOD FROM MODELO";
                     break;
                 case '3':
-                    sql = "SELECT MODELO.NOMMOD FROM MODELO INNER JOIN MARCA ON MODELO.MARCA_CODMAR = MARCA.CODMAR WHERE MARCA.NOMMAR= '" + nombre + "' ORDER BY MODELO.NOMMOD ASC";
+                    sql = "SELECT MODELO.NOMMOD FROM MODELO INNER JOIN MARCA ON  MODELO.MARCA_CODMAR_MARMOD = MARCA.CODMAR WHERE MARCA.NOMMAR= '" + nombre + "' ORDER BY MODELO.NOMMOD ASC";
                     break;
                 case '4':
                     sql = "SELECT DEPARTAMENTO.NOMDEP FROM DEPARTAMENTO ORDER BY DEPARTAMENTO.NOMDEP ASC";

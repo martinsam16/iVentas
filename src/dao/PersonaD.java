@@ -36,7 +36,6 @@ public class PersonaD extends Conexion {
         try {
             String sql = null;
             persona.setCoddis(devolverCodigoDistrito(persona.getNomdis()));
-            boolean temp = false;
             switch (tipo) {
                 case '1':
                     if (existeDni(persona.getDniper())) {
@@ -46,7 +45,7 @@ public class PersonaD extends Conexion {
                     sql = "INSERT INTO PERSONA (NOMPER, APEPER, DNIPER, TLFPER, TIPPER, DISTRITO_CODDIS_DISPER, DIRPER, USRLOGPER, PSWLOGPER, ESTLOGPER) VALUES (?,?,?,?,?,?,?,?,?,?)";
                     if (!"C".equals(persona.getTipper())) {
                         persona.setUsrper(persona.getDniper());
-                        persona.setPswper("@" + persona.getDniper());                        
+                        persona.setPswper("@" + persona.getDniper());
                         persona.setEstlog("A");
                     }
                     break;
@@ -54,19 +53,18 @@ public class PersonaD extends Conexion {
                     sql = "UPDATE PERSONA SET NOMPER=?, APEPER=?, DNIPER=?, TLFPER=?, TIPPER=?, DISTRITO_CODDIS_DISPER=?, DIRPER=?, USRLOGPER=?, PSWLOGPER=?, ESTLOGPER=? WHERE DNIPER='" + persona.getDniper() + "'";
                     if ("C".equals(persona.getTipper())) {
                         persona.setEstlog("I");
-                    }else{
+                    } else {
                         persona.setEstlog("A");
                     }
                     break;
                 case '3':
                     sql = "DELETE FROM PERSONA WHERE DNIPER= ? ";
-                    temp = true;
                 default:
                     break;
             }
             System.out.println(persona.toString());
             PreparedStatement ps = this.conectar().prepareStatement(sql);
-            if (!temp) {
+            if (tipo!='3') {
                 ps.setString(1, persona.getNomper());
                 ps.setString(2, persona.getApeper());
                 ps.setString(3, persona.getDniper());
@@ -114,7 +112,6 @@ public class PersonaD extends Conexion {
                 ResultSet rs = s.executeQuery(sql);
                 int contador = 0;
                 while (rs.next()) {
-                    System.out.println(rs.getArray(contador));
                     contador++;
                 }
                 if (contador >= 1) {
@@ -125,8 +122,7 @@ public class PersonaD extends Conexion {
                 this.desconectar();
             }
         } catch (Exception e) {
-            existe = true;
-            System.out.println("error ExistDni");
+            System.out.println("error ExistDni" + e.getMessage());
         }
         return existe;
     }
@@ -145,7 +141,7 @@ public class PersonaD extends Conexion {
                     clmsTemp += ",USUARIO,CONTRA";
                     sql += ", PERSONA.USRLOGPER, PERSONA.PSWLOGPER";
                 }
-                sql += " FROM PERSONA " + inner +" WHERE PERSONA.TIPPER = '" + tipper + "'";
+                sql += " FROM PERSONA " + inner + " WHERE PERSONA.TIPPER = '" + tipper + "'";
             } else {
                 sql += " FROM PERSONA " + inner;
             }

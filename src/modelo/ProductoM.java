@@ -1,6 +1,5 @@
 package modelo;
 
-import java.sql.Date;
 
 public class ProductoM {
 
@@ -44,14 +43,6 @@ public class ProductoM {
         this.nommod = nommod;
     }
 
-    public String getProveedor_codprov() {
-        return proveedor_codprov;
-    }
-
-    public void setProveedor_codprov(String proveedor_codprov) {
-        this.proveedor_codprov = proveedor_codprov;
-    }
-
     public String getDespro() {
         return despro;
     }
@@ -68,6 +59,22 @@ public class ProductoM {
         this.estpro = estpro;
     }
 
+    public String getRucprov() {
+        return rucprov;
+    }
+
+    public void setRucprov(String rucprov) {
+        this.rucprov = rucprov;
+    }
+
+    public String getFecgarpro() {
+        return fecgarpro;
+    }
+
+    public void setFecgarpro(String fecgarpro) {
+        this.fecgarpro = fecgarpro;
+    }
+
     public double getPrepo() {
         return prepo;
     }
@@ -76,21 +83,32 @@ public class ProductoM {
         this.prepo = prepo;
     }
 
-    public Date getFecgarpro() {
-        return fecgarpro;
+    public int getCodmar() {
+        return codmar;
     }
 
-    public void setFecgarpro(Date fecgarpro) {
-        this.fecgarpro = fecgarpro;
+    public void setCodmar(int codmar) {
+        this.codmar = codmar;
     }
 
-    private String nompro, serpro, urlimgpro, nommar, nommod, proveedor_codprov, despro, estpro;
+    public int getCodmod() {
+        return codmod;
+    }
+
+    public void setCodmod(int codmod) {
+        this.codmod = codmod;
+    }
+
+ 
+    
+    private String nompro, serpro, urlimgpro, nommar, nommod, despro, estpro, rucprov,fecgarpro;
     private double prepo;
-    Date fecgarpro;
+    private int codmar, codmod;
+    
 
     @Override
     public String toString() {
-        return "[" + this.proveedor_codprov + this.nompro + "," + this.nommar + "," + this.nommod + "," + this.serpro + "," + this.urlimgpro + "," + this.despro + "," + this.estpro + "," + this.prepo + "," + this.fecgarpro + "]";
+        return "[" + this.rucprov+ "," + this.codmar+ "," + this.codmod + this.nompro + "," + this.nommar + "," + this.nommod + "," + this.serpro + "," + this.urlimgpro + "," + this.despro + "," + this.estpro + "," + this.prepo + "," + this.fecgarpro + "]";
     }
 
     public void clear() {
