@@ -90,18 +90,18 @@ public class PersonaD extends Conexion {
     }
 
     public int devolverCodigoDistrito(String nombreDelDistrito) {
-        try {
-            int cod = 0;
+        int cod = 0;
+        try {            
             String sql = "SELECT CODDIS FROM DISTRITO WHERE NOMDIS='" + nombreDelDistrito + "'";
             Statement s = this.conectar().prepareStatement(sql);
             ResultSet rs = s.executeQuery(sql);
             while (rs.next()) {
                 cod = Integer.valueOf(rs.getString(1));
             }
-            return cod;
         } catch (Exception e) {
-            return 0;
+            System.out.println("error devolver codigos distriros PErsonaD"+e.getMessage());
         }
+        return cod;
     }
 
     public boolean existeDni(String dni) {

@@ -19,7 +19,7 @@ public class ProductoD extends Conexion {
                     sql = "UPDATE PRODUCTO SET NOMPRO=?, MODELO_CODMOD_MODPRO=?, SERPRO=?, PREPRO=?, URLIMGPRO=?, ATRIBPRO=?, ESTPRO=?, FECGARPRO=?, EMPRESA_CODEMP_PROV=? WHERE SERPRO ='" + producto.getSerpro() + "'";
                     break;
                 case '3':
-                    sql = "DELETE FROM PRODUCTO WHERE PRODUCTO.SERPRO = ?";
+                    sql = "DELETE FROM PRODUCTO WHERE PRODUCTO.SERPRO = '"+producto.getSerpro()+"'";
                     break;
             }
             PreparedStatement ps = this.conectar().prepareStatement(sql);
@@ -34,8 +34,6 @@ public class ProductoD extends Conexion {
                 ps.setString(7, producto.getEstpro());
                 ps.setString(8, producto.getFecgarpro());
                 ps.setInt(9, devolverCodigos('3', producto));
-            } else {
-                ps.setString(1, producto.getSerpro());
             }
 
             ps.executeUpdate();
@@ -108,7 +106,7 @@ public class ProductoD extends Conexion {
                     sql = "SELECT CODMOD FROM MODELO WHERE NOMMOD='" + producto.getNommod() + "'";
                     break;
                 case '3':
-                    sql = "SELECT CODEMP FROM EMPRESA WHERE RUCEMP='" + producto.getRucprov() + "'";
+                    sql = "SELECT CODEMP FROM EMPRESA WHERE NOMEMP='" + producto.getNomprov()+ "'";
                     break;
             }
             Statement s = this.conectar().prepareStatement(sql);
@@ -125,9 +123,9 @@ public class ProductoD extends Conexion {
     public DefaultTableModel listarPro() throws Exception {
         DefaultTableModel tblTemp = null;
         try {
-            String sql = "SELECT PRODUCTO.CODPRO, PRODUCTO.NOMPRO, MARCA.NOMMAR, MODELO.NOMMOD, PRODUCTO.SERPRO, PRODUCTO.PREPRO, PRODUCTO.URLIMGPRO, PRODUCTO.ATRIBPRO, PRODUCTO.FECGARPRO FROM MODELO INNER JOIN PRODUCTO ON PRODUCTO.MODELO_CODMOD_MODPRO = MODELO.CODMOD INNER JOIN MARCA ON MODELO.MARCA_CODMAR_MARMOD = MARCA.CODMAR INNER JOIN EMPRESA ON PRODUCTO.EMPRESA_CODEMP_PROV = EMPRESA.CODEMP";
+            String sql = "SELECT PRODUCTO.CODPRO, PRODUCTO.NOMPRO, MARCA.NOMMAR, MODELO.NOMMOD, PRODUCTO.SERPRO, PRODUCTO.PREPRO, PRODUCTO.URLIMGPRO, PRODUCTO.ATRIBPRO, EMPRESA.NOMEMP, PRODUCTO.FECGARPRO FROM MODELO INNER JOIN PRODUCTO ON PRODUCTO.MODELO_CODMOD_MODPRO = MODELO.CODMOD INNER JOIN MARCA ON MODELO.MARCA_CODMAR_MARMOD = MARCA.CODMAR INNER JOIN EMPRESA ON PRODUCTO.EMPRESA_CODEMP_PROV = EMPRESA.CODEMP";
             
-            String clms = "CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG,ATRIB,GAR";
+            String clms = "CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG,ATRIB,PROVEEDOR,GAR";
 
             tblTemp = new DefaultTableModel(null, clms.split(","));
             Statement s = this.conectar().prepareStatement(sql);
@@ -147,29 +145,6 @@ public class ProductoD extends Conexion {
             System.out.println("Error listar Productos Dao"+e.getMessage());
         }
         return tblTemp;
-    }
-    
-     public boolean existeRuc(String ruc) {
-        boolean existe = false;
-        try {
-            String sql = ("SELECT RUCEMP FROM EMPRESA WHERE RUCEMP='" + ruc + "'");
-            try (Statement s = this.conectar().prepareStatement(sql)) {
-                ResultSet rs = s.executeQuery(sql);
-                int contador = 0;
-                while (rs.next()) {
-                    contador++;
-                }
-                if (contador >= 1) {
-                    existe = true;
-                }
-                s.close();
-                rs.close();
-                this.desconectar();
-            }
-        } catch (Exception e) {
-            System.out.println("error ExistDni" + e.getMessage());
-        }
-        return existe;
     }
 
 }

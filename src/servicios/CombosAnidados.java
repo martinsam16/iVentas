@@ -10,6 +10,7 @@ public class CombosAnidados extends Conexion {
 
     public DefaultComboBoxModel listarCombo(char tip, String nombre) throws Exception {
         /*
+         0   Empresa
          1   Marca
          2   Modelo
          3   Modelo dependiente de marca
@@ -21,6 +22,9 @@ public class CombosAnidados extends Conexion {
         try {
             String sql = null;
             switch (tip) {
+                case '0':
+                    sql = "SELECT EMPRESA.NOMEMP FROM EMPRESA";
+                    break;
                 case '1':
                     sql = "SELECT MARCA.NOMMAR FROM MARCA ORDER BY MARCA.NOMMAR ASC";
                     break;

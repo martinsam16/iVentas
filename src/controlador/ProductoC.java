@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
@@ -15,19 +16,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.ProductoM;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
 import servicios.CombosAnidados;
-import servicios.ConsultaGob;
 import servicios.TablasS;
 import static vista.ProductoV.cmbMarPro;
 import static vista.ProductoV.cmbMarPro1;
 import static vista.ProductoV.cmbModPro;
+import static vista.ProductoV.comboProveedor;
 import static vista.ProductoV.inptMarPro;
 import static vista.ProductoV.inptModPro;
 import static vista.ProductoV.inptNomPro;
 import static vista.ProductoV.inptPrePro;
-import static vista.ProductoV.inptRucPro;
 import static vista.ProductoV.inptSerPro;
 import static vista.ProductoV.inputAtributosDelProducto;
 import static vista.ProductoV.inputFecGarPro;
@@ -120,10 +118,10 @@ public class ProductoC {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         switch (tip) {
             case '1':
-                producto.setRucprov(inptRucPro.getText());
+                producto.setNomprov(comboProveedor.getSelectedItem().toString());
                 producto.setDespro(inputAtributosDelProducto.getText());
                 producto.setFecgarpro(df.format(inputFecGarPro.getDate()));
-                producto.setNompro(inptNomPro.getText());
+                producto.setNompro(inptNomPro.getText().toUpperCase());
                 producto.setNommar(cmbMarPro.getSelectedItem().toString());
                 producto.setNommod(cmbModPro.getSelectedItem().toString());
                 producto.setSerpro(inptSerPro.getText().toUpperCase());
@@ -143,36 +141,27 @@ public class ProductoC {
 
     }
 
-    public DefaultComboBoxModel llenarComboUbigeo(char tipo, String nombre) {
+    public DefaultComboBoxModel llenarComboRucEmpresas() {
         try {
-            servicios.CombosAnidados combo = new CombosAnidados();
-            return combo.listarCombo(tipo, nombre);
+            return combo.listarCombo('0', null);
         } catch (Exception e) {
             return null;
         }
     }
 
-    public void autorrellenarCamposPorRuc() throws ParseException {
-        if (inptRucPro.getText().length() == 11) {
-            if (!dao.existeRuc(inptRucPro.getText())) {
-                JSONObject datos = ConsultaGob.getDatosRuc(inptRucPro.getText());
-                System.out.println(datos.toString());
-            } else {
-                JOptionPane.showMessageDialog(null, "El DNI ingresado ya existe en la Base de Datos");
-            }
-        }
-    }
-
-    public void llenarCampos() {
+    public void llenarCampos() throws ParseException {
         String datosTemp = TablasS.devolverCamposDeFila(tblProductos);
         if (datosTemp != null) {
             String datos[] = datosTemp.split("\\^");
-            // CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG
+            // CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG,ATRIB,PROVEEDOR,GAR
             inptNomPro.setText(datos[1]);
             cmbMarPro.setSelectedItem(datos[2]);
             cmbModPro.setSelectedItem(datos[3]);
             inptSerPro.setText(datos[4]);
             inptPrePro.setText(datos[5]);
+            inputAtributosDelProducto.setText(datos[7]);
+            
+            inputFecGarPro.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(datos[9]));
 
             variablesM('1');
 //            producto.setNommod(datos[3]);

@@ -59,12 +59,12 @@ public class ProductoM {
         this.estpro = estpro;
     }
 
-    public String getRucprov() {
-        return rucprov;
+    public String getNomprov() {
+        return nomprov;
     }
 
-    public void setRucprov(String rucprov) {
-        this.rucprov = rucprov;
+    public void setNomprov(String nomprov) {
+        this.nomprov = nomprov;
     }
 
     public String getFecgarpro() {
@@ -98,17 +98,15 @@ public class ProductoM {
     public void setCodmod(int codmod) {
         this.codmod = codmod;
     }
-
- 
     
-    private String nompro, serpro, urlimgpro, nommar, nommod, despro, estpro, rucprov,fecgarpro;
+    private String nompro, serpro, urlimgpro, nommar, nommod, despro, estpro, nomprov,fecgarpro;
     private double prepo;
     private int codmar, codmod;
     
 
     @Override
     public String toString() {
-        return "[" + this.rucprov+ "," + this.codmar+ "," + this.codmod + this.nompro + "," + this.nommar + "," + this.nommod + "," + this.serpro + "," + this.urlimgpro + "," + this.despro + "," + this.estpro + "," + this.prepo + "," + this.fecgarpro + "]";
+        return "[" + this.nomprov+ "," + this.codmar+ "," + this.codmod + this.nompro + "," + this.nommar + "," + this.nommod + "," + this.serpro + "," + this.urlimgpro + "," + this.despro + "," + this.estpro + "," + this.prepo + "," + this.fecgarpro + "]";
     }
 
     public void clear() {
