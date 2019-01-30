@@ -150,6 +150,7 @@ public class ProductoC {
     }
 
     public void llenarCampos() throws ParseException {
+        
         String datosTemp = TablasS.devolverCamposDeFila(tblProductos);
         if (datosTemp != null) {
             String datos[] = datosTemp.split("\\^");

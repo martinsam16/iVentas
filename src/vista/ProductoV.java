@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.ProductoC;
+import java.awt.Cursor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -670,8 +671,10 @@ public class ProductoV extends javax.swing.JFrame {
 
     private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
         try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             productoC.llenarCampos();
             this.repaint();
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         } catch (java.text.ParseException ex) {
             Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
         }
