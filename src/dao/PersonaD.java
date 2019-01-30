@@ -6,6 +6,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.PersonaM;
+import servicios.ConsultaGob;
 
 public class PersonaD extends Conexion {
 
@@ -38,7 +39,7 @@ public class PersonaD extends Conexion {
             persona.setCoddis(devolverCodigoDistrito(persona.getNomdis()));
             switch (tipo) {
                 case '1':
-                    if (existeDni(persona.getDniper())) {
+                    if (ConsultaGob.existeDocumento(persona.getDniper(),'1')) {
                         JOptionPane.showMessageDialog(null, "El DNI ingresado ya existe.");
                         return;
                     }
@@ -102,29 +103,6 @@ public class PersonaD extends Conexion {
             System.out.println("error devolver codigos distriros PErsonaD"+e.getMessage());
         }
         return cod;
-    }
-
-    public boolean existeDni(String dni) {
-        boolean existe = false;
-        try {
-            String sql = ("SELECT DNIPER FROM PERSONA WHERE DNIPER='" + dni + "'");
-            try (Statement s = this.conectar().prepareStatement(sql)) {
-                ResultSet rs = s.executeQuery(sql);
-                int contador = 0;
-                while (rs.next()) {
-                    contador++;
-                }
-                if (contador >= 1) {
-                    existe = true;
-                }
-                s.close();
-                rs.close();
-                this.desconectar();
-            }
-        } catch (Exception e) {
-            System.out.println("error ExistDni" + e.getMessage());
-        }
-        return existe;
     }
 
     public DefaultTableModel listarPersonas(char tipper, boolean estado) throws Exception {

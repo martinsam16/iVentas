@@ -4,6 +4,8 @@ import dao.PersonaD;
 import java.awt.HeadlessException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -28,12 +30,12 @@ public class PersonaC {
 
     public void accionPersona(char tipoDeAccion) {
         try {
+            
             dao.accionPersona(persona, tipoDeAccion);
         } catch (Exception e) {
             System.out.println("Error RegPer() C" + e.getMessage());
         }
     }
-    
 
     public void editartLogin() {
         try {
@@ -69,9 +71,9 @@ public class PersonaC {
         }
         return est;
     }
-    
-    public void registrarPersona(){
-         try {
+
+    public void registrarPersona() {
+        try {
             if (validar()) {
                 variablesM();
                 accionPersona('1');
@@ -82,8 +84,8 @@ public class PersonaC {
             System.out.println("Error btnRegPErV");
         }
     }
-    
-    public void botonBuscarTipper(){
+
+    public void botonBuscarTipper() {
         boolean temp = true;
         PersonaV.inptBuscar.setText("");
         if (btnBusTipper.getSelectedIndex() == 0) {
@@ -92,19 +94,19 @@ public class PersonaC {
         tblPer.setModel(listarPersonas(btnBusTipper.getItemAt(btnBusTipper.getSelectedIndex()).charAt(0), temp));
         PersonaV.txtCantReg.setText(String.valueOf(tblPer.getRowCount()));
     }
-    
-    public void editarPersona(){
+
+    public void editarPersona() {
         try {
             tblPer.clearSelection();
-            if (validar()) {                
+            if (validar()) {
                 variablesM();
                 if (pnlCredenciales.isVisible()) {
                     if (!validarLogin()) {
                         return;
                     }
-                }else{
+                } else {
                     persona.setUsrper(persona.getDniper());
-                    persona.setPswper("@"+persona.getDniper());
+                    persona.setPswper("@" + persona.getDniper());
                 }
                 accionPersona('2');
                 limpiar();
@@ -114,8 +116,8 @@ public class PersonaC {
             System.out.println("Error Editar" + e.getMessage());
         }
     }
-    
-    public void eliminarPersona(){
+
+    public void eliminarPersona() {
         try {
             tblPer.clearSelection();
             if (!"".equals(inptDniPer.getText())) {
@@ -196,12 +198,16 @@ public class PersonaC {
 
     public void autorrellenarCamposPorDni() throws ParseException {
         if (PersonaV.inptDniPer.getText().length() == 8) {
-            if(!dao.existeDni(PersonaV.inptDniPer.getText())){
-            JSONObject datos = ConsultaGob.getDatosDni(PersonaV.inptDniPer.getText());
-            PersonaV.inptApePer.setText(datos.get("apellido_paterno").toString() + " " + datos.get("apellido_materno").toString());
-            PersonaV.inptNomPer.setText(datos.get("nombres").toString());
-            }else{
-                JOptionPane.showMessageDialog(null, "El DNI ingresado ya existe en la Base de Datos");
+            try {
+                if (!ConsultaGob.existeDocumento(PersonaV.inptDniPer.getText(), '1')) {
+                    JSONObject datos = ConsultaGob.getDatosDni(PersonaV.inptDniPer.getText());
+                    PersonaV.inptApePer.setText(datos.get("apellido_paterno").toString() + " " + datos.get("apellido_materno").toString());
+                    PersonaV.inptNomPer.setText(datos.get("nombres").toString());
+                } else {
+                    JOptionPane.showMessageDialog(null, "El DNI ingresado ya existe en la Base de Datos");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(PersonaC.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -219,8 +225,8 @@ public class PersonaC {
     public void buscar(String consulta, JTable tbl) {
         TablasS.buscar(consulta, tbl);
     }
-    
-    public void inputSoloDigitos(JTextField input,int cantidadDeDigitos){
+
+    public void inputSoloDigitos(JTextField input, int cantidadDeDigitos) {
         input.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -231,13 +237,12 @@ public class PersonaC {
             }
         });
     }
-    
+
     public void limpiar() {
         PersonaV.inptNomPer.setText("");
         PersonaV.inptApePer.setText("");
         PersonaV.inptDniPer.setText("");
         PersonaV.inpTlfPer.setText("");
-        PersonaV.btnGroupTipPer.clearSelection();
         PersonaV.inptDirPer.setText("");
 
         PersonaV.inptUsr.setText("");

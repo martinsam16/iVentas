@@ -12,7 +12,7 @@ public class PersonaV extends javax.swing.JFrame {
 
     public PersonaV() throws Exception {
         initComponents();
-        this.setLocationRelativeTo(null);
+//        this.setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
         pnlCredenciales.setVisible(false);
     }
@@ -21,7 +21,6 @@ public class PersonaV extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGroupTipPer = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         cmbCodTel = new javax.swing.JComboBox<String>();
@@ -53,11 +52,13 @@ public class PersonaV extends javax.swing.JFrame {
         btnBusTipper = new javax.swing.JComboBox<String>();
         inptBuscar = new principal.MaterialTextField();
         btnReporte = new principal.MaterialButtomRectangle();
+        btnHome = new principal.MaterialButton();
         txtCantReg = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Persona");
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -427,6 +428,13 @@ public class PersonaV extends javax.swing.JFrame {
             }
         });
 
+        btnHome.setText("Home");
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -436,8 +444,10 @@ public class PersonaV extends javax.swing.JFrame {
                 .addComponent(inptBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBusTipper, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(130, 130, 130)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85)
+                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -445,10 +455,11 @@ public class PersonaV extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(inptBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnBusTipper)))
+                        .addComponent(btnBusTipper)
+                        .addComponent(btnReporte, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -466,7 +477,7 @@ public class PersonaV extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEdElLayout.createSequentialGroup()
-                        .addGap(0, 767, Short.MAX_VALUE)
+                        .addGap(0, 791, Short.MAX_VALUE)
                         .addComponent(txtCantReg, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -583,6 +594,12 @@ public class PersonaV extends javax.swing.JFrame {
 
     }//GEN-LAST:event_comboTipoDePersonaActionPerformed
 
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        MenuV home = new MenuV();
+        home.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnHomeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -628,7 +645,7 @@ public class PersonaV extends javax.swing.JFrame {
     public static javax.swing.JComboBox<String> btnBusTipper;
     private principal.MaterialButtomRectangle btnEditar;
     private principal.MaterialButtomRectangle btnEliminar;
-    public static javax.swing.ButtonGroup btnGroupTipPer;
+    private principal.MaterialButton btnHome;
     public static principal.MaterialButtonCircle btnNew;
     private principal.MaterialButtomRectangle btnRegPer;
     private principal.MaterialButtomRectangle btnReporte;

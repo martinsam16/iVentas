@@ -1,12 +1,15 @@
 package vista;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class MenuV extends javax.swing.JFrame {
 
     public MenuV() {
         initComponents();
         setLocationRelativeTo(null);
-        //this.setExtendedState(MAXIMIZED_BOTH);
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     @SuppressWarnings("unchecked")
@@ -147,11 +150,13 @@ public class MenuV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void materialButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton1ActionPerformed
-try {
+
+        try {
             PersonaV persona = new PersonaV();
             persona.setVisible(true);
-        } catch (Exception e) {
-            System.out.println(e.getCause() + e.getMessage());
+            dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(MenuV.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_materialButton1ActionPerformed
 
@@ -159,6 +164,7 @@ try {
         try {
             ProductoV producto = new ProductoV();
             producto.setVisible(true);
+            dispose();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnVentas1ActionPerformed
@@ -167,6 +173,7 @@ try {
         try {
             VentaV venta = new VentaV();
             venta.setVisible(true);
+            dispose();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnVentasActionPerformed
