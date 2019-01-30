@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.PersonaC;
+import java.awt.Cursor;
 import java.awt.print.PrinterException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -295,6 +296,11 @@ public class PersonaV extends javax.swing.JFrame {
         });
 
         comboDistrito.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
+        comboDistrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboDistritoActionPerformed(evt);
+            }
+        });
 
         inptDirPer.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         inptDirPer.setToolTipText("");
@@ -575,7 +581,9 @@ public class PersonaV extends javax.swing.JFrame {
 
     private void btnAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutoActionPerformed
         try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             personaC.autorrellenarCamposPorDni();
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         } catch (ParseException ex) {
             Logger.getLogger(PersonaV.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -599,6 +607,10 @@ public class PersonaV extends javax.swing.JFrame {
         home.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void comboDistritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboDistritoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboDistritoActionPerformed
 
     /**
      * @param args the command line arguments

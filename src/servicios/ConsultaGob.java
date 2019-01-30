@@ -89,4 +89,5 @@ public class ConsultaGob extends dao.Conexion {
         }
         return datosFinal.trim().split("\\^");
     }
+    
 }
