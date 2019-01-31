@@ -17,6 +17,7 @@ public class CombosAnidados extends Conexion {
          4   Departamentos
          5   Provincias dependientes de Departamentos
          6   Distritos dependientes de Provincia
+         7 Dni Personas
          */
         DefaultComboBoxModel cmbTemp = null;
         try {
@@ -42,6 +43,9 @@ public class CombosAnidados extends Conexion {
                     break;
                 case '6':
                     sql = "SELECT DISTRITO.NOMDIS FROM DISTRITO INNER JOIN PROVINCIA ON DISTRITO.PROVINCIA_CODPROV = PROVINCIA.CODPROV  WHERE PROVINCIA.NOMPROV = '" + nombre + "'";
+                    break;
+                case '7':
+                    sql="SELECT PERSONA.DNIPER FROM PERSONA";
                     break;
                 default:
                     break;

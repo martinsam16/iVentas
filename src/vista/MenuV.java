@@ -23,8 +23,6 @@ public class MenuV extends javax.swing.JFrame {
         btnVentas = new principal.MaterialButton();
         pnlProducto = new javax.swing.JPanel();
         btnVentas1 = new principal.MaterialButton();
-        pnlVentas1 = new javax.swing.JPanel();
-        btnEmpresas = new principal.MaterialButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Menú");
@@ -112,32 +110,6 @@ public class MenuV extends javax.swing.JFrame {
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
-        pnlVentas1.setBackground(new java.awt.Color(255, 255, 255));
-
-        btnEmpresas.setText("Empresas");
-        btnEmpresas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEmpresasActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlVentas1Layout = new javax.swing.GroupLayout(pnlVentas1);
-        pnlVentas1.setLayout(pnlVentas1Layout);
-        pnlVentas1Layout.setHorizontalGroup(
-            pnlVentas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlVentas1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(btnEmpresas, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
-        pnlVentas1Layout.setVerticalGroup(
-            pnlVentas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlVentas1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(btnEmpresas, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -148,9 +120,7 @@ public class MenuV extends javax.swing.JFrame {
                     .addComponent(pnlProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlPersonas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlVentas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(248, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -161,9 +131,7 @@ public class MenuV extends javax.swing.JFrame {
                     .addComponent(pnlPersonas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlVentas1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -210,15 +178,6 @@ public class MenuV extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVentasActionPerformed
 
-    private void btnEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpresasActionPerformed
-        try {
-            EmpresaV empresa = new EmpresaV();
-            empresa.setVisible(true);
-            dispose();
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_btnEmpresasActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -255,7 +214,6 @@ public class MenuV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private principal.MaterialButton btnEmpresas;
     private principal.MaterialButton btnVentas;
     public static principal.MaterialButton btnVentas1;
     private javax.swing.JPanel jPanel1;
@@ -263,6 +221,5 @@ public class MenuV extends javax.swing.JFrame {
     public static javax.swing.JPanel pnlPersonas;
     public static javax.swing.JPanel pnlProducto;
     public static javax.swing.JPanel pnlVentas;
-    public static javax.swing.JPanel pnlVentas1;
     // End of variables declaration//GEN-END:variables
 }

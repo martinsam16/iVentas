@@ -39,19 +39,19 @@ public class PersonaD extends Conexion {
             persona.setCoddis(devolverCodigoDistrito(persona.getNomdis()));
             switch (tipo) {
                 case '1':
-                    if (ConsultaGob.existeDocumento(persona.getDniper(),'1')) {
-                        JOptionPane.showMessageDialog(null, "El DNI ingresado ya existe.");
+                    if (ConsultaGob.existeDocumento(persona.getDocper())) {
+                        JOptionPane.showMessageDialog(null, "El documento ingresado ya existe.");
                         return;
                     }
-                    sql = "INSERT INTO PERSONA (NOMPER, APEPER, DNIPER, TLFPER, TIPPER, DISTRITO_CODDIS_DISPER, DIRPER, USRLOGPER, PSWLOGPER, ESTLOGPER) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                    sql = "INSERT INTO PERSONA (NOMPER, APEPER, DOCPER, TLFPER, TIPPER, DISTRITO_CODDIS_DISPER, DIRPER, USRLOGPER, PSWLOGPER, ESTLOGPER) VALUES (?,?,?,?,?,?,?,?,?,?)";
                     if (!"C".equals(persona.getTipper())) {
-                        persona.setUsrper(persona.getDniper());
-                        persona.setPswper("@" + persona.getDniper());
+                        persona.setUsrper(persona.getDocper());
+                        persona.setPswper("@" + persona.getDocper());
                         persona.setEstlog("A");
                     }
                     break;
                 case '2':
-                    sql = "UPDATE PERSONA SET NOMPER=?, APEPER=?, DNIPER=?, TLFPER=?, TIPPER=?, DISTRITO_CODDIS_DISPER=?, DIRPER=?, USRLOGPER=?, PSWLOGPER=?, ESTLOGPER=? WHERE DNIPER='" + persona.getDniper() + "'";
+                    sql = "UPDATE PERSONA SET NOMPER=?, APEPER=?, DNIPER=?, TLFPER=?, TIPPER=?, DISTRITO_CODDIS_DISPER=?, DIRPER=?, USRLOGPER=?, PSWLOGPER=?, ESTLOGPER=? WHERE DNIPER='" + persona.getDocper()+ "'";
                     if ("C".equals(persona.getTipper())) {
                         persona.setEstlog("I");
                     } else {
@@ -68,7 +68,7 @@ public class PersonaD extends Conexion {
             if (tipo!='3') {
                 ps.setString(1, persona.getNomper());
                 ps.setString(2, persona.getApeper());
-                ps.setString(3, persona.getDniper());
+                ps.setString(3, persona.getDocper());
                 ps.setString(4, persona.getTelfper());
                 ps.setString(5, persona.getTipper());
                 ps.setInt(6, persona.getCoddis());
@@ -77,7 +77,7 @@ public class PersonaD extends Conexion {
                 ps.setString(9, persona.getPswper());
                 ps.setString(10, persona.getEstlog());
             } else {
-                ps.setString(1, persona.getDniper());
+                ps.setString(1, persona.getDocper());
             }
 
             ps.executeUpdate();
@@ -109,11 +109,11 @@ public class PersonaD extends Conexion {
 
         DefaultTableModel tblTemp = null;
         try {
-            String clmsTemp = "CÓDIGO,NOMBRES,APELLIDOS,DNI,TELÉFONO,DEPARTAMENTO,PROVINCIA,DISTRITO,DIRECCION,TIPO";
+            String clmsTemp = "CÓDIGO,NOMBRES,APELLIDOS,DOCUMENTO,TELÉFONO,DEPARTAMENTO,PROVINCIA,DISTRITO,DIRECCION,TIPO";
             String sql;
             String inner = "INNER JOIN DISTRITO ON PERSONA.DISTRITO_CODDIS_DISPER=DISTRITO.CODDIS INNER JOIN PROVINCIA ON DISTRITO.PROVINCIA_CODPROV = PROVINCIA.CODPROV INNER JOIN DEPARTAMENTO ON PROVINCIA.DEPARTAMENTO_CODDEP = DEPARTAMENTO.CODDEP";
 
-            sql = "SELECT PERSONA.CODPER, PERSONA.NOMPER, PERSONA.APEPER, PERSONA.DNIPER, PERSONA.TLFPER, DEPARTAMENTO.NOMDEP,PROVINCIA.NOMPROV,DISTRITO.NOMDIS,PERSONA.DIRPER,PERSONA.TIPPER";
+            sql = "SELECT PERSONA.DOCPER, PERSONA.NOMPER, PERSONA.APEPER, PERSONA.DOCPER, PERSONA.TLFPER, DEPARTAMENTO.NOMDEP,PROVINCIA.NOMPROV,DISTRITO.NOMDIS,PERSONA.DIRPER,PERSONA.TIPPER";
             if (estado) {
                 if (tipper == 'V' || tipper == 'I') {
                     clmsTemp += ",USUARIO,CONTRA";

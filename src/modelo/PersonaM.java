@@ -10,6 +10,14 @@ public class PersonaM {
         this.codper = codper;
     }
 
+    public int getCoddis() {
+        return coddis;
+    }
+
+    public void setCoddis(int coddis) {
+        this.coddis = coddis;
+    }
+
     public String getNomper() {
         return nomper;
     }
@@ -26,12 +34,12 @@ public class PersonaM {
         this.apeper = apeper;
     }
 
-    public String getDniper() {
-        return dniper;
+    public String getDocper() {
+        return docper;
     }
 
-    public void setDniper(String dniper) {
-        this.dniper = dniper;
+    public void setDocper(String docper) {
+        this.docper = docper;
     }
 
     public String getTelfper() {
@@ -50,6 +58,14 @@ public class PersonaM {
         this.tipper = tipper;
     }
 
+    public String getNomdis() {
+        return nomdis;
+    }
+
+    public void setNomdis(String nomdis) {
+        this.nomdis = nomdis;
+    }
+
     public String getDir() {
         return dir;
     }
@@ -57,6 +73,7 @@ public class PersonaM {
     public void setDir(String dir) {
         this.dir = dir;
     }
+
     public String getUsrper() {
         return usrper;
     }
@@ -72,15 +89,6 @@ public class PersonaM {
     public void setPswper(String pswper) {
         this.pswper = pswper;
     }
-    
-
-    public int getCoddis() {
-        return coddis;
-    }
-
-    public void setCoddis(int coddis) {
-        this.coddis = coddis;
-    }    
 
     public String getEstlog() {
         return estlog;
@@ -88,24 +96,15 @@ public class PersonaM {
 
     public void setEstlog(String estlog) {
         this.estlog = estlog;
-    }    
-
-    public String getNomdis() {
-        return nomdis;
     }
-
-    public void setNomdis(String nomdis) {
-        this.nomdis = nomdis;
-    }
-    
     
     private int codper, coddis;
-    private String nomper, apeper, dniper, telfper, tipper;
+    private String nomper, apeper, docper, telfper, tipper;
     private String nomdis, dir;
     private String usrper, pswper, estlog;
 
     @Override
     public String toString() {
-        return "[" + this.codper + "," + this.nomper + "," + this.apeper + "," + this.dniper + "," + this.telfper + "," + this.tipper + ","+this.nomdis+","+this.dir+","+this.usrper+","+this.pswper+"]";
+        return "[" + this.codper + "," + this.nomper + "," + this.apeper + "," + this.docper + "," + this.telfper + "," + this.tipper + ","+this.nomdis+","+this.dir+","+this.usrper+","+this.pswper+"]";
     }
 }

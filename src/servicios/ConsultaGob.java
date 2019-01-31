@@ -42,20 +42,11 @@ public class ConsultaGob extends dao.Conexion {
         }
     }
 
-    public static boolean existeDocumento(String numeroDeDocumento, char tipoDeDocumento) throws Exception {
+    public static boolean existeDocumento(String numeroDeDocumento) throws Exception {
         boolean existe = false;
         try {
             String sql = null;
-            switch (tipoDeDocumento) {
-                case '1':
-                    sql = ("SELECT DNIPER FROM PERSONA WHERE DNIPER='" + numeroDeDocumento + "'");
-                    break;
-                case '2':
-                    sql = ("SELECT RUCEMP FROM EMPRESA WHERE RUCEMP='" + numeroDeDocumento + "'");
-                    break;
-                default:
-                    break;
-            }
+            sql = ("SELECT DOCPER FROM PERSONA WHERE DOCPER='" + numeroDeDocumento + "'");
             ResultSet rs;
             try (Statement s = ConsultaGob.conectar().prepareStatement(sql)) {
                 rs = s.executeQuery(sql);
@@ -89,5 +80,5 @@ public class ConsultaGob extends dao.Conexion {
         }
         return datosFinal.trim().split("\\^");
     }
-    
+
 }

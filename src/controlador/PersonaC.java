@@ -19,7 +19,8 @@ import servicios.ConsultaGob;
 import servicios.TablasS;
 import vista.PersonaV;
 import static vista.PersonaV.btnBusTipper;
-import static vista.PersonaV.inptDniPer;
+import static vista.PersonaV.inptApePer;
+import static vista.PersonaV.inptDocPer;
 import static vista.PersonaV.pnlCredenciales;
 import static vista.PersonaV.tblPer;
 
@@ -30,7 +31,7 @@ public class PersonaC {
 
     public void accionPersona(char tipoDeAccion) {
         try {
-            
+
             dao.accionPersona(persona, tipoDeAccion);
         } catch (Exception e) {
             System.out.println("Error RegPer() C" + e.getMessage());
@@ -58,7 +59,7 @@ public class PersonaC {
 
     public boolean validar() {
         boolean est = false;
-        if (!"".equals(PersonaV.inptNomPer.getText()) && !"".equals(PersonaV.inptApePer.getText()) && PersonaV.inptDniPer.getText().length() == 8) {
+        if (!"".equals(PersonaV.inptNomPer.getText()) && !"".equals(PersonaV.inptApePer.getText()) && PersonaV.inptDocPer.getText().length() == 8) {
             est = true;
         }
         return est;
@@ -105,8 +106,8 @@ public class PersonaC {
                         return;
                     }
                 } else {
-                    persona.setUsrper(persona.getDniper());
-                    persona.setPswper("@" + persona.getDniper());
+                    persona.setUsrper(persona.getDocper());
+                    persona.setPswper("@" + persona.getDocper());
                 }
                 accionPersona('2');
                 limpiar();
@@ -120,7 +121,7 @@ public class PersonaC {
     public void eliminarPersona() {
         try {
             tblPer.clearSelection();
-            if (!"".equals(inptDniPer.getText())) {
+            if (!"".equals(inptDocPer.getText())) {
                 variablesM();
                 accionPersona('3');
                 limpiar();
@@ -134,7 +135,7 @@ public class PersonaC {
     public void variablesM() {
         persona.setNomper(PersonaV.inptNomPer.getText().toUpperCase());
         persona.setApeper(PersonaV.inptApePer.getText().toUpperCase());
-        persona.setDniper(PersonaV.inptDniPer.getText());
+        persona.setDocper(PersonaV.inptDocPer.getText());
         persona.setTelfper(PersonaV.cmbCodTel.getItemAt(PersonaV.cmbCodTel.getSelectedIndex()) + PersonaV.inpTlfPer.getText());
         String tipo = String.valueOf(PersonaV.comboTipoDePersona.getSelectedItem().toString().charAt(0));
         persona.setTipper(tipo);
@@ -151,7 +152,7 @@ public class PersonaC {
             //USUARIO, CONTRA
             PersonaV.inptNomPer.setText(String.valueOf(tbl.getValueAt(fila, 1)));
             PersonaV.inptApePer.setText(String.valueOf(tbl.getValueAt(fila, 2)));
-            PersonaV.inptDniPer.setText(String.valueOf(tbl.getValueAt(fila, 3)));
+            PersonaV.inptDocPer.setText(String.valueOf(tbl.getValueAt(fila, 3)));
 
             PersonaV.cmbCodTel.setSelectedItem(String.valueOf(tbl.getValueAt(fila, 4)).substring(0, 3));
             PersonaV.inpTlfPer.setText(String.valueOf(tbl.getValueAt(fila, 4)).substring(3));
@@ -196,19 +197,32 @@ public class PersonaC {
         }
     }
 
-    public void autorrellenarCamposPorDni() throws ParseException {
-        if (PersonaV.inptDniPer.getText().length() == 8) {
-            try {
-                if (!ConsultaGob.existeDocumento(PersonaV.inptDniPer.getText(), '1')) {
-                    JSONObject datos = ConsultaGob.getDatosDni(PersonaV.inptDniPer.getText());
+    public void autorrellenarCamposPorTipoDeDocumento() throws ParseException {
+
+        try {
+            if (!ConsultaGob.existeDocumento(PersonaV.inptDocPer.getText())) {
+                JSONObject datos = null;
+                if (PersonaV.inptDocPer.getText().length() == 8) {
+                    datos = ConsultaGob.getDatosDni(PersonaV.inptDocPer.getText());
                     PersonaV.inptApePer.setText(datos.get("apellido_paterno").toString() + " " + datos.get("apellido_materno").toString());
                     PersonaV.inptNomPer.setText(datos.get("nombres").toString());
-                } else {
-                    JOptionPane.showMessageDialog(null, "El DNI ingresado ya existe en la Base de Datos");
+                } else if (PersonaV.inptDocPer.getText().length() == 11) {
+                    datos = ConsultaGob.getDatosRuc(PersonaV.inptDocPer.getText());
+                    PersonaV.inptNomPer.setText(datos.get("razon_social").toString());
+                    String[] ubigeo = ConsultaGob.separarDomicilio(datos.get("domicilio_fiscal").toString());
+                    PersonaV.cmbDepartamento.setSelectedItem(ubigeo[0]);
+                    PersonaV.comboProvincia.setSelectedItem(ubigeo[1]);
+                    PersonaV.comboDistrito.setSelectedItem(ubigeo[2]);
+                    PersonaV.inptDirPer.setText(ubigeo[3]);
+
                 }
-            } catch (Exception ex) {
-                Logger.getLogger(PersonaC.class.getName()).log(Level.SEVERE, null, ex);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "El documento ingresado ya existe en la Base de Datos");
             }
+
+        } catch (Exception ex) {
+            Logger.getLogger(PersonaC.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -241,7 +255,7 @@ public class PersonaC {
     public void limpiar() {
         PersonaV.inptNomPer.setText("");
         PersonaV.inptApePer.setText("");
-        PersonaV.inptDniPer.setText("");
+        PersonaV.inptDocPer.setText("");
         PersonaV.inpTlfPer.setText("");
         PersonaV.inptDirPer.setText("");
 
