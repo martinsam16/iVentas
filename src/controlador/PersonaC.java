@@ -19,7 +19,8 @@ import servicios.ConsultaGob;
 import servicios.TablasS;
 import vista.PersonaV;
 import static vista.PersonaV.btnBusTipper;
-import static vista.PersonaV.inptApePer;
+import static vista.PersonaV.btnTipoDeDocumentoDni;
+import static vista.PersonaV.btnTipoDeDocumentoRuc;
 import static vista.PersonaV.inptDocPer;
 import static vista.PersonaV.pnlCredenciales;
 import static vista.PersonaV.tblPer;
@@ -59,7 +60,7 @@ public class PersonaC {
 
     public boolean validar() {
         boolean est = false;
-        if (!"".equals(PersonaV.inptNomPer.getText()) && !"".equals(PersonaV.inptApePer.getText()) && PersonaV.inptDocPer.getText().length() == 8) {
+        if (!"".equals(PersonaV.inptNomPer.getText()) && (PersonaV.inptDocPer.getText().length() == 8||PersonaV.inptDocPer.getText().length() == 11)&&!"".equals(PersonaV.inptDirPer.getText())) {
             est = true;
         }
         return est;
@@ -150,6 +151,13 @@ public class PersonaC {
         if (fila != -1) {
             //CÓDIGO,NOMBRES,APELLIDOS,DNI,TELÉFONO,DEPARTAMENTO,PROVINCIA,DISTRITO,DIRECCION,TIPO
             //USUARIO, CONTRA
+            if (String.valueOf(tbl.getValueAt(fila, 3)).length()==8) {
+                btnTipoDeDocumentoDni.setSelected(true);
+                PersonaV.inptApePer.setVisible(true);
+            }else if (String.valueOf(tbl.getValueAt(fila, 3)).length()==11) {
+                btnTipoDeDocumentoRuc.setSelected(true);
+                PersonaV.inptApePer.setVisible(false);
+            }
             PersonaV.inptNomPer.setText(String.valueOf(tbl.getValueAt(fila, 1)));
             PersonaV.inptApePer.setText(String.valueOf(tbl.getValueAt(fila, 2)));
             PersonaV.inptDocPer.setText(String.valueOf(tbl.getValueAt(fila, 3)));
@@ -167,6 +175,7 @@ public class PersonaC {
                 switch (tipoDePersona) {
                     case "A":
                     case "C":
+                    case "E":
                         PersonaV.pnlCredenciales.setVisible(false);
                         break;
                     case "V":
@@ -191,6 +200,9 @@ public class PersonaC {
                     break;
                 case "V":
                     tipoDePersona = "Vendedor";
+                    break;
+                case "E":
+                    tipoDePersona = "Empresa";
                     break;
             }
             PersonaV.comboTipoDePersona.setSelectedItem(tipoDePersona);

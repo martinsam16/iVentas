@@ -13,10 +13,10 @@ public class ProductoD extends Conexion {
             String sql = null;
             switch (tipoDeAccion) {
                 case '1':
-                    sql = "INSERT INTO PRODUCTO (NOMPRO, MODELO_CODMOD_MODPRO, SERPRO, PREPRO, URLIMGPRO, ATRIBPRO, ESTPRO, FECGARPRO, EMPRESA_CODEMP_PROV) VALUES (?,?,?,?,?,?,?,?,?)";
+                    sql = "INSERT INTO PRODUCTO (NOMPRO, MODELO_CODMOD_MODPRO, SERPRO, PREPRO, URLIMGPRO, ATRIBPRO, ESTPRO, FECGARPRO, PERSONA_CODPER_PROVPRO) VALUES (?,?,?,?,?,?,?,?,?)";
                     break;
                 case '2':
-                    sql = "UPDATE PRODUCTO SET NOMPRO=?, MODELO_CODMOD_MODPRO=?, SERPRO=?, PREPRO=?, URLIMGPRO=?, ATRIBPRO=?, ESTPRO=?, FECGARPRO=?, EMPRESA_CODEMP_PROV=? WHERE SERPRO ='" + producto.getSerpro() + "'";
+                    sql = "UPDATE PRODUCTO SET NOMPRO=?, MODELO_CODMOD_MODPRO=?, SERPRO=?, PREPRO=?, URLIMGPRO=?, ATRIBPRO=?, ESTPRO=?, FECGARPRO=?, PERSONA_CODPER_PROVPRO=? WHERE SERPRO ='" + producto.getSerpro() + "'";
                     break;
                 case '3':
                     sql = "DELETE FROM PRODUCTO WHERE PRODUCTO.SERPRO = '"+producto.getSerpro()+"'";
@@ -106,7 +106,7 @@ public class ProductoD extends Conexion {
                     sql = "SELECT CODMOD FROM MODELO WHERE NOMMOD='" + producto.getNommod() + "'";
                     break;
                 case '3':
-                    sql = "SELECT CODEMP FROM EMPRESA WHERE NOMEMP='" + producto.getNomprov()+ "'";
+                    sql = "SELECT CODPER FROM PERSONA WHERE NOMPER='" + producto.getNomprov()+ "'";
                     break;
             }
             Statement s = this.conectar().prepareStatement(sql);
@@ -123,7 +123,7 @@ public class ProductoD extends Conexion {
     public DefaultTableModel listarPro() throws Exception {
         DefaultTableModel tblTemp = null;
         try {
-            String sql = "SELECT PRODUCTO.CODPRO, PRODUCTO.NOMPRO, MARCA.NOMMAR, MODELO.NOMMOD, PRODUCTO.SERPRO, PRODUCTO.PREPRO, PRODUCTO.URLIMGPRO, PRODUCTO.ATRIBPRO, EMPRESA.NOMEMP, PRODUCTO.FECGARPRO FROM MODELO INNER JOIN PRODUCTO ON PRODUCTO.MODELO_CODMOD_MODPRO = MODELO.CODMOD INNER JOIN MARCA ON MODELO.MARCA_CODMAR_MARMOD = MARCA.CODMAR INNER JOIN EMPRESA ON PRODUCTO.EMPRESA_CODEMP_PROV = EMPRESA.CODEMP";
+            String sql = "SELECT PRODUCTO.CODPRO, PRODUCTO.NOMPRO, MARCA.NOMMAR, MODELO.NOMMOD, PRODUCTO.SERPRO, PRODUCTO.PREPRO, PRODUCTO.URLIMGPRO, PRODUCTO.ATRIBPRO, PERSONA.NOMPER, PRODUCTO.FECGARPRO FROM MODELO INNER JOIN PRODUCTO ON PRODUCTO.MODELO_CODMOD_MODPRO = MODELO.CODMOD INNER JOIN MARCA ON MODELO.MARCA_CODMAR_MARMOD = MARCA.CODMAR INNER JOIN PERSONA ON PRODUCTO.PERSONA_CODPER_PROVPRO = PERSONA.CODPER";
             
             String clms = "CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG,ATRIB,PROVEEDOR,GAR";
 

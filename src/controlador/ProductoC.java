@@ -161,7 +161,7 @@ public class ProductoC {
             inptSerPro.setText(datos[4]);
             inptPrePro.setText(datos[5]);
             inputAtributosDelProducto.setText(datos[7]);
-            
+            comboProveedor.setSelectedItem(datos[8]);
             inputFecGarPro.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(datos[9]));
 
             variablesM('1');

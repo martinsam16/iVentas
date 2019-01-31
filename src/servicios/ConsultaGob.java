@@ -68,6 +68,7 @@ public class ConsultaGob extends dao.Conexion {
     }
 
     public static String[] separarDomicilio(String direccionObtenida) {
+        //Rcordar Mejoralo xd
         String datosFinal = "";
         String datos[] = direccionObtenida.split("-");
         String datosTemporal[] = datos[0].split(" ");
@@ -78,6 +79,7 @@ public class ConsultaGob extends dao.Conexion {
         for (int i = 0; i < datosTemporal.length - 1; i++) {
             datosFinal += datosTemporal[i] + " ";
         }
+        System.out.println(datosFinal);
         return datosFinal.trim().split("\\^");
     }
 

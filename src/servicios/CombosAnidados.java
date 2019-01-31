@@ -24,7 +24,7 @@ public class CombosAnidados extends Conexion {
             String sql = null;
             switch (tip) {
                 case '0':
-                    sql = "SELECT EMPRESA.NOMEMP FROM EMPRESA";
+                    sql = "SELECT PERSONA.NOMPER FROM PERSONA WHERE length(PERSONA.DOCPER)=11";
                     break;
                 case '1':
                     sql = "SELECT MARCA.NOMMAR FROM MARCA ORDER BY MARCA.NOMMAR ASC";

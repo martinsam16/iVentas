@@ -204,6 +204,11 @@ public class ProductoV extends javax.swing.JFrame {
         inputFecGarPro.setToolTipText("Fecha de Garantía");
 
         comboProveedor.setModel(this.productoC.llenarComboRucEmpresas());
+        comboProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboProveedorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -712,6 +717,10 @@ public class ProductoV extends javax.swing.JFrame {
         home.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void comboProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboProveedorActionPerformed
 
     /**
      * @param args the command line arguments

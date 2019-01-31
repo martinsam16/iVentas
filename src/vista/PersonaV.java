@@ -1,7 +1,6 @@
 package vista;
 
 import controlador.PersonaC;
-import java.awt.Cursor;
 import java.awt.print.PrinterException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,8 +19,9 @@ public class PersonaV extends javax.swing.JFrame {
     
     private void actualizarInputDocumento(){        
         inptDocPer.setEnabled(true);
-        inptDocPer.setText(null);
+        personaC.limpiar();
         repaint();
+        inptDocPer.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -662,11 +662,9 @@ public class PersonaV extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTipoDeDocumentoRucActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        try {
-            if (btnTipoDeDocumentoDni.isSelected() || btnTipoDeDocumentoRuc.isSelected()) {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                personaC.autorrellenarCamposPorTipoDeDocumento();
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+       try {
+            if (btnTipoDeDocumentoDni.isSelected() || btnTipoDeDocumentoRuc.isSelected()) {                
+                personaC.autorrellenarCamposPorTipoDeDocumento();                
             }
         } catch (ParseException ex) {
             Logger.getLogger(PersonaV.class.getName()).log(Level.SEVERE, null, ex);

@@ -44,22 +44,22 @@ public class PersonaD extends Conexion {
                         return;
                     }
                     sql = "INSERT INTO PERSONA (NOMPER, APEPER, DOCPER, TLFPER, TIPPER, DISTRITO_CODDIS_DISPER, DIRPER, USRLOGPER, PSWLOGPER, ESTLOGPER) VALUES (?,?,?,?,?,?,?,?,?,?)";
-                    if (!"C".equals(persona.getTipper())) {
+                    if (!"C".equals(persona.getTipper())&&!"E".equals(persona.getTipper())) {
                         persona.setUsrper(persona.getDocper());
                         persona.setPswper("@" + persona.getDocper());
                         persona.setEstlog("A");
                     }
                     break;
                 case '2':
-                    sql = "UPDATE PERSONA SET NOMPER=?, APEPER=?, DNIPER=?, TLFPER=?, TIPPER=?, DISTRITO_CODDIS_DISPER=?, DIRPER=?, USRLOGPER=?, PSWLOGPER=?, ESTLOGPER=? WHERE DNIPER='" + persona.getDocper()+ "'";
-                    if ("C".equals(persona.getTipper())) {
+                    sql = "UPDATE PERSONA SET NOMPER=?, APEPER=?, DOCPER=?, TLFPER=?, TIPPER=?, DISTRITO_CODDIS_DISPER=?, DIRPER=?, USRLOGPER=?, PSWLOGPER=?, ESTLOGPER=? WHERE DNIPER='" + persona.getDocper()+ "'";
+                    if ("C".equals(persona.getTipper())||!"E".equals(persona.getTipper())) {
                         persona.setEstlog("I");
                     } else {
                         persona.setEstlog("A");
                     }
                     break;
                 case '3':
-                    sql = "DELETE FROM PERSONA WHERE DNIPER= ? ";
+                    sql = "DELETE FROM PERSONA WHERE DOCPER= ? ";
                 default:
                     break;
             }
@@ -113,7 +113,7 @@ public class PersonaD extends Conexion {
             String sql;
             String inner = "INNER JOIN DISTRITO ON PERSONA.DISTRITO_CODDIS_DISPER=DISTRITO.CODDIS INNER JOIN PROVINCIA ON DISTRITO.PROVINCIA_CODPROV = PROVINCIA.CODPROV INNER JOIN DEPARTAMENTO ON PROVINCIA.DEPARTAMENTO_CODDEP = DEPARTAMENTO.CODDEP";
 
-            sql = "SELECT PERSONA.DOCPER, PERSONA.NOMPER, PERSONA.APEPER, PERSONA.DOCPER, PERSONA.TLFPER, DEPARTAMENTO.NOMDEP,PROVINCIA.NOMPROV,DISTRITO.NOMDIS,PERSONA.DIRPER,PERSONA.TIPPER";
+            sql = "SELECT PERSONA.CODPER, PERSONA.NOMPER, PERSONA.APEPER, PERSONA.DOCPER, PERSONA.TLFPER, DEPARTAMENTO.NOMDEP,PROVINCIA.NOMPROV,DISTRITO.NOMDIS,PERSONA.DIRPER,PERSONA.TIPPER";
             if (estado) {
                 if (tipper == 'V' || tipper == 'I') {
                     clmsTemp += ",USUARIO,CONTRA";
