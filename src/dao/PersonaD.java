@@ -51,8 +51,8 @@ public class PersonaD extends Conexion {
                     }
                     break;
                 case '2':
-                    sql = "UPDATE PERSONA SET NOMPER=?, APEPER=?, DOCPER=?, TLFPER=?, TIPPER=?, DISTRITO_CODDIS_DISPER=?, DIRPER=?, USRLOGPER=?, PSWLOGPER=?, ESTLOGPER=? WHERE DNIPER='" + persona.getDocper()+ "'";
-                    if ("C".equals(persona.getTipper())||!"E".equals(persona.getTipper())) {
+                    sql = "UPDATE PERSONA SET NOMPER=?, APEPER=?, DOCPER=?, TLFPER=?, TIPPER=?, DISTRITO_CODDIS_DISPER=?, DIRPER=?, USRLOGPER=?, PSWLOGPER=?, ESTLOGPER=? WHERE DOCPER='" + persona.getDocper()+ "'";
+                    if ("C".equals(persona.getTipper())||"E".equals(persona.getTipper())) {
                         persona.setEstlog("I");
                     } else {
                         persona.setEstlog("A");

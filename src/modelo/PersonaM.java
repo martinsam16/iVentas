@@ -97,14 +97,27 @@ public class PersonaM {
     public void setEstlog(String estlog) {
         this.estlog = estlog;
     }
-    
+
     private int codper, coddis;
     private String nomper, apeper, docper, telfper, tipper;
     private String nomdis, dir;
     private String usrper, pswper, estlog;
 
+    public void clear() {
+        this.codper = 0;
+        this.nomper = null;
+        this.apeper = null;
+        this.docper = null;
+        this.telfper = null;
+        this.tipper = null;
+        this.nomdis = null;
+        this.dir = null;
+        this.usrper = null;
+        this.pswper = null;
+    }
+
     @Override
     public String toString() {
-        return "[" + this.codper + "," + this.nomper + "," + this.apeper + "," + this.docper + "," + this.telfper + "," + this.tipper + ","+this.nomdis+","+this.dir+","+this.usrper+","+this.pswper+"]";
+        return "[" + this.codper + "," + this.nomper + "," + this.apeper + "," + this.docper + "," + this.telfper + "," + this.tipper + "," + this.nomdis + "," + this.dir + "," + this.usrper + "," + this.pswper + "]";
     }
 }

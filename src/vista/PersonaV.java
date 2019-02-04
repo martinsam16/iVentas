@@ -663,7 +663,8 @@ public class PersonaV extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
        try {
-            if (btnTipoDeDocumentoDni.isSelected() || btnTipoDeDocumentoRuc.isSelected()) {                
+            if (btnTipoDeDocumentoDni.isSelected() || btnTipoDeDocumentoRuc.isSelected()) { 
+                //Hacer ping antes xd -- 
                 personaC.autorrellenarCamposPorTipoDeDocumento();                
             }
         } catch (ParseException ex) {

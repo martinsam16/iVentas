@@ -1,21 +1,21 @@
 package dao;
 
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class Conexion {
 
     protected static Connection conexion = null;
+    protected final static Properties PROPIEDADES = new Properties();
 
     public static Connection conectar() throws Exception {
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/iVentas";
-        String usr = "root";
-        String passw = "";
         try {
-            Class.forName(driver);
-            conexion = DriverManager.getConnection(url, usr, passw);
+            PROPIEDADES.load(new FileInputStream("db.properties"));
+            Class.forName(PROPIEDADES.getProperty("db.driver"));
+            conexion = DriverManager.getConnection(PROPIEDADES.getProperty("db.url"), PROPIEDADES.getProperty("db.user"), PROPIEDADES.getProperty("db.pssw"));
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("error conectar()" + e.getMessage());
         }

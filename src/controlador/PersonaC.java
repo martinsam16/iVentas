@@ -60,7 +60,7 @@ public class PersonaC {
 
     public boolean validar() {
         boolean est = false;
-        if (!"".equals(PersonaV.inptNomPer.getText()) && (PersonaV.inptDocPer.getText().length() == 8||PersonaV.inptDocPer.getText().length() == 11)&&!"".equals(PersonaV.inptDirPer.getText())) {
+        if (!"".equals(PersonaV.inptNomPer.getText()) && (PersonaV.inptDocPer.getText().length() == 8 || PersonaV.inptDocPer.getText().length() == 11) && !"".equals(PersonaV.inptDirPer.getText())) {
             est = true;
         }
         return est;
@@ -81,6 +81,7 @@ public class PersonaC {
                 accionPersona('1');
                 limpiar();
                 btnBusTipper.setSelectedIndex(btnBusTipper.getSelectedIndex());
+                persona.clear();
             }
         } catch (Exception e) {
             System.out.println("Error btnRegPErV");
@@ -113,6 +114,7 @@ public class PersonaC {
                 accionPersona('2');
                 limpiar();
                 btnBusTipper.setSelectedIndex(btnBusTipper.getSelectedIndex());
+                persona.clear();
             }
         } catch (HeadlessException e) {
             System.out.println("Error Editar" + e.getMessage());
@@ -127,6 +129,7 @@ public class PersonaC {
                 accionPersona('3');
                 limpiar();
                 btnBusTipper.setSelectedIndex(btnBusTipper.getSelectedIndex());
+                persona.clear();
             }
         } catch (Exception e) {
             System.out.println("Error btnEliminar");
@@ -151,10 +154,10 @@ public class PersonaC {
         if (fila != -1) {
             //CÓDIGO,NOMBRES,APELLIDOS,DNI,TELÉFONO,DEPARTAMENTO,PROVINCIA,DISTRITO,DIRECCION,TIPO
             //USUARIO, CONTRA
-            if (String.valueOf(tbl.getValueAt(fila, 3)).length()==8) {
+            if (String.valueOf(tbl.getValueAt(fila, 3)).length() == 8) {
                 btnTipoDeDocumentoDni.setSelected(true);
                 PersonaV.inptApePer.setVisible(true);
-            }else if (String.valueOf(tbl.getValueAt(fila, 3)).length()==11) {
+            } else if (String.valueOf(tbl.getValueAt(fila, 3)).length() == 11) {
                 btnTipoDeDocumentoRuc.setSelected(true);
                 PersonaV.inptApePer.setVisible(false);
             }
@@ -180,7 +183,7 @@ public class PersonaC {
                         break;
                     case "V":
                     case "I":
-                        if (PersonaV.btnBusTipper.getSelectedIndex() == 2 || PersonaV.btnBusTipper.getSelectedIndex() == 3) {
+                        if (PersonaV.btnBusTipper.getSelectedIndex() == 2 || PersonaV.btnBusTipper.getSelectedIndex() == 4) {
                             PersonaV.pnlCredenciales.setVisible(true);
                             PersonaV.inptUsr.setText(String.valueOf(tbl.getValueAt(fila, 10)));
                             PersonaV.inptPssw.setText(String.valueOf(tbl.getValueAt(fila, 11)));
@@ -233,8 +236,8 @@ public class PersonaC {
                 JOptionPane.showMessageDialog(null, "El documento ingresado ya existe en la Base de Datos");
             }
 
-        } catch (Exception ex) {
-            Logger.getLogger(PersonaC.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.out.println("Error autorrellenarCamposPorTipoDeDocumento "+e.getMessage());
         }
 
     }
