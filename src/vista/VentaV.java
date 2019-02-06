@@ -60,6 +60,11 @@ public class VentaV extends javax.swing.JFrame {
         materialButton1.setForeground(new java.awt.Color(249, 250, 251));
         materialButton1.setText("Vender");
         materialButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        materialButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materialButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -71,12 +76,12 @@ public class VentaV extends javax.swing.JFrame {
                     .addComponent(jComboBox1, 0, 231, Short.MAX_VALUE)
                     .addComponent(jPasswordField1)
                     .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCheckBox1)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(materialButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(materialButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jCheckBox1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -149,7 +154,6 @@ public class VentaV extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(2, 2, 2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(22, 22, 22))
         );
@@ -203,11 +207,15 @@ public class VentaV extends javax.swing.JFrame {
 
     private void tblProdVenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdVenMouseClicked
         tblProdVen.setValueAt(String.valueOf(Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 6).toString()) - Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 7).toString())), tblProdVen.getSelectedRow(), 8);
-        Double total = Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 8).toString()) * Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 10).toString());
+        Double total = Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 8).toString()) * Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 9).toString());
 
-        tblProdVen.setValueAt(String.valueOf(total + (total * Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 11).toString()))), tblProdVen.getSelectedRow(), 12);
+        tblProdVen.setValueAt(String.valueOf(total + (total * Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 10).toString()))), tblProdVen.getSelectedRow(), 11);
 
     }//GEN-LAST:event_tblProdVenMouseClicked
+
+    private void materialButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton1ActionPerformed
+        controlador.cargarVariablesRegistrarDetalleM();        
+    }//GEN-LAST:event_materialButton1ActionPerformed
 
     /**
      * @param args the command line arguments

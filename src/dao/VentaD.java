@@ -53,7 +53,7 @@ public class VentaD extends Conexion {
         try {
             String sql = "SELECT PRODUCTO.CODPRO, PRODUCTO.NOMPRO, MARCA.NOMMAR, MODELO.NOMMOD, PRODUCTO.SERPRO, PRODUCTO.FECGARPRO, PRODUCTO.PREPRO FROM MODELO INNER JOIN PRODUCTO ON PRODUCTO.MODELO_CODMOD_MODPRO = MODELO.CODMOD INNER JOIN MARCA ON MODELO.MARCA_CODMAR_MARMOD = MARCA.CODMAR";
 
-            String clms = "CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,GAR,PRECIO,DSC,TOTAl_UNITARIO,SELEC,CANTIDAD,IGV,TOTAL";
+            String clms = "CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,GAR,PRECIO,DSC,TOTAl_UNITARIO,CANTIDAD,IGV,TOTAL,SELEC";
 
             tblTemp = new DefaultTableModel(null, clms.split(","));
             Statement s = this.conectar().prepareStatement(sql);
@@ -68,14 +68,14 @@ public class VentaD extends Conexion {
                         dts[i] = 0.0;
                     } else if (i == 8) {//Total_uni
                         dts[i] = dts[6];
-                    } else if (i == 9) {//Check                        
-                        dts[i] = false;
-                    } else if (i == 10) {//cantidad
+                    } else if (i == 9) {//cantidad                        
                         dts[i] = 0;
-                    } else if (i == 11) {//igv
+                    } else if (i == 10) {//igv
                         dts[i] = 0.18;
-                    } else if (i == 12) {//Total
+                    } else if (i == 11) {//total
                         dts[i] = 0.0;
+                    } else if (i == 12) {//check
+                        dts[i] = false;
                     }
                 }
                 tblTemp.addRow(dts);

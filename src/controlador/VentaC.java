@@ -1,21 +1,24 @@
 package controlador;
 
 import dao.VentaD;
-import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
+import modelo.VentaDetalleM;
 import modelo.VentaM;
-import vista.VentaV;
+import servicios.TablasS;
+import static vista.VentaV.tblProdVen;
 
 public class VentaC extends JTable {
 
     VentaD dao = new VentaD();
     VentaM venta = new VentaM();
-    List<String> listaProductos = new ArrayList<>();
+    VentaDetalleM detalleVenta = new VentaDetalleM();
 
     public void accionVenta(char tipoDeAccion) {
         try {
@@ -24,32 +27,30 @@ public class VentaC extends JTable {
         }
     }
 
-    @Override
-    public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return columnIndex == 9;
+    public void cargarVariablesRegistrarDetalleM() {
+        TablasS.buscar("true", tblProdVen, '1');
+        tblProdVen.repaint();
+      
+        venta.setHoraVenta(String.valueOf(Time.valueOf(LocalTime.now())));
+        venta.setFechaVenta(String.valueOf(Date.valueOf(LocalDate.now().toString())));
+        
+        for (int i = 0; i < tblProdVen.getRowCount(); i++) {
+            //CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,GAR,PRECIO,DSC,TOTAl_UNITARIO,CANTIDAD,IGV,TOTAL,SELEC
+            detalleVenta.setCodigoProducto(Integer.valueOf(tblProdVen.getValueAt(i, 0).toString()));
+            detalleVenta.setCantidadProducto(Integer.valueOf(tblProdVen.getValueAt(i, 9).toString()));
+            detalleVenta.setDescuentoProducto(Double.valueOf(tblProdVen.getValueAt(i, 7).toString()));
+        }
+        TablasS.buscar("", tblProdVen, '1');
+        tblProdVen.repaint();
     }
 
     public void llenarTblPoductos() {
         try {
-            VentaV.tblProdVen.setModel(dao.llenarTblProductos());
+            tblProdVen.setModel(dao.llenarTblProductos());
 
-            TableColumn columnaTabla = VentaV.tblProdVen.getColumnModel().getColumn(9);
+            TableColumn columnaTabla = tblProdVen.getColumnModel().getColumn(12);
 
             JCheckBox checkBox = new JCheckBox();
-
-            checkBox.addActionListener((ActionEvent e) -> {
-                if (checkBox.isSelected()) {
-                    if (!listaProductos.contains(VentaV.tblProdVen.getValueAt(VentaV.tblProdVen.getSelectedRow(), 0).toString())) {
-                        listaProductos.add(VentaV.tblProdVen.getValueAt(VentaV.tblProdVen.getSelectedRow(), 0).toString());                        
-                    }
-
-                } else {
-                    listaProductos.remove(VentaV.tblProdVen.getValueAt(VentaV.tblProdVen.getSelectedRow(), 0).toString());
-                }
-                System.out.println(listaProductos);
-
-            });
-
             columnaTabla.setCellEditor(new DefaultCellEditor(checkBox));
 
         } catch (Exception e) {

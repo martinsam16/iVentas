@@ -178,7 +178,7 @@ public class ProductoC {
     }
 
     public void buscar(String consulta, JTable tbl) {
-        TablasS.buscar(consulta, tbl);
+        TablasS.buscar(consulta, tbl,'0');
     }
 
     public void generarReporteDeTodosLosProductos() {

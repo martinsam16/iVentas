@@ -4,8 +4,6 @@ import dao.PersonaD;
 import java.awt.HeadlessException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -252,7 +250,7 @@ public class PersonaC {
     }
 
     public void buscar(String consulta, JTable tbl) {
-        TablasS.buscar(consulta, tbl);
+        TablasS.buscar(consulta, tbl,'0');
     }
 
     public void inputSoloDigitos(JTextField input, int cantidadDeDigitos) {

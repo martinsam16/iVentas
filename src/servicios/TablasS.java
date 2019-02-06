@@ -7,12 +7,20 @@ import javax.swing.table.TableRowSorter;
 
 public class TablasS {
 
-    public static void buscar(String consulta, JTable tbl) {
+    public static void buscar(String consulta, JTable tbl,char mayus) {
         try {
-            DefaultTableModel dm = (DefaultTableModel) tbl.getModel();
+            DefaultTableModel dm = (DefaultTableModel) tbl.getModel();            
             TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
             tbl.setRowSorter(tr);
-            tr.setRowFilter(RowFilter.regexFilter(consulta.toUpperCase()));
+            switch(mayus){
+                case '0':
+                    tr.setRowFilter(RowFilter.regexFilter(consulta.toUpperCase()));
+                    break;
+                case '1':
+                    tr.setRowFilter(RowFilter.regexFilter(consulta));
+                    break;
+            }
+            
         } catch (Exception e) {
             System.out.println("Error buscar() s");
             return;

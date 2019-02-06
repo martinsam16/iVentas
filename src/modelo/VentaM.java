@@ -1,6 +1,10 @@
 package modelo;
 
 public class VentaM {
+    private int codigoVenta;
+    private int documentoVendedor, documentoComprador;
+    private String fechaVenta, horaVenta;
+    private String tipoVenta; 
 
     public int getCodigoVenta() {
         return codigoVenta;
@@ -10,36 +14,20 @@ public class VentaM {
         this.codigoVenta = codigoVenta;
     }
 
-    public int getCodigoVendedor() {
-        return codigoVendedor;
+    public int getDocumentoVendedor() {
+        return documentoVendedor;
     }
 
-    public void setCodigoVendedor(int codigoVendedor) {
-        this.codigoVendedor = codigoVendedor;
+    public void setDocumentoVendedor(int documentoVendedor) {
+        this.documentoVendedor = documentoVendedor;
     }
 
-    public int getDniVendedor() {
-        return dniVendedor;
+    public int getDocumentoComprador() {
+        return documentoComprador;
     }
 
-    public void setDniVendedor(int dniVendedor) {
-        this.dniVendedor = dniVendedor;
-    }
-
-    public int getCodigoComprador() {
-        return codigoComprador;
-    }
-
-    public void setCodigoComprador(int codigoComprador) {
-        this.codigoComprador = codigoComprador;
-    }
-
-    public int getDniComprador() {
-        return dniComprador;
-    }
-
-    public void setDniComprador(int dniComprador) {
-        this.dniComprador = dniComprador;
+    public void setDocumentoComprador(int documentoComprador) {
+        this.documentoComprador = documentoComprador;
     }
 
     public String getFechaVenta() {
@@ -65,45 +53,6 @@ public class VentaM {
     public void setTipoVenta(String tipoVenta) {
         this.tipoVenta = tipoVenta;
     }
-
-    public String getEstadoVenta() {
-        return estadoVenta;
-    }
-
-    public void setEstadoVenta(String estadoVenta) {
-        this.estadoVenta = estadoVenta;
-    }
-
-    public int getCodigoProducto() {
-        return codigoProducto;
-    }
-
-    public void setCodigoProducto(int codigoProducto) {
-        this.codigoProducto = codigoProducto;
-    }
-
-    public int getCantidadProducto() {
-        return cantidadProducto;
-    }
-
-    public void setCantidadProducto(int cantidadProducto) {
-        this.cantidadProducto = cantidadProducto;
-    }
-
-    public double getDescuentoProducto() {
-        return descuentoProducto;
-    }
-
-    public void setDescuentoProducto(double descuentoProducto) {
-        this.descuentoProducto = descuentoProducto;
-    }
-    private int codigoVenta;
-    private int codigoVendedor,dniVendedor, codigoComprador,dniComprador;
-    private String fechaVenta, horaVenta;
-    private String tipoVenta, estadoVenta;
-    
-    private int codigoProducto, cantidadProducto;
-    private double descuentoProducto;
     
     
 }
