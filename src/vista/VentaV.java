@@ -22,8 +22,8 @@ public class VentaV extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        comboDocumentoVendedor = new javax.swing.JComboBox();
+        comboDocumentoComprador = new javax.swing.JComboBox();
         materialButton1 = new principal.MaterialButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -48,13 +48,14 @@ public class VentaV extends javax.swing.JFrame {
         jCheckBox1.setForeground(new java.awt.Color(19, 20, 24));
         jCheckBox1.setText("Recordar");
 
-        jComboBox1.setBackground(new java.awt.Color(254, 254, 254));
-        jComboBox1.setForeground(new java.awt.Color(19, 20, 24));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vendedor1", "Vendedor2", "Vendedor3" }));
+        comboDocumentoVendedor.setBackground(new java.awt.Color(254, 254, 254));
+        comboDocumentoVendedor.setForeground(new java.awt.Color(19, 20, 24));
+        comboDocumentoVendedor.setModel(this.controlador.llenarComboPersonas('8')
+        );
 
-        jComboBox2.setBackground(new java.awt.Color(254, 254, 254));
-        jComboBox2.setForeground(new java.awt.Color(19, 20, 24));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Persona1", "Persona2", "Empresa1" }));
+        comboDocumentoComprador.setBackground(new java.awt.Color(254, 254, 254));
+        comboDocumentoComprador.setForeground(new java.awt.Color(19, 20, 24));
+        comboDocumentoComprador.setModel(this.controlador.llenarComboPersonas('9'));
 
         materialButton1.setBackground(new java.awt.Color(20, 220, 112));
         materialButton1.setForeground(new java.awt.Color(249, 250, 251));
@@ -73,9 +74,9 @@ public class VentaV extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, 0, 231, Short.MAX_VALUE)
+                    .addComponent(comboDocumentoVendedor, 0, 231, Short.MAX_VALUE)
                     .addComponent(jPasswordField1)
-                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboDocumentoComprador, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(materialButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -88,13 +89,13 @@ public class VentaV extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboDocumentoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox1)
                 .addGap(40, 40, 40)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboDocumentoComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
                 .addComponent(materialButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -253,25 +254,23 @@ public class VentaV extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentaV().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new VentaV().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private principal.MaterialButton btnHome;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    public static principal.MaterialButton btnHome;
+    public static javax.swing.JComboBox comboDocumentoComprador;
+    public static javax.swing.JComboBox comboDocumentoVendedor;
+    public static javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPasswordField jPasswordField1;
+    public static javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private principal.MaterialButton materialButton1;
-    private principal.MaterialTextField materialTextField1;
+    public static principal.MaterialTextField materialTextField1;
     public static javax.swing.JTable tblProdVen;
     // End of variables declaration//GEN-END:variables
 }

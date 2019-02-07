@@ -6,12 +6,18 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.DefaultCellEditor;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 import modelo.VentaDetalleM;
 import modelo.VentaM;
+import servicios.CombosAnidados;
 import servicios.TablasS;
+import static vista.VentaV.comboDocumentoComprador;
+import static vista.VentaV.comboDocumentoVendedor;
 import static vista.VentaV.tblProdVen;
 
 public class VentaC extends JTable {
@@ -27,19 +33,62 @@ public class VentaC extends JTable {
         }
     }
 
+    public DefaultComboBoxModel llenarComboPersonas(char tipo) {
+        try {
+            /*
+             8   Documento Vendedores
+             9   Documento Clientes y Empresas
+             */
+            servicios.CombosAnidados combo = new CombosAnidados();
+            return combo.listarCombo(tipo, null);
+        } catch (Exception e) {
+            System.out.println("llenarComboPersonas " + e.getMessage());
+        }
+        return null;
+    }
+
+    public void accionDetalleVenta(char tipoDeAccion) {
+        try {
+            dao.accionVentaDetalle(venta.getCodigoVenta(), detalleVenta, tipoDeAccion);
+        } catch (Exception e) {
+        }
+    }
+
+    public void cargarVariablesVentaM() {
+        venta.setHoraVenta(Time.valueOf(LocalTime.now()));
+        venta.setFechaVenta(Date.valueOf(LocalDate.now().toString()));
+
+        venta.setDocumentoComprador(comboDocumentoComprador.getSelectedItem().toString());
+        venta.setDocumentoVendedor(comboDocumentoVendedor.getSelectedItem().toString());
+
+        if (comboDocumentoComprador.getSelectedItem().toString().length() == 8) {
+            venta.setTipoVenta("B");
+        } else {
+            venta.setTipoVenta("F");
+        }
+    }
+
     public void cargarVariablesRegistrarDetalleM() {
         TablasS.buscar("true", tblProdVen, '1');
         tblProdVen.repaint();
-      
-        venta.setHoraVenta(String.valueOf(Time.valueOf(LocalTime.now())));
-        venta.setFechaVenta(String.valueOf(Date.valueOf(LocalDate.now().toString())));
-        
-        for (int i = 0; i < tblProdVen.getRowCount(); i++) {
-            //CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,GAR,PRECIO,DSC,TOTAl_UNITARIO,CANTIDAD,IGV,TOTAL,SELEC
-            detalleVenta.setCodigoProducto(Integer.valueOf(tblProdVen.getValueAt(i, 0).toString()));
-            detalleVenta.setCantidadProducto(Integer.valueOf(tblProdVen.getValueAt(i, 9).toString()));
-            detalleVenta.setDescuentoProducto(Double.valueOf(tblProdVen.getValueAt(i, 7).toString()));
+
+        if (tblProdVen.getRowCount() > 0) {
+            cargarVariablesVentaM();
+            accionVenta('1');
+            venta.setCodigoVenta(dao.devolverCodigos(null, '2'));
+
+            for (int i = 0; i < tblProdVen.getRowCount(); i++) {
+                //CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,GAR,PRECIO,DSC,TOTAl_UNITARIO,CANTIDAD,IGV,TOTAL,SELEC
+                detalleVenta.setCodigoProducto(Integer.valueOf(tblProdVen.getValueAt(i, 0).toString()));
+                detalleVenta.setCantidadProducto(Integer.valueOf(tblProdVen.getValueAt(i, 9).toString()));
+                detalleVenta.setDescuentoProducto(Double.valueOf(tblProdVen.getValueAt(i, 7).toString()));
+                detalleVenta.setEstadoVenta("A");
+                accionDetalleVenta('1');
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione almenos un producto! ._.");
         }
+
         TablasS.buscar("", tblProdVen, '1');
         tblProdVen.repaint();
     }

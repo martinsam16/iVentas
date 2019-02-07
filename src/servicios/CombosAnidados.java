@@ -17,7 +17,9 @@ public class CombosAnidados extends Conexion {
          4   Departamentos
          5   Provincias dependientes de Departamentos
          6   Distritos dependientes de Provincia
-         7   Dni Personas
+         7   Documentos Personas
+         8   Documento Vendedores
+         9   Documento Clientes y Empresas
          */
         DefaultComboBoxModel cmbTemp = null;
         try {
@@ -46,6 +48,12 @@ public class CombosAnidados extends Conexion {
                     break;
                 case '7':
                     sql = "SELECT PERSONA.DOCPER FROM PERSONA";
+                    break;
+                case '8':
+                    sql = "SELECT PERSONA.DOCPER FROM PERSONA WHERE PERSONA.TIPPER='V'";
+                    break;
+                case '9':
+                    sql = "SELECT PERSONA.DOCPER FROM PERSONA WHERE PERSONA.TIPPER='C' OR PERSONA.TIPPER='E'";
                     break;
                 default:
                     break;

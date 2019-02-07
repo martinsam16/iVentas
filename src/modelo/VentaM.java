@@ -1,10 +1,14 @@
 package modelo;
 
+import java.sql.Date;
+import java.sql.Time;
+
 public class VentaM {
     private int codigoVenta;
-    private int documentoVendedor, documentoComprador;
-    private String fechaVenta, horaVenta;
-    private String tipoVenta; 
+    private String documentoVendedor, documentoComprador;
+    private Date fechaVenta;
+    private Time horaVenta;
+    private String tipoVenta;     
 
     public int getCodigoVenta() {
         return codigoVenta;
@@ -14,35 +18,35 @@ public class VentaM {
         this.codigoVenta = codigoVenta;
     }
 
-    public int getDocumentoVendedor() {
+    public String getDocumentoVendedor() {
         return documentoVendedor;
     }
 
-    public void setDocumentoVendedor(int documentoVendedor) {
+    public void setDocumentoVendedor(String documentoVendedor) {
         this.documentoVendedor = documentoVendedor;
     }
 
-    public int getDocumentoComprador() {
+    public String getDocumentoComprador() {
         return documentoComprador;
     }
 
-    public void setDocumentoComprador(int documentoComprador) {
+    public void setDocumentoComprador(String documentoComprador) {
         this.documentoComprador = documentoComprador;
     }
 
-    public String getFechaVenta() {
+    public Date getFechaVenta() {
         return fechaVenta;
     }
 
-    public void setFechaVenta(String fechaVenta) {
+    public void setFechaVenta(Date fechaVenta) {
         this.fechaVenta = fechaVenta;
     }
 
-    public String getHoraVenta() {
+    public Time getHoraVenta() {
         return horaVenta;
     }
 
-    public void setHoraVenta(String horaVenta) {
+    public void setHoraVenta(Time horaVenta) {
         this.horaVenta = horaVenta;
     }
 
@@ -53,6 +57,5 @@ public class VentaM {
     public void setTipoVenta(String tipoVenta) {
         this.tipoVenta = tipoVenta;
     }
-    
     
 }

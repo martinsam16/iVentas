@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
+import modelo.VentaDetalleM;
 import modelo.VentaM;
 
 public class VentaD extends Conexion {
@@ -19,16 +20,22 @@ public class VentaD extends Conexion {
 
             PreparedStatement ps = this.conectar().prepareStatement(sql);
 
+            ps.setInt(1, devolverCodigos(venta.getDocumentoVendedor(), '1'));
+            ps.setDate(2, venta.getFechaVenta());
+            ps.setTime(3, venta.getHoraVenta());
+            ps.setString(4, venta.getTipoVenta());
+            ps.setInt(5, devolverCodigos(venta.getDocumentoComprador(), '1'));
+
             ps.executeUpdate();
             ps.close();
             this.desconectar();
-
+            
         } catch (Exception e) {
             System.out.println("Error accionVenta D " + e.getMessage());
         }
     }
 
-    public void accionVentaDetalle(VentaM venta, char tipoDeAccion) {
+    public void accionVentaDetalle(int codigoVentaPerteneciente,VentaDetalleM detalle, char tipoDeAccion) {
         try {
             String sql = null;
 
@@ -39,12 +46,18 @@ public class VentaD extends Conexion {
             }
 
             PreparedStatement ps = this.conectar().prepareStatement(sql);
+            ps.setInt(1, codigoVentaPerteneciente);
+            ps.setInt(2, detalle.getCodigoProducto());
+            ps.setInt(3, detalle.getCantidadProducto());
+            ps.setDouble(4, detalle.getDescuentoProducto());
+            ps.setString(5, detalle.getEstadoVenta());
 
             ps.executeUpdate();
             ps.close();
             this.desconectar();
 
         } catch (Exception e) {
+            System.out.println("Error accionVentaDetalle "+e.getMessage());
         }
     }
 
@@ -88,5 +101,35 @@ public class VentaD extends Conexion {
             System.out.println("Error listar Productos Dao" + e.getMessage());
         }
         return tblTemp;
+    }    
+    
+    public int devolverCodigos(String documento, char tipo) {
+        try {
+            /*
+             1 Persona
+             2 Venta
+             */
+            int cod = 0;
+            String sql = null;
+            
+            switch(tipo){
+                case '1':
+                    sql = "SELECT CODPER FROM PERSONA WHERE DOCPER= '" + documento + "'";
+                    break;
+                case '2':
+                    sql = "SELECT CODVEN FROM VENTA";
+                    break;
+            }
+
+            Statement s = this.conectar().prepareStatement(sql);
+            ResultSet rs = s.executeQuery(sql);
+            while (rs.next()) {
+                cod = Integer.valueOf(rs.getString(1));
+            }
+            this.desconectar();
+            return cod;
+        } catch (Exception e) {
+            return 0;
+        }
     }
 }
