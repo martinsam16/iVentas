@@ -8,9 +8,9 @@ import java.time.LocalTime;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import modelo.VentaDetalleM;
 import modelo.VentaM;
@@ -19,6 +19,7 @@ import servicios.TablasS;
 import static vista.VentaV.comboDocumentoComprador;
 import static vista.VentaV.comboDocumentoVendedor;
 import static vista.VentaV.tblProdVen;
+import static vista.VentaV.tblVentas;
 
 public class VentaC extends JTable {
 
@@ -68,6 +69,12 @@ public class VentaC extends JTable {
         }
     }
 
+    public void buscador(String consulta) {
+        if (consulta != null || !"".equals(consulta) || !consulta.isEmpty()) {
+            TablasS.buscar(consulta, tblProdVen, '0');
+        }
+    }
+
     public void cargarVariablesRegistrarDetalleM() {
         TablasS.buscar("true", tblProdVen, '1');
         tblProdVen.repaint();
@@ -85,7 +92,7 @@ public class VentaC extends JTable {
                 detalleVenta.setEstadoVenta("A");
                 accionDetalleVenta('1');
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Seleccione almenos un producto! ._.");
         }
 
@@ -95,7 +102,7 @@ public class VentaC extends JTable {
 
     public void llenarTblPoductos() {
         try {
-            tblProdVen.setModel(dao.llenarTblProductos());
+            tblProdVen.setModel(dao.llenarTbl());
 
             TableColumn columnaTabla = tblProdVen.getColumnModel().getColumn(12);
 
@@ -104,6 +111,20 @@ public class VentaC extends JTable {
 
         } catch (Exception e) {
         }
+    }
 
+    public void actualizarTblVenta() {
+        try {
+            tblVentas.setModel(dao.llenarTbl('1', 0));
+        } catch (Exception e) {
+        }
+    }
+
+    public DefaultTableModel llenarTblVentas(char tipo, int codigoVenta) {
+        try {
+            return dao.llenarTbl(tipo, codigoVenta);
+        } catch (Exception e) {
+        }
+        return null;
     }
 }

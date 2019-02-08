@@ -29,13 +29,13 @@ public class VentaD extends Conexion {
             ps.executeUpdate();
             ps.close();
             this.desconectar();
-            
+
         } catch (Exception e) {
             System.out.println("Error accionVenta D " + e.getMessage());
         }
     }
 
-    public void accionVentaDetalle(int codigoVentaPerteneciente,VentaDetalleM detalle, char tipoDeAccion) {
+    public void accionVentaDetalle(int codigoVentaPerteneciente, VentaDetalleM detalle, char tipoDeAccion) {
         try {
             String sql = null;
 
@@ -57,11 +57,14 @@ public class VentaD extends Conexion {
             this.desconectar();
 
         } catch (Exception e) {
-            System.out.println("Error accionVentaDetalle "+e.getMessage());
+            System.out.println("Error accionVentaDetalle " + e.getMessage());
         }
     }
 
-    public DefaultTableModel llenarTblProductos() throws Exception {
+    public DefaultTableModel llenarTbl() throws Exception {
+        /*
+         Productos xd
+         */
         DefaultTableModel tblTemp = null;
         try {
             String sql = "SELECT PRODUCTO.CODPRO, PRODUCTO.NOMPRO, MARCA.NOMMAR, MODELO.NOMMOD, PRODUCTO.SERPRO, PRODUCTO.FECGARPRO, PRODUCTO.PREPRO FROM MODELO INNER JOIN PRODUCTO ON PRODUCTO.MODELO_CODMOD_MODPRO = MODELO.CODMOD INNER JOIN MARCA ON MODELO.MARCA_CODMAR_MARMOD = MARCA.CODMAR";
@@ -101,8 +104,50 @@ public class VentaD extends Conexion {
             System.out.println("Error listar Productos Dao" + e.getMessage());
         }
         return tblTemp;
-    }    
-    
+    }
+
+    public DefaultTableModel llenarTbl(char tipo, int codigoVenta) throws Exception {
+        /*
+         1   Venta
+         2   DetalleVenta
+         */
+        DefaultTableModel tblTemp = null;
+        try {
+            String sql = null;
+            String clms = null;
+            switch (tipo) {
+                case '1':
+                    sql = "SELECT VENTA.CODVEN, PERSONA.NOMPER as vendedor, PERSONA1.NOMPER as comprador, VENTA.FECVEN, VENTA.HOVEN, VENTA.TIPVEN FROM VENTA INNER JOIN PERSONA ON VENTA.CODPER_VENVEN = PERSONA.CODPER INNER JOIN PERSONA AS PERSONA1 ON VENTA.CODPER_COMVEN = PERSONA1.CODPER";
+                    clms = "CODVEN,VENDEDOR,COMPRADOR,FECHA,HORA,TIPO";
+                    break;
+                case '2':
+                    sql = "SELECT VENTA_DETALLE.CODDETVEN, PRODUCTO.NOMPRO, VENTA_DETALLE.CANTPROVEN, PRODUCTO.PREPRO, VENTA_DETALLE.DSCPROVEN, VENTA_DETALLE.ESTVEN FROM VENTA_DETALLE INNER JOIN PRODUCTO ON VENTA_DETALLE.PRODUCTO_CODPRO_PROVEN= PRODUCTO.CODPRO WHERE VENTA_DETALLE.VENTA_CODVEN_VENVEN = " + codigoVenta;
+                    clms = "CodDetVen,Producto,Cantidad,Precio,Descuento,Estado";
+                    break;
+            }
+
+            tblTemp = new DefaultTableModel(null, clms.split(","));
+            Statement s = this.conectar().prepareStatement(sql);
+            ResultSet rs = s.executeQuery(sql);
+            Object dts[] = new Object[clms.split(",").length];
+
+            while (rs.next()) {
+                for (int i = 0; i < dts.length; i++) {
+
+                    dts[i] = String.valueOf(rs.getObject(i + 1));
+                }
+                tblTemp.addRow(dts);
+            }
+            s.close();
+            rs.close();
+            this.desconectar();
+
+        } catch (Exception e) {
+            System.out.println("Error listar Productos Dao" + e.getMessage());
+        }
+        return tblTemp;
+    }
+
     public int devolverCodigos(String documento, char tipo) {
         try {
             /*
@@ -111,13 +156,13 @@ public class VentaD extends Conexion {
              */
             int cod = 0;
             String sql = null;
-            
-            switch(tipo){
+
+            switch (tipo) {
                 case '1':
                     sql = "SELECT CODPER FROM PERSONA WHERE DOCPER= '" + documento + "'";
                     break;
                 case '2':
-                    sql = "SELECT CODVEN FROM VENTA";
+                    sql = "SELECT CODVEN FROM VENTA ORDER BY CODVEN ASC";//Para futuras referencias poner que se ordenen ascendentemente :,v
                     break;
             }
 
@@ -129,6 +174,7 @@ public class VentaD extends Conexion {
             this.desconectar();
             return cod;
         } catch (Exception e) {
+            System.out.println("Error devolverCodigos VentaD " + e.getMessage());
             return 0;
         }
     }
