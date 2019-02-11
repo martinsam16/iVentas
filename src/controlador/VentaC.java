@@ -8,6 +8,7 @@ import java.time.LocalTime;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -18,14 +19,16 @@ import servicios.CombosAnidados;
 import servicios.TablasS;
 import static vista.VentaV.comboDocumentoComprador;
 import static vista.VentaV.comboDocumentoVendedor;
+import static vista.VentaV.tblDetVenta;
 import static vista.VentaV.tblProdVen;
 import static vista.VentaV.tblVentas;
 
-public class VentaC extends JTable {
+public class VentaC extends JTable{
 
     VentaD dao = new VentaD();
     VentaM venta = new VentaM();
     VentaDetalleM detalleVenta = new VentaDetalleM();
+    servicios.CombosAnidados combo = new CombosAnidados();
 
     public void accionVenta(char tipoDeAccion) {
         try {
@@ -40,7 +43,7 @@ public class VentaC extends JTable {
              8   Documento Vendedores
              9   Documento Clientes y Empresas
              */
-            servicios.CombosAnidados combo = new CombosAnidados();
+
             return combo.listarCombo(tipo, null);
         } catch (Exception e) {
             System.out.println("llenarComboPersonas " + e.getMessage());
@@ -59,10 +62,12 @@ public class VentaC extends JTable {
         venta.setHoraVenta(Time.valueOf(LocalTime.now()));
         venta.setFechaVenta(Date.valueOf(LocalDate.now().toString()));
 
-        venta.setDocumentoComprador(comboDocumentoComprador.getSelectedItem().toString());
-        venta.setDocumentoVendedor(comboDocumentoVendedor.getSelectedItem().toString());
+        venta.setDocumentoComprador(comboDocumentoComprador.getSelectedItem().toString().split("\\|")[0].trim());
+        venta.setDocumentoVendedor(comboDocumentoVendedor.getSelectedItem().toString().split("\\|")[0].trim());
+        System.out.println("documento Comprador: " + venta.getDocumentoComprador());
+        System.out.println("documento Vendedor: " + venta.getDocumentoVendedor());
 
-        if (comboDocumentoComprador.getSelectedItem().toString().length() == 8) {
+        if (venta.getDocumentoComprador().length() == 8) {
             venta.setTipoVenta("B");
         } else {
             venta.setTipoVenta("F");
@@ -103,13 +108,13 @@ public class VentaC extends JTable {
     public void llenarTblPoductos() {
         try {
             tblProdVen.setModel(dao.llenarTbl());
-
+            //12 seleccionar
             TableColumn columnaTabla = tblProdVen.getColumnModel().getColumn(12);
-
             JCheckBox checkBox = new JCheckBox();
-            columnaTabla.setCellEditor(new DefaultCellEditor(checkBox));
+            columnaTabla.setCellEditor(new DefaultCellEditor(checkBox));           
 
         } catch (Exception e) {
+            System.out.println("error llenarTblProductos: "+e.getMessage());
         }
     }
 
@@ -127,4 +132,14 @@ public class VentaC extends JTable {
         }
         return null;
     }
+
+    public void ponerComboProductosDetVenta() {
+        TableColumn columnaTblDetVenta = tblDetVenta.getColumnModel().getColumn(1);
+
+        JComboBox comboB = new JComboBox();
+        comboB.setModel(combo.listarCombo('0'));
+        
+        columnaTblDetVenta.setCellEditor(new DefaultCellEditor(comboB));
+    }
+    
 }

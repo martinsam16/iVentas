@@ -50,10 +50,10 @@ public class CombosAnidados extends Conexion {
                     sql = "SELECT PERSONA.DOCPER FROM PERSONA";
                     break;
                 case '8':
-                    sql = "SELECT PERSONA.DOCPER FROM PERSONA WHERE PERSONA.TIPPER='V'";
+                    sql = "SELECT CONCAT(PERSONA.DOCPER,' | ' ,PERSONA.NOMPER )FROM PERSONA WHERE PERSONA.TIPPER='V' ORDER BY PERSONA.DOCPER ASC";
                     break;
                 case '9':
-                    sql = "SELECT PERSONA.DOCPER FROM PERSONA WHERE PERSONA.TIPPER='C' OR PERSONA.TIPPER='E'";
+                    sql = "SELECT CONCAT(PERSONA.DOCPER,' | ' ,PERSONA.NOMPER,' ',PERSONA.APEPER ) FROM PERSONA WHERE PERSONA.TIPPER='C' OR PERSONA.TIPPER='E' ORDER BY PERSONA.TIPPER ASC";
                     break;
                 default:
                     break;
@@ -75,5 +75,39 @@ public class CombosAnidados extends Conexion {
         }
 
         return cmbTemp;
+    }
+    
+    public DefaultComboBoxModel listarCombo(char tip){
+        /*
+        0 productos
+        */
+        DefaultComboBoxModel cmbTemp = null;
+        try {
+            String sql = null;
+            switch (tip) {
+                case '0':
+                    sql = "SELECT PRODUCTO.NOMPRO FROM PRODUCTO";
+                    break;
+                default:
+                    break;
+            }
+
+            Statement s = this.conectar().prepareStatement(sql);
+            ResultSet rs = s.executeQuery(sql);
+            Vector dts = new Vector();
+            while (rs.next()) {
+                dts.add(rs.getString(1));
+            }
+            cmbTemp = new DefaultComboBoxModel(dts);
+            s.close();
+            rs.close();
+            this.desconectar();
+
+        } catch (Exception e) {
+            System.out.println("Error ListarCmb() D " + e.getMessage());
+        }
+
+        return cmbTemp;
+        
     }
 }

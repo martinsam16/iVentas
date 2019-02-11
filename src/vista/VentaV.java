@@ -282,11 +282,12 @@ public class VentaV extends javax.swing.JFrame {
     }//GEN-LAST:event_materialButton1ActionPerformed
 
     private void inputBuscadorCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_inputBuscadorCaretUpdate
-       controlador.buscador(inputBuscador.getText());
+        controlador.buscador(inputBuscador.getText());
     }//GEN-LAST:event_inputBuscadorCaretUpdate
 
     private void tblVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVentasMouseClicked
-        tblDetVenta.setModel(this.controlador.llenarTblVentas('2', Integer.valueOf(tblVentas.getValueAt(tblVentas.getSelectedRow(),0).toString())));
+        tblDetVenta.setModel(this.controlador.llenarTblVentas('2', Integer.valueOf(tblVentas.getValueAt(tblVentas.getSelectedRow(), 0).toString())));
+        this.controlador.ponerComboProductosDetVenta();
     }//GEN-LAST:event_tblVentasMouseClicked
 
     /**
