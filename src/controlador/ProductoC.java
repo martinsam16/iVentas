@@ -181,7 +181,7 @@ public class ProductoC {
         TablasS.buscar(consulta, tbl,'0');
     }
 
-    public void generarReporteDeTodosLosProductos() {
+    public void generarReporteDeTodosLosProductos(){
         servicioR.generarReporteProductos();
     }
 

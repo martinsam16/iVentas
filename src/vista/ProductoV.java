@@ -5,6 +5,7 @@ import java.awt.Cursor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
 
 public class ProductoV extends javax.swing.JFrame {
 
@@ -685,7 +686,7 @@ public class ProductoV extends javax.swing.JFrame {
     }//GEN-LAST:event_tblProductosMouseClicked
 
     private void btnNewPro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPro1ActionPerformed
-        productoC.generarReporteDeTodosLosProductos();
+       productoC.generarReporteDeTodosLosProductos();
     }//GEN-LAST:event_btnNewPro1ActionPerformed
 
     private void btnEditarMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarMarcaActionPerformed

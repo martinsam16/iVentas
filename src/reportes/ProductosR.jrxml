@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f1248291-8528-4284-9e3c-24275f79bf7a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     MARCA.`NOMMAR` AS MARCA_NOMMAR,
+     MODELO.`NOMMOD` AS MODELO_NOMMOD,
+     PRODUCTO.`NOMPRO` AS PRODUCTO_NOMPRO,
+     PRODUCTO.`SERPRO` AS PRODUCTO_SERPRO,
+     PRODUCTO.`PREPRO` AS PRODUCTO_PREPRO,
+     PRODUCTO.`FECGARPRO` AS PRODUCTO_FECGARPRO,
+     PERSONA.`NOMPER` AS PERSONA_NOMPER,
+     PERSONA.`APEPER` AS PERSONA_APEPER,
+     PERSONA.`DOCPER` AS PERSONA_DOCPER,
+     PERSONA.`TLFPER` AS PERSONA_TLFPER,
+     PERSONA.`DIRPER` AS PERSONA_DIRPER
+FROM
+     `MARCA` MARCA INNER JOIN `MODELO` MODELO ON MARCA.`CODMAR` = MODELO.`MARCA_CODMAR_MARMOD`
+     INNER JOIN `PRODUCTO` PRODUCTO ON MODELO.`CODMOD` = PRODUCTO.`MODELO_CODMOD_MODPRO`
+     INNER JOIN `PERSONA` PERSONA ON PRODUCTO.`PERSONA_CODPER_PROVPRO` = PERSONA.`CODPER`
+ORDER BY MARCA.`NOMMAR` ASC]]>
+	</queryString>
+	<field name="MARCA_NOMMAR" class="java.lang.String"/>
+	<field name="MODELO_NOMMOD" class="java.lang.String"/>
+	<field name="PRODUCTO_NOMPRO" class="java.lang.String"/>
+	<field name="PRODUCTO_SERPRO" class="java.lang.String"/>
+	<field name="PRODUCTO_PREPRO" class="java.lang.Double"/>
+	<field name="PRODUCTO_FECGARPRO" class="java.lang.String"/>
+	<field name="PERSONA_NOMPER" class="java.lang.String"/>
+	<field name="PERSONA_APEPER" class="java.lang.String"/>
+	<field name="PERSONA_DOCPER" class="java.lang.String"/>
+	<field name="PERSONA_TLFPER" class="java.lang.String"/>
+	<field name="PERSONA_DIRPER" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="97" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="553" height="79" uuid="3d573737-141c-4a24-9e51-77e300ee9e2c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCTOS]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="453" y="59" width="100" height="20" forecolor="#26BFD4" uuid="ddb8418d-2c22-475e-94cc-b5faf6420ef8"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="469" y="0" width="64" height="59" uuid="7197772e-b9e0-4b66-8684-1017ae8b97e5"/>
+				<imageExpression><![CDATA["/home/martin/NetBeansProjects/iVentas/src/img/productos.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="452" y="0" width="88" height="20" uuid="e38758ad-9042-494f-97e2-4a8b4b68c3d3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRECIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="0" width="88" height="20" uuid="1682cf48-ac26-4953-b562-22f3a34f60c1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MARCA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="88" height="20" uuid="8899b737-f2a1-4805-b0ad-57f53773fe88"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MODELO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="188" y="0" width="88" height="20" uuid="00dca69d-84fe-477b-bc96-15cfb1644587"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="88" height="20" uuid="31d02611-cc24-4c82-9d63-d7d7007090ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROVEEDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="0" width="88" height="20" uuid="625edc0b-71f5-46ca-aaf1-360226bb7ccf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GARANTIA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="452" y="0" width="88" height="20" uuid="88ef88c7-245a-45b1-94fb-4dd75ec0490e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["S/."+$F{PRODUCTO_PREPRO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12" y="0" width="88" height="20" uuid="4883f3f8-44cb-4377-a39a-4a05ca9ca86f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{MARCA_NOMMAR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="88" height="20" uuid="685ea72f-fcc2-4f95-9df3-054402566bda"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{MODELO_NOMMOD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="0" width="88" height="20" uuid="b3898dc9-7e98-4d43-8211-143c1d559e12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PRODUCTO_NOMPRO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="88" height="20" uuid="635616b9-8d3c-4cfa-9856-04c49afd6550"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PERSONA_DOCPER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="364" y="0" width="88" height="20" uuid="1bd6e85c-59df-473e-baa1-82d1431e766d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PRODUCTO_FECGARPRO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="433" y="1" width="80" height="20" uuid="28a2beac-36aa-4e14-b95d-f7f9d8dd4f39"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="513" y="1" width="40" height="20" uuid="dfcb9f5b-94de-4a05-99cc-a0b0a9eec538"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
