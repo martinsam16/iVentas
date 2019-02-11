@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
@@ -97,6 +99,7 @@ public class VentaC extends JTable{
                 detalleVenta.setEstadoVenta("A");
                 accionDetalleVenta('1');
             }
+            generarReporteVenta();
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione almenos un producto! ._.");
         }
@@ -140,6 +143,13 @@ public class VentaC extends JTable{
         comboB.setModel(combo.listarCombo('0'));
         
         columnaTblDetVenta.setCellEditor(new DefaultCellEditor(comboB));
+    }
+    
+    public void generarReporteVenta(){
+        if ("B".equals(venta.getTipoVenta())) {
+            servicios.ReportesS.generarReportes('1', venta.getCodigoVenta());
+        }
+        
     }
     
 }

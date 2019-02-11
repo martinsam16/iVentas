@@ -182,7 +182,7 @@ public class ProductoC {
     }
 
     public void generarReporteDeTodosLosProductos(){
-        servicioR.generarReporteProductos();
+        ReportesS.generarReportes('0',0);
     }
 
     public void limpiar() {
@@ -199,6 +199,6 @@ public class ProductoC {
         producto.clear();
         nuevo = "";
 
-    }
+    }    
 
 }
