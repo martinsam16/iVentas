@@ -53,8 +53,9 @@ public class CompraV extends javax.swing.JFrame {
         pnlProducto.add(lblNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 390, 46));
 
         lblImagenProducto.setBackground(new java.awt.Color(254, 254, 254));
+        lblImagenProducto.setBorder(null);
         lblImagenProducto.setOpaque(true);
-        pnlProducto.add(lblImagenProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 390, 281));
+        pnlProducto.add(lblImagenProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 390, 280));
 
         materialButtonCircle1.setBackground(new java.awt.Color(21, 236, 223));
         materialButtonCircle1.setForeground(new java.awt.Color(254, 254, 254));
@@ -92,17 +93,20 @@ public class CompraV extends javax.swing.JFrame {
 
         pnlDetalleProducto.setBackground(new java.awt.Color(254, 254, 254));
 
+        tblDetTecnico.setBackground(new java.awt.Color(254, 254, 254));
         tblDetTecnico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblDetTecnico.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblDetTecnico.setGridColor(new java.awt.Color(254, 254, 254));
+        tblDetTecnico.setRowHeight(150);
+        tblDetTecnico.getTableHeader().setResizingAllowed(false);
+        tblDetTecnico.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblDetTecnico);
 
         javax.swing.GroupLayout pnlDetalleProductoLayout = new javax.swing.GroupLayout(pnlDetalleProducto);
@@ -118,8 +122,7 @@ public class CompraV extends javax.swing.JFrame {
             pnlDetalleProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDetalleProductoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

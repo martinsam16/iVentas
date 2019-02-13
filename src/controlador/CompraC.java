@@ -1,19 +1,23 @@
 package controlador;
 
 import dao.ProductoD;
+import java.awt.Component;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultCellEditor;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
-import servicios.ConsultaGob;
+import javax.swing.table.TableCellRenderer;
 import static vista.CompraV.lblImagenProducto;
 import static vista.CompraV.lblNombreProducto;
 import static vista.CompraV.lblPrecioProducto;
@@ -25,31 +29,32 @@ import static vista.CompraV.tblDetTecnico;
  * @author Martín Alexis Samán Arata
  * @version 0.0.1
  */
-public class CompraC extends ConsultaGob {
+public class CompraC extends JFrame {
 
     ProductoD dao = new ProductoD();
     JTable tblTemporal = new JTable(dao.listarPro());
+
+    String atributos = null;
+
     int numeroFila = -1;
+    int maximo = tblTemporal.getRowCount() - 1;
 
     public void accionBtns(char btn) {
         switch (btn) {
             case 'I':
-                if (numeroFila >= 1) {
-                    numeroFila--;
-                } else {
-                    numeroFila = tblTemporal.getRowCount();
+                numeroFila--;
+                if (numeroFila < 0) {
+                    numeroFila = maximo;
                 }
-                listarProducto();
                 break;
             case 'D':
-                if (numeroFila < tblTemporal.getRowCount()) {
-                    numeroFila++;
-                } else {
+                numeroFila++;
+                if (numeroFila > maximo) {
                     numeroFila = 0;
                 }
-                listarProducto();
                 break;
         }
+        listarProducto();
     }
 
     public void listarProducto() {
@@ -70,20 +75,15 @@ public class CompraC extends ConsultaGob {
             tblDetTecnico.setModel(temporal);
             temporal = null;
             lblNombreProducto.setText(tblTemporal.getValueAt(numeroFila, 1).toString());
-            lblPrecioProducto.setText("S/. "+tblTemporal.getValueAt(numeroFila, 5).toString());
+            lblPrecioProducto.setText("S/. " + tblTemporal.getValueAt(numeroFila, 5).toString());
             lblImagenProducto.setIcon(
                     cargarImg(tblTemporal.getValueAt(numeroFila, 6).toString(), lblImagenProducto)
             );
+
+            tblDetTecnico.getColumn("ATRIBUTOS").setCellRenderer(new TextAreaRenderer());
+            tblDetTecnico.getColumn("ATRIBUTOS").setCellEditor(new TextAreaEditor());
         } catch (Exception e) {
             System.out.println("error listarProducto CompraC " + e.getMessage());
-        }
-    }
-
-    public void listarFichaTecnica(String atributos) throws ParseException {
-        JSONObject jsonAtributos = (JSONObject) parser.parse(atributos);
-
-        for (int i = 0; i < jsonAtributos.size(); i++) {
-            System.out.println(jsonAtributos.get(i));
         }
     }
 
@@ -100,4 +100,67 @@ public class CompraC extends ConsultaGob {
         }
     }
 
+}
+
+class TextAreaRenderer extends JScrollPane implements TableCellRenderer {
+
+    JTextArea textarea;
+
+    public TextAreaRenderer() {
+        textarea = new JTextArea();
+        textarea.setLineWrap(true);
+        textarea.setWrapStyleWord(true);
+        //textarea.setBorder(new TitledBorder("This is a JTextArea"));
+        getViewport().add(textarea);
+    }
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus,
+            int row, int column) {
+        if (isSelected) {
+            setForeground(table.getSelectionForeground());
+            setBackground(table.getSelectionBackground());
+            textarea.setForeground(table.getSelectionForeground());
+            textarea.setBackground(table.getSelectionBackground());
+        } else {
+            setForeground(table.getForeground());
+            setBackground(table.getBackground());
+            textarea.setForeground(table.getForeground());
+            textarea.setBackground(table.getBackground());
+        }
+
+        textarea.setText((String) value);
+        textarea.setCaretPosition(0);
+        return this;
+    }
+}
+
+class TextAreaEditor extends DefaultCellEditor {
+
+    protected JScrollPane scrollpane;
+    protected JTextArea textarea;
+
+    public TextAreaEditor() {
+        super(new JCheckBox());
+        scrollpane = new JScrollPane();
+        textarea = new JTextArea();
+        textarea.setLineWrap(true);
+        textarea.setWrapStyleWord(true);
+        //textarea.setBorder(new TitledBorder("This is a JTextArea"));
+        scrollpane.getViewport().add(textarea);
+    }
+
+    @Override
+    public Component getTableCellEditorComponent(JTable table, Object value,
+            boolean isSelected, int row, int column) {
+        textarea.setText((String) value);
+
+        return scrollpane;
+    }
+
+    @Override
+    public Object getCellEditorValue() {
+        return textarea.getText();
+    }
 }
