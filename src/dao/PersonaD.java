@@ -8,8 +8,19 @@ import javax.swing.table.DefaultTableModel;
 import modelo.PersonaM;
 import servicios.ConsultaGob;
 
+/**
+ * Permite ejecutar querys con la Base De Datos para la Tabla Persona
+ * @author Martín Alexis Samán Arata
+ * @version 0.0.1
+ */
+
 public class PersonaD extends Conexion {
 
+    /**
+     * Permite verificar si el usuario y contraseña son correctos
+     * @param persona PersonaM, modelo de Persona
+     * @return boolean true: correcto, false: incorrecto
+     */
     public boolean autenticar(PersonaM persona) {
         boolean autentica = false;
         try {
@@ -32,6 +43,13 @@ public class PersonaD extends Conexion {
         }
         return autentica;
     }
+    
+    /**
+     * Permite ejecutar una accion en la Base de Datos para la tabla Persona
+     * @param persona modelo de Persona
+     * @param tipo char 1: Registrar, 2: Actualizar, 3: Eliminar
+     * @throws Exception 
+     */
 
     public void accionPersona(PersonaM persona, char tipo) throws Exception {
         try {
@@ -89,7 +107,12 @@ public class PersonaD extends Conexion {
             System.out.println(e.getMessage());
         }
     }
-
+    
+    /**
+     * Devuelve un codigo de un distrito
+     * @param nombreDelDistrito Nombre del Distrito del cual se quiere obtener el codigo
+     * @return int codigoDelDistrito
+     */
     public int devolverCodigoDistrito(String nombreDelDistrito) {
         int cod = 0;
         try {            
@@ -104,7 +127,14 @@ public class PersonaD extends Conexion {
         }
         return cod;
     }
-
+    
+    /**
+     * Devuelve un DefaultTableModel a partir de un query a Persona dependiendo del tipo que sea
+     * @param tipper char TipoDePersona A, I, V, E, C
+     * @param estado boolean true: activo, false: inactivo
+     * @return DefaultTableModel
+     * @throws Exception 
+     */
     public DefaultTableModel listarPersonas(char tipper, boolean estado) throws Exception {
 
         DefaultTableModel tblTemp = null;

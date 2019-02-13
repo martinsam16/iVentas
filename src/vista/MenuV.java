@@ -23,6 +23,8 @@ public class MenuV extends javax.swing.JFrame {
         btnVentas = new principal.MaterialButton();
         pnlProducto = new javax.swing.JPanel();
         btnVentas1 = new principal.MaterialButton();
+        pnlVentas1 = new javax.swing.JPanel();
+        btnVista = new principal.MaterialButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Menú");
@@ -55,7 +57,7 @@ public class MenuV extends javax.swing.JFrame {
             .addGroup(pnlPersonasLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(materialButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pnlVentas.setBackground(new java.awt.Color(255, 255, 255));
@@ -74,14 +76,14 @@ public class MenuV extends javax.swing.JFrame {
             .addGroup(pnlVentasLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         pnlVentasLayout.setVerticalGroup(
             pnlVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlVentasLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pnlProducto.setBackground(new java.awt.Color(255, 255, 255));
@@ -107,7 +109,33 @@ public class MenuV extends javax.swing.JFrame {
             .addGroup(pnlProductoLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(btnVentas1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
+        );
+
+        pnlVentas1.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnVista.setText("CARRUSEL PRODUCTOS");
+        btnVista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVistaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlVentas1Layout = new javax.swing.GroupLayout(pnlVentas1);
+        pnlVentas1.setLayout(pnlVentas1Layout);
+        pnlVentas1Layout.setHorizontalGroup(
+            pnlVentas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlVentas1Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(btnVista, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlVentas1Layout.setVerticalGroup(
+            pnlVentas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlVentas1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(btnVista, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -119,19 +147,23 @@ public class MenuV extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlPersonas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlVentas1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlPersonas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlVentas1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -178,6 +210,15 @@ public class MenuV extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVentasActionPerformed
 
+    private void btnVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVistaActionPerformed
+        try {
+           CompraV carrusel = new CompraV();
+          carrusel.setVisible(true);
+          dispose();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnVistaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -216,10 +257,12 @@ public class MenuV extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButton btnVentas;
     public static principal.MaterialButton btnVentas1;
+    private principal.MaterialButton btnVista;
     private javax.swing.JPanel jPanel1;
     private principal.MaterialButton materialButton1;
     public static javax.swing.JPanel pnlPersonas;
     public static javax.swing.JPanel pnlProducto;
     public static javax.swing.JPanel pnlVentas;
+    public static javax.swing.JPanel pnlVentas1;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.parser.ParseException;
 
+/**
+ * Vista de Persona
+ * @author Martín Alexis Samán Arata
+ */
+
 public class PersonaV extends javax.swing.JFrame {
 
     PersonaC personaC = new PersonaC();

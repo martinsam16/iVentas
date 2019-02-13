@@ -5,6 +5,12 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * Backup y Restauración de una Base de Datos: MySql tiene que estar en el path
+ * 
+ * @version 0.0.0
+ * @author Martín Alexis Samán Arata
+ */
 public class BackupDb {
 //     Recordar Optimizar!!   
 

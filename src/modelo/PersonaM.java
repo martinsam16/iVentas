@@ -1,5 +1,11 @@
 package modelo;
 
+/**
+ * Modelo de la Tabla Persona
+ *
+ * @author Martín Alexis Samán Arata
+ */
+
 public class PersonaM {
 
     public int getCodper() {
@@ -103,6 +109,9 @@ public class PersonaM {
     private String nomdis, dir;
     private String usrper, pswper, estlog;
 
+    /**
+     * Limpia las variables del Modelo
+     */
     public void clear() {
         this.codper = 0;
         this.nomper = null;
@@ -116,6 +125,11 @@ public class PersonaM {
         this.pswper = null;
     }
 
+    /**
+     * Devuelve un String con los datos del Modelo
+     *
+     * @return String
+     */
     @Override
     public String toString() {
         return "[" + this.codper + "," + this.nomper + "," + this.apeper + "," + this.docper + "," + this.telfper + "," + this.tipper + "," + this.nomdis + "," + this.dir + "," + this.usrper + "," + this.pswper + "]";

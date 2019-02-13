@@ -10,8 +10,10 @@ import vista.MenuV;
 import javafx.scene.control.CheckBox;
 
 /**
+ * Controlador del Login en JavaFx
  *
- * @author Martin Alexis Saman Arata
+ * @author Martín Alexis Samán Arata
+ * @version 0.0.1
  */
 public class LoginC {
 
@@ -39,8 +41,8 @@ public class LoginC {
                     inptUsr.clear();
                     inptPsw.clear();
                 }
-                
-                MenuV menu = new MenuV(); 
+
+                MenuV menu = new MenuV();
                 switch (PERSONA.getTipper()) {
                     case "A":
                         menu.setVisible(true);
@@ -65,10 +67,10 @@ public class LoginC {
         } catch (Exception ej) {
             System.out.println("error btnIngresar()" + ej.getMessage());
         }
-    }  
-    
+    }
+
     @FXML
-    private void btnSalir(ActionEvent e){
+    private void btnSalir(ActionEvent e) {
         System.exit(0);
     }
 

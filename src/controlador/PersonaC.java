@@ -22,7 +22,10 @@ import static vista.PersonaV.btnTipoDeDocumentoRuc;
 import static vista.PersonaV.inptDocPer;
 import static vista.PersonaV.pnlCredenciales;
 import static vista.PersonaV.tblPer;
-
+/**
+ * Une el modelo de la Persona con su dao
+ * @author Martín Alexis Samán Arata
+ */
 public class PersonaC {
 
     PersonaM persona = new PersonaM();
@@ -30,7 +33,6 @@ public class PersonaC {
 
     public void accionPersona(char tipoDeAccion) {
         try {
-
             dao.accionPersona(persona, tipoDeAccion);
         } catch (Exception e) {
             System.out.println("Error RegPer() C" + e.getMessage());
@@ -47,13 +49,11 @@ public class PersonaC {
     }
 
     public DefaultTableModel listarPersonas(char tipper, boolean estado) {
-
         try {
             return dao.listarPersonas(tipper, estado);
         } catch (Exception e) {
             return null;
         }
-
     }
 
     public boolean validar() {
@@ -235,7 +235,7 @@ public class PersonaC {
             }
 
         } catch (Exception e) {
-            System.out.println("Error autorrellenarCamposPorTipoDeDocumento "+e.getMessage());
+            System.out.println("Error autorrellenarCamposPorTipoDeDocumento " + e.getMessage());
         }
 
     }
@@ -250,7 +250,7 @@ public class PersonaC {
     }
 
     public void buscar(String consulta, JTable tbl) {
-        TablasS.buscar(consulta, tbl,'0');
+        TablasS.buscar(consulta, tbl, '0');
     }
 
     public void inputSoloDigitos(JTextField input, int cantidadDeDigitos) {

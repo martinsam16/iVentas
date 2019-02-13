@@ -6,21 +6,25 @@ import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 
+/**
+ * Devuelve DefaultComboBoxModel de acuerdo a una consulta
+ *
+ * @version 0.0.1
+ * @author Martín Alexis Samán Arata
+ */
 public class CombosAnidados extends Conexion {
 
+    /**
+     *
+     * @param tip char 0 Empresa, 1 Marca, 2 Modelo, 3 Modelo dependiente de
+     * marca, 4 Departamentos, 5, Provincias dependientes de Departamentos, 6
+     * Distritos dependientes de Provincia, 7 Documentos Personas, 8 Documento
+     * Vendedores, 9 Documento Clientes y Empresas
+     * @param nombre String
+     * @return DefaultComboBoxModel
+     * @throws Exception
+     */
     public DefaultComboBoxModel listarCombo(char tip, String nombre) throws Exception {
-        /*
-         0   Empresa
-         1   Marca
-         2   Modelo
-         3   Modelo dependiente de marca
-         4   Departamentos
-         5   Provincias dependientes de Departamentos
-         6   Distritos dependientes de Provincia
-         7   Documentos Personas
-         8   Documento Vendedores
-         9   Documento Clientes y Empresas
-         */
         DefaultComboBoxModel cmbTemp = null;
         try {
             String sql = null;
@@ -76,11 +80,13 @@ public class CombosAnidados extends Conexion {
 
         return cmbTemp;
     }
-    
-    public DefaultComboBoxModel listarCombo(char tip){
-        /*
-        0 productos
-        */
+
+    /**
+     *
+     * @param tip char 0: Productos
+     * @return DefaultComboBoxModel
+     */
+    public DefaultComboBoxModel listarCombo(char tip) {
         DefaultComboBoxModel cmbTemp = null;
         try {
             String sql = null;
@@ -108,6 +114,6 @@ public class CombosAnidados extends Conexion {
         }
 
         return cmbTemp;
-        
+
     }
 }

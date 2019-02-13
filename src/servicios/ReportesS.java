@@ -11,11 +11,23 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
+/**
+ * Servicio para los Reportes
+ *
+ * @author Martín Alexis Samán Arata
+ * @version 0.0.1
+ */
 
 
 public class ReportesS extends Conexion {
 
-    public static void generarReportes(char tipo,int codigo) {
+    /**
+     * Genera los reportes a partir del package reportes
+     *
+     * @param tipo char: '0': Productos '1': Boleta
+     * @param codigo int Código
+     */
+    public static void generarReportes(char tipo, int codigo) {
         try {
             JasperReport reporte = null;
             String path = "src/reportes/";
@@ -25,20 +37,20 @@ public class ReportesS extends Conexion {
                     path += "ProductosR";
                     break;
                 case '1':
-                    path+="BoletaR";
+                    path += "BoletaR";
                     parametros.put("codigoVenta", codigo);
                     break;
             }
-            path+=".jasper";
+            path += ".jasper";
             /*
              //Para hacer filtro xd, el null de fill report cambiamos :v
              Map parametro = new HashMap();
              parametro.put("nommarca", "dell");
              */
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,parametros, conectar());
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, parametros, conectar());
             desconectar();
-
+            
             JasperViewer view = new JasperViewer(jprint, false);
             view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             view.setVisible(true);

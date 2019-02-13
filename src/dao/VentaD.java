@@ -6,7 +6,13 @@ import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 import modelo.VentaDetalleM;
 import modelo.VentaM;
-
+/**
+ * Permite realizar una Venta
+ * Tablas: Venta, Venta_Detalle
+ * 
+ * @author Martín Alexis Samán Arata
+ * @version 0.0.1
+ */
 public class VentaD extends Conexion {
     
     public void accionVenta(VentaM venta, char tipoDeAccion) {

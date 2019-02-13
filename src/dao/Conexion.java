@@ -5,12 +5,20 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-
+/**
+ * Clase que permite conectar con una Base De Datos
+ * @version 0.0.1
+ * @author Martín Alexis Samán Arata
+ */
 public class Conexion {
 
     protected static Connection conexion = null;
     protected final static Properties PROPIEDADES = new Properties();
-
+/**
+ * Conecta con una Base De Datos a partir de un archivo properties
+ * @return
+ * @throws ClassNotFoundException | SQLException 
+ */
     public static Connection conectar() throws Exception {
         try {
             PROPIEDADES.load(new FileInputStream("db.properties"));
@@ -22,6 +30,11 @@ public class Conexion {
         return conexion;
     }
 
+    /**
+     * Verifica el estado de la Conexion
+     * @return boolean true: conectado, false desconectado
+     * @throws Exception 
+     */
     public static boolean estado() throws Exception {
         boolean est = false;
         try {
@@ -34,7 +47,11 @@ public class Conexion {
         return est;
     }
 
-    public static void desconectar() throws Exception {
+    /**
+     * Desconecta la Base De Datos
+     * @throws java.sql.SQLException
+     */
+    public static void desconectar() throws SQLException {
         try {
             if (conexion != null) {
                 conexion.close();
