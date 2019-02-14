@@ -128,6 +128,7 @@ public class ProductoM {
     public void clear() {
         this.nommar = "";
         this.nommod = "";
+        this.nomcat="";
         this.nompro = "";
         this.prepo = 0;
         this.serpro = "";

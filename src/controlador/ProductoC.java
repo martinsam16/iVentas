@@ -203,6 +203,7 @@ public class ProductoC {
         inptMarPro.setText("");
         inptModPro.setText("");
         inptSerPro.setText("");
+        inptCategoriaProducto.setText("");
 
         tblProductos.clearSelection();
         producto.clear();

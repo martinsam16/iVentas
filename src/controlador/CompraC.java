@@ -29,7 +29,7 @@ public class CompraC {
     int maximo = tblTemporal.getRowCount() - 1;
     
     public void buscar(String query){
-        servicios.TablasS.buscar(query, tblTemporal, '1');
+        servicios.TablasS.buscar(query, tblTemporal, '0');
         maximo = tblTemporal.getRowCount() - 1;
     }
 
@@ -58,17 +58,18 @@ public class CompraC {
 
     public void listarProducto() {
         try {
-            //CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG,ATRIB,PROVEEDOR,GAR
-            String clms = "MARCA,MODELO,ATRIBUTOS,GARANTIA";
+            //CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG,ATRIB,PROVEEDOR,GAR,CATEGORIA
+            String clms = "CATEGORIA,MARCA,MODELO,ATRIBUTOS,GARANTIA";
             String dts[] = new String[clms.split(",").length];
             DefaultTableModel temporal = null;
             temporal = new DefaultTableModel(null, clms.split(","));
 
             //dts[0] = tblTemporal.getValueAt(numeroFila, 0).toString();
-            dts[0] = tblTemporal.getValueAt(numeroFila, 2).toString();
-            dts[1] = tblTemporal.getValueAt(numeroFila, 3).toString();
-            dts[2] = tblTemporal.getValueAt(numeroFila, 7).toString();
-            dts[3] = tblTemporal.getValueAt(numeroFila, 9).toString();
+            dts[0] = tblTemporal.getValueAt(numeroFila, 10).toString();
+            dts[1] = tblTemporal.getValueAt(numeroFila, 2).toString();
+            dts[2] = tblTemporal.getValueAt(numeroFila, 3).toString();
+            dts[3] = tblTemporal.getValueAt(numeroFila, 7).toString();
+            dts[4] = tblTemporal.getValueAt(numeroFila, 9).toString();
 
             temporal.addRow(dts);
             tblDetTecnico.setModel(temporal);
