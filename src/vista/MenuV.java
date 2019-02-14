@@ -26,7 +26,7 @@ public class MenuV extends javax.swing.JFrame {
         pnlVentas1 = new javax.swing.JPanel();
         btnVista = new principal.MaterialButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú");
         setBackground(new java.awt.Color(0, 204, 0));
         setFocusTraversalPolicyProvider(true);

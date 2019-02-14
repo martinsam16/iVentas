@@ -1,9 +1,10 @@
 package servicios;
 
 import dao.Conexion;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -30,7 +31,7 @@ public class ReportesS extends Conexion {
     public static void generarReportes(char tipo, int codigo) {
         try {
             JasperReport reporte = null;
-            String path = "src/reportes/";
+            String path = "reportes/";
             Map parametros = new HashMap();
             switch (tipo) {
                 case '0'://Productos
@@ -47,7 +48,13 @@ public class ReportesS extends Conexion {
              Map parametro = new HashMap();
              parametro.put("nommarca", "dell");
              */
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            reporte = (JasperReport) JRLoader.loadObject(new InputStream() {
+
+                @Override
+                public int read() throws IOException {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+            }.getClass().getClassLoader().getResource(path));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, parametros, conectar());
             desconectar();
             

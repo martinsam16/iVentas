@@ -3,11 +3,13 @@ package controlador;
 import dao.PersonaD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import modelo.PersonaM;
 import vista.MenuV;
 import javafx.scene.control.CheckBox;
+import javafx.stage.Stage;
 
 /**
  * Controlador del Login en JavaFx
@@ -60,6 +62,10 @@ public class LoginC {
                     default:
                         break;
                 }
+                final Node source = (Node) e.getSource();
+                final Stage stage = (Stage) source.getScene().getWindow();
+                stage.close();
+                
             } else {
                 servicios.SmsS.error("Error", "Usuario y/o contaseña incorrecto.", "Tal vez se equivocó o no esté registrado.");
             }
