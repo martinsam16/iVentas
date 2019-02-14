@@ -99,14 +99,30 @@ public class ProductoM {
         this.codmod = codmod;
     }
     
-    private String nompro, serpro, urlimgpro, nommar, nommod, despro, estpro, nomprov,fecgarpro;
+    private String nompro, serpro, urlimgpro, nommar, nommod, despro, estpro, nomprov,fecgarpro, nomcat;
+
+    public String getNomcat() {
+        return nomcat;
+    }
+
+    public void setNomcat(String nomcat) {
+        this.nomcat = nomcat;
+    }
+
+    public int getCodcat() {
+        return codcat;
+    }
+
+    public void setCodcat(int codcat) {
+        this.codcat = codcat;
+    }
     private double prepo;
-    private int codmar, codmod;
+    private int codmar, codmod, codcat;
     
 
     @Override
     public String toString() {
-        return "[" + this.nomprov+ "," + this.codmar+ "," + this.codmod + this.nompro + "," + this.nommar + "," + this.nommod + "," + this.serpro + "," + this.urlimgpro + "," + this.despro + "," + this.estpro + "," + this.prepo + "," + this.fecgarpro + "]";
+        return "[" + this.nomprov+ "," + this.codmar+ "," + this.codmod + this.nompro + "," + this.nommar + "," + this.nommod + "," +this.codcat+ this.serpro + "," + this.urlimgpro + "," + this.despro + "," + this.estpro + "," + this.prepo + "," + this.fecgarpro + "]";
     }
 
     public void clear() {

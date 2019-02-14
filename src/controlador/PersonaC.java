@@ -211,7 +211,7 @@ public class PersonaC {
     }
 
     public void autorrellenarCamposPorTipoDeDocumento() throws ParseException {
-
+        //No le pongo hilos pq no tiene sentido escribir si es que ya existe en la DB
         try {
             if (!ConsultaGob.existeDocumento(PersonaV.inptDocPer.getText())) {
                 JSONObject datos = null;

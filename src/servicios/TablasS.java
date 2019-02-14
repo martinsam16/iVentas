@@ -6,7 +6,13 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 public class TablasS {
-
+    
+    /**
+     * Sirve para filtar datos en un JTable
+     * @param consulta String Lo que se quiere buscar
+     * @param tbl JTable Tabla en donde se quiere buscar
+     * @param mayus char '0': .toUpperCase '1': crudo
+     */
     public static void buscar(String consulta, JTable tbl,char mayus) {
         try {
             DefaultTableModel dm = (DefaultTableModel) tbl.getModel();            

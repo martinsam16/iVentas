@@ -94,6 +94,8 @@ public class CombosAnidados extends Conexion {
                 case '0':
                     sql = "SELECT PRODUCTO.NOMPRO FROM PRODUCTO";
                     break;
+                case '1':
+                    sql="SELECT CATEGORIA.NOMCAT FROM CATEGORIA";
                 default:
                     break;
             }

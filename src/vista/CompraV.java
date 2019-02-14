@@ -25,6 +25,7 @@ public class CompraV extends javax.swing.JFrame {
         materialButtonCircle2 = new principal.MaterialButtonCircle();
         jButton1 = new javax.swing.JButton();
         btnMostrarPnlDetVenta = new javax.swing.JToggleButton();
+        inptBuscar = new principal.MaterialTextField();
         pnlDetalleProducto = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDetTecnico = new javax.swing.JTable();
@@ -90,6 +91,15 @@ public class CompraV extends javax.swing.JFrame {
             }
         });
         pnlProducto.add(btnMostrarPnlDetVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 61, 46));
+
+        inptBuscar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inptBuscar.setLabel("Buscar");
+        inptBuscar.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                inptBuscarCaretUpdate(evt);
+            }
+        });
+        pnlProducto.add(inptBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, 220, 40));
 
         pnlDetalleProducto.setBackground(new java.awt.Color(254, 254, 254));
 
@@ -181,6 +191,11 @@ public class CompraV extends javax.swing.JFrame {
        repaint();
     }//GEN-LAST:event_materialButtonCircle1ActionPerformed
 
+    private void inptBuscarCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_inptBuscarCaretUpdate
+        this.controlador.buscar(inptBuscar.getText());
+        this.repaint();
+    }//GEN-LAST:event_inptBuscarCaretUpdate
+
     /**
      * @param args the command line arguments
      */
@@ -218,6 +233,7 @@ public class CompraV extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnMostrarPnlDetVenta;
+    public static principal.MaterialTextField inptBuscar;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

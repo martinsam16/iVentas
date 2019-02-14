@@ -13,13 +13,13 @@ public class ProductoD extends Conexion {
             String sql = null;
             switch (tipoDeAccion) {
                 case '1':
-                    sql = "INSERT INTO PRODUCTO (NOMPRO, MODELO_CODMOD_MODPRO, SERPRO, PREPRO, URLIMGPRO, ATRIBPRO, ESTPRO, FECGARPRO, PERSONA_CODPER_PROVPRO) VALUES (?,?,?,?,?,?,?,?,?)";
+                    sql = "INSERT INTO PRODUCTO (NOMPRO, MODELO_CODMOD_MODPRO, SERPRO, PREPRO, URLIMGPRO, ATRIBPRO, ESTPRO, FECGARPRO, PERSONA_CODPER_PROVPRO,CATEGORIA_CODCAT_CATPRO) VALUES (?,?,?,?,?,?,?,?,?,?)";
                     break;
                 case '2':
-                    sql = "UPDATE PRODUCTO SET NOMPRO=?, MODELO_CODMOD_MODPRO=?, SERPRO=?, PREPRO=?, URLIMGPRO=?, ATRIBPRO=?, ESTPRO=?, FECGARPRO=?, PERSONA_CODPER_PROVPRO=? WHERE SERPRO ='" + producto.getSerpro() + "'";
+                    sql = "UPDATE PRODUCTO SET NOMPRO=?, MODELO_CODMOD_MODPRO=?, SERPRO=?, PREPRO=?, URLIMGPRO=?, ATRIBPRO=?, ESTPRO=?, FECGARPRO=?, PERSONA_CODPER_PROVPRO=?, CATEGORIA_CODCAT_CATPRO=? WHERE SERPRO ='" + producto.getSerpro() + "'";
                     break;
                 case '3':
-                    sql = "DELETE FROM PRODUCTO WHERE PRODUCTO.SERPRO = '"+producto.getSerpro()+"'";
+                    sql = "DELETE FROM PRODUCTO WHERE PRODUCTO.SERPRO = '" + producto.getSerpro() + "'";
                     break;
             }
             PreparedStatement ps = this.conectar().prepareStatement(sql);
@@ -32,8 +32,9 @@ public class ProductoD extends Conexion {
                 ps.setString(5, producto.getUrlimgpro());
                 ps.setString(6, producto.getDespro());
                 ps.setString(7, producto.getEstpro());
-                ps.setString(8, producto.getFecgarpro());
+                ps.setString(8, producto.getFecgarpro());                
                 ps.setInt(9, devolverCodigos('3', producto));
+                ps.setInt(10, devolverCodigos('4', producto));
             }
 
             ps.executeUpdate();
@@ -41,6 +42,28 @@ public class ProductoD extends Conexion {
             this.desconectar();
         } catch (Exception e) {
             System.out.println("Error AccPro() productoD" + e.getMessage());
+        }
+    }
+
+    public void accionCategoria(ProductoM producto, String nombreModificado, char tipoDeAccion) throws Exception {
+        try {
+            String sql = null;
+            switch (tipoDeAccion) {
+                case '1':
+                    sql = "INSERT INTO CATEGORIA (NOMCAT) VALUES (?)";
+                    break;
+                case '2':
+                    sql = "UPDATE CATEGORIA SET NOMCAT ='" + nombreModificado + "' WHERE NOMCAT= ?";
+                    break;
+            }
+
+            PreparedStatement ps = this.conectar().prepareStatement(sql);
+            ps.setString(1, producto.getNomcat());
+
+            ps.executeUpdate();
+            ps.close();
+            this.desconectar();
+        } catch (Exception e) {
         }
     }
 
@@ -95,6 +118,7 @@ public class ProductoD extends Conexion {
              1 Marca
              2 Modelo
              3 Proveedor
+             4 Categoria
              */
             int cod = 0;
             String sql = null;
@@ -106,7 +130,10 @@ public class ProductoD extends Conexion {
                     sql = "SELECT CODMOD FROM MODELO WHERE NOMMOD='" + producto.getNommod() + "'";
                     break;
                 case '3':
-                    sql = "SELECT CODPER FROM PERSONA WHERE NOMPER='" + producto.getNomprov()+ "'";
+                    sql = "SELECT CODPER FROM PERSONA WHERE NOMPER='" + producto.getNomprov() + "'";
+                    break;
+                case '4':
+                    sql = "SELECT CODCAT FROM CATEGORIA WHERE NOMCAT='" + producto.getNomcat() + "'";
                     break;
             }
             Statement s = this.conectar().prepareStatement(sql);
@@ -123,9 +150,9 @@ public class ProductoD extends Conexion {
     public DefaultTableModel listarPro() {
         DefaultTableModel tblTemp = null;
         try {
-            String sql = "SELECT PRODUCTO.CODPRO, PRODUCTO.NOMPRO, MARCA.NOMMAR, MODELO.NOMMOD, PRODUCTO.SERPRO, PRODUCTO.PREPRO, PRODUCTO.URLIMGPRO, PRODUCTO.ATRIBPRO, PERSONA.NOMPER, PRODUCTO.FECGARPRO FROM MODELO INNER JOIN PRODUCTO ON PRODUCTO.MODELO_CODMOD_MODPRO = MODELO.CODMOD INNER JOIN MARCA ON MODELO.MARCA_CODMAR_MARMOD = MARCA.CODMAR INNER JOIN PERSONA ON PRODUCTO.PERSONA_CODPER_PROVPRO = PERSONA.CODPER";
-            
-            String clms = "CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG,ATRIB,PROVEEDOR,GAR";
+            String sql = "SELECT PRODUCTO.CODPRO, PRODUCTO.NOMPRO, MARCA.NOMMAR, MODELO.NOMMOD, PRODUCTO.SERPRO, PRODUCTO.PREPRO, PRODUCTO.URLIMGPRO, PRODUCTO.ATRIBPRO, PERSONA.NOMPER, PRODUCTO.FECGARPRO,CATEGORIA.NOMCAT FROM MODELO INNER JOIN PRODUCTO ON PRODUCTO.MODELO_CODMOD_MODPRO = MODELO.CODMOD INNER JOIN MARCA ON MODELO.MARCA_CODMAR_MARMOD = MARCA.CODMAR INNER JOIN PERSONA ON PRODUCTO.PERSONA_CODPER_PROVPRO = PERSONA.CODPER INNER JOIN CATEGORIA ON PRODUCTO.CATEGORIA_CODCAT_CATPRO = CATEGORIA.CODCAT";
+
+            String clms = "CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG,ATRIB,PROVEEDOR,GAR,CATEGORIA";
 
             tblTemp = new DefaultTableModel(null, clms.split(","));
             Statement s = this.conectar().prepareStatement(sql);
@@ -134,7 +161,7 @@ public class ProductoD extends Conexion {
 
             while (rs.next()) {
                 for (int i = 0; i < dts.length; i++) {
-                        dts[i] = rs.getString(i + 1);                    
+                    dts[i] = rs.getString(i + 1);
                 }
                 tblTemp.addRow(dts);
             }
@@ -142,7 +169,7 @@ public class ProductoD extends Conexion {
             rs.close();
             this.desconectar();
         } catch (Exception e) {
-            System.out.println("Error listar Productos Dao"+e.getMessage());
+            System.out.println("Error listar Productos Dao" + e.getMessage());
         }
         return tblTemp;
     }

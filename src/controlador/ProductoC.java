@@ -2,27 +2,23 @@ package controlador;
 
 import dao.ProductoD;
 import servicios.ReportesS;
-import java.awt.Image;
-import java.io.IOException;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.ProductoM;
 import servicios.CombosAnidados;
 import servicios.PonerImgLabel;
 import servicios.TablasS;
+import vista.ProductoV;
+import static vista.ProductoV.cmbCatPro;
 import static vista.ProductoV.cmbMarPro;
 import static vista.ProductoV.cmbMarPro1;
 import static vista.ProductoV.cmbModPro;
 import static vista.ProductoV.comboProveedor;
+import static vista.ProductoV.inptCategoriaProducto;
 import static vista.ProductoV.inptMarPro;
 import static vista.ProductoV.inptModPro;
 import static vista.ProductoV.inptNomPro;
@@ -42,6 +38,14 @@ public class ProductoC {
 
     public String nuevo = "";
 
+    
+    public void accionCategoria(char  accion){
+        try {
+            dao.accionCategoria(producto, nuevo, accion);
+        } catch (Exception e) {
+        }
+    }
+    
     public void accionMarca(char accion) {
         try {
             dao.accionMarca(producto, nuevo, accion);
@@ -89,6 +93,7 @@ public class ProductoC {
         try {
             cmbMarPro1.setModel(combo.listarCombo('1', ""));
             cmbMarPro.setModel(combo.listarCombo('1', ""));
+            cmbCatPro.setModel(combo.listarCombo('1'));
             cmbModPro.removeAllItems();
         } catch (Exception e) {
         }
@@ -101,7 +106,13 @@ public class ProductoC {
             return null;
         }
     }
-
+ public DefaultComboBoxModel listarCmb(char tip) {
+        try {
+            return combo.listarCombo(tip);
+        } catch (Exception e) {
+            return null;
+        }
+    }
     public void variablesM(char tip) {
         // Para registrar
         /*
@@ -119,6 +130,7 @@ public class ProductoC {
                 producto.setNompro(inptNomPro.getText().toUpperCase());
                 producto.setNommar(cmbMarPro.getSelectedItem().toString());
                 producto.setNommod(cmbModPro.getSelectedItem().toString());
+                producto.setNomcat(cmbCatPro.getSelectedItem().toString());
                 producto.setSerpro(inptSerPro.getText().toUpperCase());
                 producto.setPrepo(Double.parseDouble(inptPrePro.getText()));
                 break;
@@ -129,6 +141,8 @@ public class ProductoC {
                 producto.setNommar(cmbMarPro1.getSelectedItem().toString());
                 producto.setNommod(inptModPro.getText().toUpperCase());
                 break;
+            case '4':
+                producto.setNomcat(inptCategoriaProducto.getText().toUpperCase());
             default:
                 break;
         }
@@ -149,15 +163,16 @@ public class ProductoC {
         String datosTemp = TablasS.devolverCamposDeFila(tblProductos);
         if (datosTemp != null) {
             String datos[] = datosTemp.split("\\^");
-            // CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG,ATRIB,PROVEEDOR,GAR
+            // CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG,ATRIB,PROVEEDOR,GAR,CAT
             inptNomPro.setText(datos[1]);
             cmbMarPro.setSelectedItem(datos[2]);
             cmbModPro.setSelectedItem(datos[3]);
             inptSerPro.setText(datos[4]);
             inptPrePro.setText(datos[5]);
             inputAtributosDelProducto.setText(datos[7]);
-            comboProveedor.setSelectedItem(datos[8]);
+            comboProveedor.setSelectedItem(datos[8]);            
             inputFecGarPro.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(datos[9]));
+            cmbCatPro.setSelectedItem(datos[10]);
 
             variablesM('1');
 //            producto.setNommod(datos[3]);

@@ -27,6 +27,11 @@ public class CompraC {
     JTable tblTemporal = new JTable(dao.listarPro());
     int numeroFila = -1;
     int maximo = tblTemporal.getRowCount() - 1;
+    
+    public void buscar(String query){
+        servicios.TablasS.buscar(query, tblTemporal, '1');
+        maximo = tblTemporal.getRowCount() - 1;
+    }
 
 
     public void accionBtns(char btn) {
