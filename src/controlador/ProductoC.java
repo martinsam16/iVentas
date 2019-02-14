@@ -17,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.ProductoM;
 import servicios.CombosAnidados;
+import servicios.PonerImgLabel;
 import servicios.TablasS;
 import static vista.ProductoV.cmbMarPro;
 import static vista.ProductoV.cmbMarPro1;
@@ -76,18 +77,12 @@ public class ProductoC {
         tblProductos.setModel(listarProductos());
     }
 
-    public Icon cargarImg(String link) {
-        try {
-            Image img = null;
-            producto.setUrlimgpro(link);
-            URL url = new URL(link);
-            ImageIcon imgIcon = new ImageIcon(ImageIO.read(url));
-            Icon icono = new ImageIcon(imgIcon.getImage().getScaledInstance(lblImg.getWidth(), lblImg.getHeight(), Image.SCALE_DEFAULT));
-            return icono;
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            return null;
-        }
+    public void cargarImg(String link) {
+        PonerImgLabel setImg = new PonerImgLabel("Hilo");
+        setImg.link=link;
+        producto.setUrlimgpro(link);
+        setImg.lbl=lblImg;
+        setImg.start();
     }
 
     public void actCmb() {
@@ -167,13 +162,12 @@ public class ProductoC {
             variablesM('1');
 //            producto.setNommod(datos[3]);
             try {
-                producto.setUrlimgpro(datos[6]);
-                lblImg.setIcon(cargarImg(datos[6]));
+                cargarImg(datos[6]);
             } catch (Exception e) {
                 System.out.println("error link vacio xd");
             }
 
-            System.out.println("variablesm editar" + producto.toString());
+            //System.out.println("variablesm editar" + producto.toString());
         }
     }
 

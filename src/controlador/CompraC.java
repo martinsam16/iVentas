@@ -2,22 +2,14 @@ package controlador;
 
 import dao.ProductoD;
 import java.awt.Component;
-import java.awt.Image;
-import java.io.IOException;
-import java.net.URL;
-import javax.imageio.ImageIO;
 import javax.swing.DefaultCellEditor;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import servicios.PonerImgLabel;
 import static vista.CompraV.lblImagenProducto;
 import static vista.CompraV.lblNombreProducto;
 import static vista.CompraV.lblPrecioProducto;
@@ -29,15 +21,13 @@ import static vista.CompraV.tblDetTecnico;
  * @author Martín Alexis Samán Arata
  * @version 0.0.1
  */
-public class CompraC extends JFrame {
+public class CompraC {
 
     ProductoD dao = new ProductoD();
     JTable tblTemporal = new JTable(dao.listarPro());
-
-    String atributos = null;
-
     int numeroFila = -1;
     int maximo = tblTemporal.getRowCount() - 1;
+
 
     public void accionBtns(char btn) {
         switch (btn) {
@@ -54,6 +44,10 @@ public class CompraC extends JFrame {
                 }
                 break;
         }
+        PonerImgLabel setImg = new PonerImgLabel("demo");
+        setImg.link= tblTemporal.getValueAt(numeroFila, 6).toString();
+        setImg.lbl=lblImagenProducto;
+        setImg.start();
         listarProducto();
     }
 
@@ -76,9 +70,6 @@ public class CompraC extends JFrame {
             temporal = null;
             lblNombreProducto.setText(tblTemporal.getValueAt(numeroFila, 1).toString());
             lblPrecioProducto.setText("S/. " + tblTemporal.getValueAt(numeroFila, 5).toString());
-            lblImagenProducto.setIcon(
-                    cargarImg(tblTemporal.getValueAt(numeroFila, 6).toString(), lblImagenProducto)
-            );
 
             tblDetTecnico.getColumn("ATRIBUTOS").setCellRenderer(new TextAreaRenderer());
             tblDetTecnico.getColumn("ATRIBUTOS").setCellEditor(new TextAreaEditor());
@@ -87,20 +78,8 @@ public class CompraC extends JFrame {
         }
     }
 
-    public Icon cargarImg(String link, JLabel lblImg) {
-        try {
-            Image img = null;
-            URL url = new URL(link);
-            ImageIcon imgIcon = new ImageIcon(ImageIO.read(url));
-            Icon icono = new ImageIcon(imgIcon.getImage().getScaledInstance(lblImg.getWidth(), lblImg.getHeight(), Image.SCALE_DEFAULT));
-            return icono;
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            return null;
-        }
-    }
-
 }
+
 
 class TextAreaRenderer extends JScrollPane implements TableCellRenderer {
 

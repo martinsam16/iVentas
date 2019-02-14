@@ -5,7 +5,6 @@ import java.awt.Cursor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import net.sf.jasperreports.engine.JRException;
 
 public class ProductoV extends javax.swing.JFrame {
 
@@ -629,7 +628,7 @@ public class ProductoV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUrlImgProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUrlImgProActionPerformed
-        ProductoV.lblImg.setIcon(productoC.cargarImg(JOptionPane.showInputDialog(null, "Ingrese el Link de la imágen del producto")));
+        productoC.cargarImg(JOptionPane.showInputDialog(null, "Ingrese el Link de la imágen del producto"));
         this.repaint();
     }//GEN-LAST:event_btnUrlImgProActionPerformed
 
