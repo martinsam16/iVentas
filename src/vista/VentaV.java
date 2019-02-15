@@ -268,15 +268,17 @@ public class VentaV extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void tblProdVenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdVenMouseClicked
-        tblProdVen.setValueAt(String.valueOf(Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 6).toString()) - Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 7).toString())), tblProdVen.getSelectedRow(), 8);
-        Double total = Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 8).toString()) * Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 9).toString());
+        //CÓDIGO,NOMBRE,CATEGORIA,MARCA,MODELO,SERIE,GAR,PRECIO,CANTIDAD,TOTAL,SELEC
 
-        tblProdVen.setValueAt(String.valueOf(total + (total * Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 10).toString()))), tblProdVen.getSelectedRow(), 11);
-
+        double total;
+        total = Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 7).toString());
+        total*= Double.valueOf(tblProdVen.getValueAt(tblProdVen.getSelectedRow(), 8).toString());
+        tblProdVen.setValueAt(String.valueOf(total), tblProdVen.getSelectedRow(), 9);
+        
     }//GEN-LAST:event_tblProdVenMouseClicked
 
     private void materialButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton1ActionPerformed
-        controlador.cargarVariablesRegistrarDetalleM();
+        controlador.cargarYRegistrarVenta();
         controlador.llenarTblPoductos();
         controlador.actualizarTblVenta();
     }//GEN-LAST:event_materialButton1ActionPerformed

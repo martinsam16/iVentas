@@ -2,7 +2,15 @@ package modelo;
 
 
 public class VentaDetalleM {
-    private int codigoProducto, cantidadProducto;
+    private int codigoProducto, cantidadProducto, codigoDetalleVenta;
+
+    public int getCodigoDetalleVenta() {
+        return codigoDetalleVenta;
+    }
+
+    public void setCodigoDetalleVenta(int codigoDetalleVenta) {
+        this.codigoDetalleVenta = codigoDetalleVenta;
+    }
     private double descuentoProducto; 
     private String estadoVenta;
 

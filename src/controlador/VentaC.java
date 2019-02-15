@@ -1,12 +1,12 @@
 package controlador;
 
 import dao.VentaD;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
@@ -25,7 +25,7 @@ import static vista.VentaV.tblDetVenta;
 import static vista.VentaV.tblProdVen;
 import static vista.VentaV.tblVentas;
 
-public class VentaC extends JTable{
+public class VentaC extends JTable {
 
     VentaD dao = new VentaD();
     VentaM venta = new VentaM();
@@ -82,7 +82,7 @@ public class VentaC extends JTable{
         }
     }
 
-    public void cargarVariablesRegistrarDetalleM() {
+    public void cargarYRegistrarVenta() {
         TablasS.buscar("true", tblProdVen, '1');
         tblProdVen.repaint();
 
@@ -92,10 +92,9 @@ public class VentaC extends JTable{
             venta.setCodigoVenta(dao.devolverCodigos(null, '2'));
 
             for (int i = 0; i < tblProdVen.getRowCount(); i++) {
-                //CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,GAR,PRECIO,DSC,TOTAl_UNITARIO,CANTIDAD,IGV,TOTAL,SELEC
+                //CÓDIGO,NOMBRE,CATEGORIA,MARCA,MODELO,SERIE,GAR,PRECIO,CANTIDAD,TOTAL,SELEC
                 detalleVenta.setCodigoProducto(Integer.valueOf(tblProdVen.getValueAt(i, 0).toString()));
-                detalleVenta.setCantidadProducto(Integer.valueOf(tblProdVen.getValueAt(i, 9).toString()));
-                detalleVenta.setDescuentoProducto(Double.valueOf(tblProdVen.getValueAt(i, 7).toString()));
+                detalleVenta.setCantidadProducto(Integer.valueOf(tblProdVen.getValueAt(i, 8).toString()));
                 detalleVenta.setEstadoVenta("A");
                 accionDetalleVenta('1');
             }
@@ -112,12 +111,12 @@ public class VentaC extends JTable{
         try {
             tblProdVen.setModel(dao.llenarTbl());
             //12 seleccionar
-            TableColumn columnaTabla = tblProdVen.getColumnModel().getColumn(12);
+            TableColumn columnaTabla = tblProdVen.getColumnModel().getColumn(10);
             JCheckBox checkBox = new JCheckBox();
-            columnaTabla.setCellEditor(new DefaultCellEditor(checkBox));           
+            columnaTabla.setCellEditor(new DefaultCellEditor(checkBox));
 
         } catch (Exception e) {
-            System.out.println("error llenarTblProductos: "+e.getMessage());
+            System.out.println("error llenarTblProductos: " + e.getMessage());
         }
     }
 
@@ -137,19 +136,37 @@ public class VentaC extends JTable{
     }
 
     public void ponerComboProductosDetVenta() {
-        TableColumn columnaTblDetVenta = tblDetVenta.getColumnModel().getColumn(1);
+        //CodDetVen,Producto,Cantidad,Precio,Estado
+        TableColumn columnaTblDetVenta = tblDetVenta.getColumnModel().getColumn(4);
 
         JComboBox comboB = new JComboBox();
-        comboB.setModel(combo.listarCombo('0'));
-        
+        comboB.addItem("A");
+        comboB.addItem("S");
+        comboB.addItem("I");
+        comboB.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (tblDetVenta.getSelectedRow() != -1) {
+                            detalleVenta.setCodigoDetalleVenta(Integer.valueOf(tblDetVenta.getValueAt(tblDetVenta.getSelectedRow(), 0).toString()));
+                            detalleVenta.setEstadoVenta(comboB.getSelectedItem().toString());
+                            accionDetalleVenta('2');
+                        }else{
+                            System.err.print("[WARNING] Seleccione primero una fila.");
+                        }
+                    }
+                }
+        );
         columnaTblDetVenta.setCellEditor(new DefaultCellEditor(comboB));
+        tblDetVenta.repaint();
+
     }
-    
-    public void generarReporteVenta(){
+
+    public void generarReporteVenta() {
         if ("B".equals(venta.getTipoVenta())) {
             servicios.ReportesS.generarReportes('1', venta.getCodigoVenta());
         }
-        
+
     }
-    
+
 }

@@ -27,12 +27,11 @@ public class CompraC {
     JTable tblTemporal = new JTable(dao.listarPro());
     int numeroFila = -1;
     int maximo = tblTemporal.getRowCount() - 1;
-    
-    public void buscar(String query){
+
+    public void buscar(String query) {
         servicios.TablasS.buscar(query, tblTemporal, '0');
         maximo = tblTemporal.getRowCount() - 1;
     }
-
 
     public void accionBtns(char btn) {
         switch (btn) {
@@ -50,8 +49,8 @@ public class CompraC {
                 break;
         }
         PonerImgLabel setImg = new PonerImgLabel("demo");
-        setImg.link= tblTemporal.getValueAt(numeroFila, 6).toString();
-        setImg.lbl=lblImagenProducto;
+        setImg.link = tblTemporal.getValueAt(numeroFila, 6).toString();
+        setImg.lbl = lblImagenProducto;
         setImg.start();
         listarProducto();
     }
@@ -61,8 +60,15 @@ public class CompraC {
             //CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG,ATRIB,PROVEEDOR,GAR,CATEGORIA
             String clms = "CATEGORIA,MARCA,MODELO,ATRIBUTOS,GARANTIA";
             String dts[] = new String[clms.split(",").length];
-            DefaultTableModel temporal = null;
-            temporal = new DefaultTableModel(null, clms.split(","));
+            DefaultTableModel temporal = new DefaultTableModel(null, clms.split(",")) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    if (column == 3) {
+                        return true;
+                    }
+                    return false;
+                }
+            };
 
             //dts[0] = tblTemporal.getValueAt(numeroFila, 0).toString();
             dts[0] = tblTemporal.getValueAt(numeroFila, 10).toString();
@@ -79,13 +85,13 @@ public class CompraC {
 
             tblDetTecnico.getColumn("ATRIBUTOS").setCellRenderer(new TextAreaRenderer());
             tblDetTecnico.getColumn("ATRIBUTOS").setCellEditor(new TextAreaEditor());
+
         } catch (Exception e) {
             System.out.println("error listarProducto CompraC " + e.getMessage());
         }
     }
 
 }
-
 
 class TextAreaRenderer extends JScrollPane implements TableCellRenderer {
 
