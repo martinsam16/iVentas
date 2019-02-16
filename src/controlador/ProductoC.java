@@ -119,9 +119,12 @@ public class ProductoC {
          1   Producto
          2   Marca
          3   Modelo
+        4   CAtegoria
+        5   CategoriaEdit
          */
         producto.clear();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        //CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG,ATRIB,PROVEEDOR,GAR,CATEGORIA
         switch (tip) {
             case '1':
                 producto.setNomprov(comboProveedor.getSelectedItem().toString());
@@ -143,10 +146,14 @@ public class ProductoC {
                 break;
             case '4':
                 producto.setNomcat(inptCategoriaProducto.getText().toUpperCase());
+                break;
+            case '5':
+                producto.setNomcat(tblProductos.getValueAt(tblProductos.getSelectedRow(), 10).toString());
+                break;
             default:
                 break;
         }
-        System.out.println("VariablesM" + producto.toString());
+//        System.out.println("VariablesM" + producto.toString());
 
     }
 

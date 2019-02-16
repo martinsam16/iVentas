@@ -17,8 +17,8 @@ public class PersonaV extends javax.swing.JFrame {
 
     public PersonaV() throws Exception {
         initComponents();
-//        this.setLocationRelativeTo(null);
-        this.setExtendedState(MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
+//        this.setExtendedState(MAXIMIZED_BOTH);
         pnlCredenciales.setVisible(false);
     }
     
@@ -75,10 +75,11 @@ public class PersonaV extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
-        pnlEdEl.setBackground(new java.awt.Color(255, 255, 255));
+        pnlEdEl.setBackground(new java.awt.Color(254, 254, 254));
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBackground(new java.awt.Color(254, 254, 254));
 
+        btnBusTipper.setBackground(new java.awt.Color(254, 254, 254));
         btnBusTipper.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todo", "Admin", "Inventariador", "Empresa", "Vendedor", "Cliente" }));
         btnBusTipper.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +87,8 @@ public class PersonaV extends javax.swing.JFrame {
             }
         });
 
+        inptBuscar.setBackground(new java.awt.Color(254, 254, 254));
+        inptBuscar.setForeground(new java.awt.Color(33, 33, 33));
         inptBuscar.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         inptBuscar.setLabel("Buscar");
         inptBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -94,7 +97,10 @@ public class PersonaV extends javax.swing.JFrame {
             }
         });
 
+        btnReporte.setBackground(new java.awt.Color(75, 214, 157));
+        btnReporte.setForeground(new java.awt.Color(254, 254, 254));
         btnReporte.setText("Reporte");
+        btnReporte.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporteActionPerformed(evt);
@@ -190,6 +196,8 @@ public class PersonaV extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(254, 254, 254));
 
+        inptNomPer.setBackground(new java.awt.Color(254, 254, 254));
+        inptNomPer.setForeground(new java.awt.Color(33, 33, 33));
         inptNomPer.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         inptNomPer.setToolTipText("");
         inptNomPer.setDoubleBuffered(true);
@@ -197,18 +205,24 @@ public class PersonaV extends javax.swing.JFrame {
         inptNomPer.setMinimumSize(new java.awt.Dimension(0, 9));
         inptNomPer.setNextFocusableComponent(inptApePer);
 
+        inptApePer.setBackground(new java.awt.Color(254, 254, 254));
+        inptApePer.setForeground(new java.awt.Color(33, 33, 33));
         inptApePer.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         inptApePer.setLabel("Apellidos");
 
-        pnlCredenciales.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCredenciales.setBackground(new java.awt.Color(254, 254, 254));
         pnlCredenciales.setMaximumSize(new java.awt.Dimension(315, 89));
 
+        inptUsr.setBackground(new java.awt.Color(254, 254, 254));
+        inptUsr.setForeground(new java.awt.Color(33, 33, 33));
         inptUsr.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         inptUsr.setFont(new java.awt.Font("Roboto Regular", 0, 14)); // NOI18N
         inptUsr.setLabel("User");
         inptUsr.setNextFocusableComponent(inptPssw);
         inptUsr.setSelectionColor(new java.awt.Color(255, 204, 102));
 
+        inptPssw.setBackground(new java.awt.Color(254, 254, 254));
+        inptPssw.setForeground(new java.awt.Color(33, 33, 33));
         inptPssw.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         inptPssw.setFont(new java.awt.Font("Roboto Regular", 0, 14)); // NOI18N
         inptPssw.setLabel("Password");
@@ -240,6 +254,8 @@ public class PersonaV extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        inpTlfPer.setBackground(new java.awt.Color(254, 254, 254));
+        inpTlfPer.setForeground(new java.awt.Color(33, 33, 33));
         inpTlfPer.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         inpTlfPer.setLabel("Teléfono");
         inpTlfPer.addCaretListener(new javax.swing.event.CaretListener() {
@@ -248,10 +264,13 @@ public class PersonaV extends javax.swing.JFrame {
             }
         });
 
+        cmbCodTel.setBackground(new java.awt.Color(254, 254, 254));
         cmbCodTel.setEditable(true);
         cmbCodTel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "+51", "+55", "+57", "+58" }));
         cmbCodTel.setNextFocusableComponent(inpTlfPer);
 
+        inptDocPer.setBackground(new java.awt.Color(254, 254, 254));
+        inptDocPer.setForeground(new java.awt.Color(33, 33, 33));
         inptDocPer.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         inptDocPer.setToolTipText("");
         inptDocPer.setDisabledTextColor(new java.awt.Color(255, 255, 255));
@@ -276,6 +295,7 @@ public class PersonaV extends javax.swing.JFrame {
             }
         });
 
+        comboTipoDePersona.setBackground(new java.awt.Color(254, 254, 254));
         comboTipoDePersona.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Inventariador", "Vendedor", "Empresa", "Cliente" }));
         comboTipoDePersona.setToolTipText("Tipo de Persona");
         comboTipoDePersona.addActionListener(new java.awt.event.ActionListener() {
@@ -284,6 +304,7 @@ public class PersonaV extends javax.swing.JFrame {
             }
         });
 
+        cmbDepartamento.setBackground(new java.awt.Color(254, 254, 254));
         cmbDepartamento.setModel(this.personaC.llenarComboUbigeo('4', null)
         );
         cmbDepartamento.addActionListener(new java.awt.event.ActionListener() {
@@ -292,6 +313,7 @@ public class PersonaV extends javax.swing.JFrame {
             }
         });
 
+        comboProvincia.setBackground(new java.awt.Color(254, 254, 254));
         comboProvincia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         comboProvincia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,6 +321,7 @@ public class PersonaV extends javax.swing.JFrame {
             }
         });
 
+        comboDistrito.setBackground(new java.awt.Color(254, 254, 254));
         comboDistrito.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         comboDistrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,6 +329,8 @@ public class PersonaV extends javax.swing.JFrame {
             }
         });
 
+        inptDirPer.setBackground(new java.awt.Color(254, 254, 254));
+        inptDirPer.setForeground(new java.awt.Color(33, 33, 33));
         inptDirPer.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         inptDirPer.setToolTipText("");
         inptDirPer.setDoubleBuffered(true);
@@ -313,13 +338,13 @@ public class PersonaV extends javax.swing.JFrame {
         inptDirPer.setMinimumSize(new java.awt.Dimension(0, 9));
         inptDirPer.setNextFocusableComponent(inptApePer);
 
-        pnlBtns.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBtns.setBackground(new java.awt.Color(254, 254, 254));
 
         btnEliminar.setBackground(new java.awt.Color(255, 51, 51));
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar");
         btnEliminar.setEnabled(false);
-        btnEliminar.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnEliminar.setFont(new java.awt.Font("Roboto Medium", 0, 10)); // NOI18N
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -330,7 +355,7 @@ public class PersonaV extends javax.swing.JFrame {
         btnEditar.setForeground(new java.awt.Color(255, 255, 255));
         btnEditar.setText("Editar");
         btnEditar.setEnabled(false);
-        btnEditar.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnEditar.setFont(new java.awt.Font("Roboto Medium", 0, 10)); // NOI18N
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -340,7 +365,7 @@ public class PersonaV extends javax.swing.JFrame {
         btnRegPer.setBackground(new java.awt.Color(0, 255, 51));
         btnRegPer.setForeground(new java.awt.Color(255, 255, 255));
         btnRegPer.setText("Registrar");
-        btnRegPer.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
+        btnRegPer.setFont(new java.awt.Font("Roboto Medium", 0, 10)); // NOI18N
         btnRegPer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegPerActionPerformed(evt);
@@ -364,10 +389,12 @@ public class PersonaV extends javax.swing.JFrame {
             pnlBtnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBtnsLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlBtnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnRegPer, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(pnlBtnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnRegPer, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addGroup(pnlBtnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jPanel8.setBackground(new java.awt.Color(254, 254, 254));
@@ -393,11 +420,11 @@ public class PersonaV extends javax.swing.JFrame {
             .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
         );
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBackground(new java.awt.Color(254, 254, 254));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
-        btnNew.setBackground(new java.awt.Color(255, 153, 0));
-        btnNew.setForeground(new java.awt.Color(255, 255, 255));
+        btnNew.setBackground(new java.awt.Color(75, 214, 157));
+        btnNew.setForeground(new java.awt.Color(254, 254, 254));
         btnNew.setText("+");
         btnNew.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
         btnNew.addActionListener(new java.awt.event.ActionListener() {
@@ -424,9 +451,11 @@ public class PersonaV extends javax.swing.JFrame {
         );
 
         jPanel1.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel1.setForeground(new java.awt.Color(254, 254, 254));
 
         btnTipoDeDocumentoDni.setBackground(new java.awt.Color(254, 254, 254));
         btnGroupTipDoc.add(btnTipoDeDocumentoDni);
+        btnTipoDeDocumentoDni.setForeground(new java.awt.Color(33, 33, 33));
         btnTipoDeDocumentoDni.setText("DNI");
         btnTipoDeDocumentoDni.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnTipoDeDocumentoDni.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -438,6 +467,7 @@ public class PersonaV extends javax.swing.JFrame {
 
         btnTipoDeDocumentoRuc.setBackground(new java.awt.Color(254, 254, 254));
         btnGroupTipDoc.add(btnTipoDeDocumentoRuc);
+        btnTipoDeDocumentoRuc.setForeground(new java.awt.Color(33, 33, 33));
         btnTipoDeDocumentoRuc.setText("RUC");
         btnTipoDeDocumentoRuc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnTipoDeDocumentoRuc.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -536,7 +566,6 @@ public class PersonaV extends javax.swing.JFrame {
                         .addGap(57, 57, 57)
                         .addComponent(pnlBtns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cmbDepartamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)

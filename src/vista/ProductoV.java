@@ -13,7 +13,7 @@ public class ProductoV extends javax.swing.JFrame {
     public ProductoV() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setExtendedState(MAXIMIZED_BOTH);
+//        this.setExtendedState(MAXIMIZED_BOTH);
     }
 //Acordadme Optimizar
 
@@ -96,11 +96,14 @@ public class ProductoV extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Roboto Lt", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(33, 33, 33));
         jLabel1.setText("Marca");
 
         jLabel2.setFont(new java.awt.Font("Roboto Lt", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(33, 33, 33));
         jLabel2.setText("Modelo");
 
+        cmbMarPro.setBackground(new java.awt.Color(254, 254, 254));
         cmbMarPro.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         cmbMarPro.setModel(this.productoC.listarCmb('1', " "));
         cmbMarPro.setToolTipText("");
@@ -110,6 +113,7 @@ public class ProductoV extends javax.swing.JFrame {
             }
         });
 
+        cmbModPro.setBackground(new java.awt.Color(254, 254, 254));
         cmbModPro.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         cmbModPro.setBorder(null);
 
@@ -123,15 +127,19 @@ public class ProductoV extends javax.swing.JFrame {
             }
         });
 
+        inptSerPro.setBackground(new java.awt.Color(254, 254, 254));
+        inptSerPro.setForeground(new java.awt.Color(33, 33, 33));
         inptSerPro.setToolTipText("Número de Serie del Producto");
         inptSerPro.setFont(new java.awt.Font("Roboto", 0, 10)); // NOI18N
         inptSerPro.setLabel("Número de Serie del Producto");
 
+        cmbCatPro.setBackground(new java.awt.Color(254, 254, 254));
         cmbCatPro.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         cmbCatPro.setModel(this.productoC.listarCmb('1'));
         cmbCatPro.setBorder(null);
 
         jLabel4.setFont(new java.awt.Font("Roboto Lt", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(33, 33, 33));
         jLabel4.setText("Categoría");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -181,9 +189,12 @@ public class ProductoV extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Roboto Cn", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(33, 33, 33));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("S/");
 
+        inptPrePro.setBackground(new java.awt.Color(254, 254, 254));
+        inptPrePro.setForeground(new java.awt.Color(33, 33, 33));
         inptPrePro.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         inptPrePro.setText("0000.00");
         inptPrePro.setToolTipText("Precio del Producto");
@@ -216,13 +227,19 @@ public class ProductoV extends javax.swing.JFrame {
         lblImg.setBackground(new java.awt.Color(204, 204, 204));
         lblImg.setToolTipText("Imagen Referencial del Producto");
 
+        inptNomPro.setBackground(new java.awt.Color(254, 254, 254));
+        inptNomPro.setForeground(new java.awt.Color(33, 33, 33));
         inptNomPro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         inptNomPro.setToolTipText("Nombre del Producto");
         inptNomPro.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         inptNomPro.setLabel("Nombre del Producto");
 
+        inputFecGarPro.setBackground(new java.awt.Color(254, 254, 254));
+        inputFecGarPro.setForeground(new java.awt.Color(33, 33, 33));
         inputFecGarPro.setToolTipText("Fecha de Garantía");
 
+        comboProveedor.setBackground(new java.awt.Color(254, 254, 254));
+        comboProveedor.setForeground(new java.awt.Color(33, 33, 33));
         comboProveedor.setModel(this.productoC.llenarComboRucEmpresas());
         comboProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -315,7 +332,9 @@ public class ProductoV extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(254, 254, 254));
 
+        inputAtributosDelProducto.setBackground(new java.awt.Color(254, 254, 254));
         inputAtributosDelProducto.setColumns(20);
+        inputAtributosDelProducto.setForeground(new java.awt.Color(33, 33, 33));
         inputAtributosDelProducto.setRows(5);
         jScrollPane3.setViewportView(inputAtributosDelProducto);
 
@@ -433,11 +452,14 @@ public class ProductoV extends javax.swing.JFrame {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
+        cmbMarPro1.setBackground(new java.awt.Color(254, 254, 254));
         cmbMarPro1.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         cmbMarPro1.setModel(this.productoC.listarCmb('1', " ")
         );
         cmbMarPro1.setToolTipText("Marca");
 
+        inptModPro.setBackground(new java.awt.Color(254, 254, 254));
+        inptModPro.setForeground(new java.awt.Color(33, 33, 33));
         inptModPro.setToolTipText("Modelo");
         inptModPro.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         inptModPro.setLabel("Modelo");
@@ -511,6 +533,8 @@ public class ProductoV extends javax.swing.JFrame {
                 .addComponent(btnEditarMarca, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
         );
 
+        inptMarPro.setBackground(new java.awt.Color(254, 254, 254));
+        inptMarPro.setForeground(new java.awt.Color(33, 33, 33));
         inptMarPro.setToolTipText("Marca");
         inptMarPro.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         inptMarPro.setLabel("Marca");
@@ -558,6 +582,8 @@ public class ProductoV extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
+        tblProductos.setBackground(new java.awt.Color(254, 254, 254));
+        tblProductos.setForeground(new java.awt.Color(33, 33, 33));
         tblProductos.setModel(this.productoC.listarProductos());
         tblProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -566,6 +592,8 @@ public class ProductoV extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblProductos);
 
+        inptBusPro.setBackground(new java.awt.Color(254, 254, 254));
+        inptBusPro.setForeground(new java.awt.Color(33, 33, 33));
         inptBusPro.setToolTipText("Buscar");
         inptBusPro.setLabel("Buscar");
         inptBusPro.addCaretListener(new javax.swing.event.CaretListener() {
@@ -611,6 +639,8 @@ public class ProductoV extends javax.swing.JFrame {
 
         jPanel9.setBackground(new java.awt.Color(254, 254, 254));
 
+        inptCategoriaProducto.setBackground(new java.awt.Color(254, 254, 254));
+        inptCategoriaProducto.setForeground(new java.awt.Color(33, 33, 33));
         inptCategoriaProducto.setToolTipText("Categoria");
         inptCategoriaProducto.setLabel("Categoria");
 
@@ -806,7 +836,7 @@ public class ProductoV extends javax.swing.JFrame {
     }//GEN-LAST:event_comboProveedorActionPerformed
 
     private void materialButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton2ActionPerformed
-        productoC.variablesM('4');
+        productoC.variablesM('5');
         productoC.nuevo=inptCategoriaProducto.getText().toUpperCase();
         productoC.accionCategoria('2');
         productoC.actualizar();
