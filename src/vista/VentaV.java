@@ -23,9 +23,10 @@ public class VentaV extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         comboDocumentoVendedor = new javax.swing.JComboBox();
         comboDocumentoComprador = new javax.swing.JComboBox();
-        materialButton1 = new principal.MaterialButton();
+        btnVender = new principal.MaterialButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btnCotizar = new principal.MaterialButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProdVen = new javax.swing.JTable();
@@ -57,13 +58,13 @@ public class VentaV extends javax.swing.JFrame {
         comboDocumentoComprador.setForeground(new java.awt.Color(19, 20, 24));
         comboDocumentoComprador.setModel(this.controlador.llenarComboPersonas('9'));
 
-        materialButton1.setBackground(new java.awt.Color(20, 220, 112));
-        materialButton1.setForeground(new java.awt.Color(249, 250, 251));
-        materialButton1.setText("Vender");
-        materialButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        materialButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVender.setBackground(new java.awt.Color(20, 220, 112));
+        btnVender.setForeground(new java.awt.Color(249, 250, 251));
+        btnVender.setText("Vender");
+        btnVender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                materialButton1ActionPerformed(evt);
+                btnVenderActionPerformed(evt);
             }
         });
 
@@ -75,6 +76,16 @@ public class VentaV extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(1, 1, 1));
         jLabel2.setText("Comprador");
 
+        btnCotizar.setBackground(new java.awt.Color(20, 217, 220));
+        btnCotizar.setForeground(new java.awt.Color(249, 250, 251));
+        btnCotizar.setText("Cotizar");
+        btnCotizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCotizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCotizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -82,11 +93,13 @@ public class VentaV extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboDocumentoVendedor, 0, 231, Short.MAX_VALUE)
+                    .addComponent(comboDocumentoVendedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(comboDocumentoComprador, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(materialButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCotizar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -106,7 +119,9 @@ public class VentaV extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(comboDocumentoComprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
-                .addComponent(materialButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCotizar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -163,7 +178,7 @@ public class VentaV extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -274,11 +289,11 @@ public class VentaV extends javax.swing.JFrame {
         
     }//GEN-LAST:event_tblProdVenMouseClicked
 
-    private void materialButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton1ActionPerformed
+    private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
         controlador.cargarYRegistrarVenta();
         controlador.llenarTblPoductos();
         controlador.actualizarTblVenta();
-    }//GEN-LAST:event_materialButton1ActionPerformed
+    }//GEN-LAST:event_btnVenderActionPerformed
 
     private void inputBuscadorCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_inputBuscadorCaretUpdate
         controlador.buscador(inputBuscador.getText());
@@ -288,6 +303,10 @@ public class VentaV extends javax.swing.JFrame {
         tblDetVenta.setModel(this.controlador.llenarTblVentas('2', Integer.valueOf(tblVentas.getValueAt(tblVentas.getSelectedRow(), 0).toString())));
         this.controlador.ponerComboProductosDetVenta();
     }//GEN-LAST:event_tblVentasMouseClicked
+
+    private void btnCotizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCotizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCotizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,7 +350,9 @@ public class VentaV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private principal.MaterialButton btnCotizar;
     public static principal.MaterialButton btnHome;
+    private principal.MaterialButton btnVender;
     public static javax.swing.JComboBox comboDocumentoComprador;
     public static javax.swing.JComboBox comboDocumentoVendedor;
     public static principal.MaterialTextField inputBuscador;
@@ -345,7 +366,6 @@ public class VentaV extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private principal.MaterialButton materialButton1;
     public static javax.swing.JTable tblDetVenta;
     public static javax.swing.JTable tblProdVen;
     public static javax.swing.JTable tblVentas;

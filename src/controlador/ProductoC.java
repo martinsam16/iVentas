@@ -12,7 +12,6 @@ import modelo.ProductoM;
 import servicios.CombosAnidados;
 import servicios.PonerImgLabel;
 import servicios.TablasS;
-import vista.ProductoV;
 import static vista.ProductoV.cmbCatPro;
 import static vista.ProductoV.cmbMarPro;
 import static vista.ProductoV.cmbMarPro1;

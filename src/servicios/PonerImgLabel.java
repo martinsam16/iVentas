@@ -30,7 +30,6 @@ public class PonerImgLabel extends Thread{
     @Override
     public void run() {
         try {
-            Image img = null;
             URL url = new URL(link);
             ImageIcon imgIcon = new ImageIcon(ImageIO.read(url));
             Icon icono = new ImageIcon(imgIcon.getImage().getScaledInstance(lbl.getWidth(), lbl.getHeight(), Image.SCALE_DEFAULT));
@@ -39,6 +38,5 @@ public class PonerImgLabel extends Thread{
         } catch (IOException e) {
             System.out.println("[ERROR] "+e.getMessage());
         }
-    }
-    
+    }    
 }
