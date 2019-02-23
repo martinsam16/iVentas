@@ -7,6 +7,7 @@ public class CompraV extends javax.swing.JFrame {
     public CompraV() {
         initComponents();
         setLocationRelativeTo(null);
+//        this.setExtendedState(MAXIMIZED_BOTH);
         pnlDetalleProducto.setVisible(false);
     }
     CompraC controlador = new CompraC();

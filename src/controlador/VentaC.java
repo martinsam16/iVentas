@@ -165,6 +165,8 @@ public class VentaC extends JTable {
     public void generarReporteVenta() {
         if ("B".equals(venta.getTipoVenta())) {
             servicios.ReportesS.generarReportes('1', venta.getCodigoVenta());
+        }else{
+            servicios.ReportesS.generarReportes('2', venta.getCodigoVenta());
         }
 
     }

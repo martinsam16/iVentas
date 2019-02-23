@@ -41,6 +41,10 @@ public class ReportesS extends Conexion {
                     path += "BoletaR";
                     parametros.put("codigoVenta", codigo);
                     break;
+                case '2':
+                    path+="FacturaR";
+                    parametros.put("codigoVenta",codigo);
+                    break;
             }
             path += ".jasper";
             /*

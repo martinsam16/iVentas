@@ -13,7 +13,7 @@ public class ProductoV extends javax.swing.JFrame {
     public ProductoV() {
         initComponents();
         this.setLocationRelativeTo(null);
-//        this.setExtendedState(MAXIMIZED_BOTH);
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 //Acordadme Optimizar
 

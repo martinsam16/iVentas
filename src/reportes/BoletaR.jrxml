@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e593e955-fc3d-4703-8742-251ca2135c22">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="iBoleta" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e593e955-fc3d-4703-8742-251ca2135c22">
 	<property name="ireport.zoom" value="1.0000000000000004"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -42,22 +42,22 @@ WHERE VENTA.CODVEN = $P!{codigoVenta}]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="119" splitType="Stretch">
+		<band height="112" splitType="Stretch">
 			<image>
-				<reportElement x="579" y="11" width="204" height="99" uuid="5f0cbe9f-e6e1-46d4-b657-33a1948444bf"/>
+				<reportElement x="579" y="7" width="204" height="99" uuid="5f0cbe9f-e6e1-46d4-b657-33a1948444bf"/>
 				<imageExpression><![CDATA["/home/martin/NetBeansProjects/iVentas/src/img/1.jpg"]]></imageExpression>
 			</image>
-			<textField>
-				<reportElement x="663" y="76" width="83" height="20" uuid="748c53c2-fcc2-40fb-a783-aeb06ab57367"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{codigoVenta}]]></textFieldExpression>
-			</textField>
 			<image>
 				<reportElement x="27" y="28" width="280" height="68" uuid="b7929526-198e-4fcc-b4fb-69abf84d5934"/>
 				<imageExpression><![CDATA["/home/martin/NetBeansProjects/iVentas/src/img/Empresa.jpg"]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement mode="Transparent" x="579" y="38" width="204" height="34" uuid="5308c5e2-f033-411e-be35-6c79fa2b836c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Dialog" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[BOLETA DE VENTA]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -98,6 +98,13 @@ WHERE VENTA.CODVEN = $P!{codigoVenta}]]>
 				<reportElement x="670" y="51" width="100" height="20" uuid="ea6f86ff-4d89-4c38-9628-23c2db4a14ad"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{telefonoComprador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="700" y="0" width="83" height="20" uuid="748c53c2-fcc2-40fb-a783-aeb06ab57367"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigoVenta}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

@@ -18,7 +18,7 @@ public class PersonaV extends javax.swing.JFrame {
     public PersonaV() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
-//        this.setExtendedState(MAXIMIZED_BOTH);
+        this.setExtendedState(MAXIMIZED_BOTH);
         pnlCredenciales.setVisible(false);
     }
     
