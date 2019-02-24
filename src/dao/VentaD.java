@@ -20,7 +20,7 @@ public class VentaD extends Conexion {
             String sql = null;
             switch (tipoDeAccion) {
                 case '1':
-                    sql = "INSERT INTO VENTA (CODPER_VENVEN, FECVEN, HOVEN, TIPVEN, CODPER_COMVEN) VALUES (?,?,?,?,?)";
+                    sql = "INSERT INTO VENTA (CODPER_VENVEN, FECVEN, HOVEN, TIPVEN, CODPER_COMVEN, NUMBF) VALUES (?,?,?,?,?,?)";
                     break;
             }
 
@@ -31,7 +31,7 @@ public class VentaD extends Conexion {
             ps.setTime(3, venta.getHoraVenta());
             ps.setString(4, venta.getTipoVenta());
             ps.setInt(5, devolverCodigos(venta.getDocumentoComprador(), '1'));
-
+            ps.setInt(6, devolverCodigos(venta.getTipoVenta(), '3')+1);
             ps.executeUpdate();
             ps.close();
             this.desconectar();
@@ -183,6 +183,9 @@ public class VentaD extends Conexion {
                     break;
                 case '2':
                     sql = "SELECT CODVEN FROM VENTA ORDER BY CODVEN ASC";//Para futuras referencias poner que se ordenen ascendentemente :,v
+                    break;
+                case '3':
+                    sql = "SELECT  NUMBF FROM VENTA WHERE TIPVEN='"+documento+"' ORDER BY NUMBF ASC";
                     break;
             }
 

@@ -7,7 +7,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT VENTA.CODVEN AS codigoVenta, CONCAT(PERSONA.APEPER,', ',PERSONA.NOMPER) as vendedor, CONCAT(PERSONA1.APEPER,', ',PERSONA1.NOMPER) as comprador, DEPARTAMENTO.NOMDEP as departamentoComprador, PROVINCIA.NOMPROV as provinciaComprador, DISTRITO.NOMDIS as distritoComprador,PERSONA1.DIRPER as direccionComprador, PRODUCTO.NOMPRO as nombreProducto, MARCA.NOMMAR as marcaProducto, MODELO.NOMMOD as modeloProducto, VENTA_DETALLE.CANTPROVEN as cantidad, PRODUCTO.PREPRO as precio,  (VENTA_DETALLE.CANTPROVEN * PRODUCTO.PREPRO) as total, CONCAT(VENTA.FECVEN,' ', VENTA.HOVEN )as fechaVenta, PERSONA.TLFPER as telefonoComprador
+		<![CDATA[SELECT VENTA.CODVEN AS codigoVenta, CONCAT(PERSONA.APEPER,', ',PERSONA.NOMPER) as vendedor, CONCAT(PERSONA1.APEPER,', ',PERSONA1.NOMPER) as comprador, DEPARTAMENTO.NOMDEP as departamentoComprador, PROVINCIA.NOMPROV as provinciaComprador, DISTRITO.NOMDIS as distritoComprador,PERSONA1.DIRPER as direccionComprador, PRODUCTO.NOMPRO as nombreProducto, MARCA.NOMMAR as marcaProducto, MODELO.NOMMOD as modeloProducto, VENTA_DETALLE.CANTPROVEN as cantidad, PRODUCTO.PREPRO as precio,  (VENTA_DETALLE.CANTPROVEN * PRODUCTO.PREPRO) as total, CONCAT(VENTA.FECVEN,' ', VENTA.HOVEN )as fechaVenta, PERSONA.TLFPER as telefonoComprador, VENTA.NUMBF as numeroBoleta
 FROM VENTA_DETALLE
 INNER JOIN PRODUCTO ON VENTA_DETALLE.PRODUCTO_CODPRO_PROVEN= PRODUCTO.CODPRO
 INNER JOIN MODELO ON PRODUCTO.MODELO_CODMOD_MODPRO = MODELO.CODMOD
@@ -35,6 +35,7 @@ WHERE VENTA.CODVEN = $P!{codigoVenta}]]>
 	<field name="total" class="java.lang.Double"/>
 	<field name="fechaVenta" class="java.lang.String"/>
 	<field name="telefonoComprador" class="java.lang.String"/>
+	<field name="numeroBoleta" class="java.lang.Integer"/>
 	<variable name="total_1" class="java.lang.Double" resetType="Page" calculation="Sum">
 		<variableExpression><![CDATA[$F{total}]]></variableExpression>
 	</variable>
@@ -58,6 +59,13 @@ WHERE VENTA.CODVEN = $P!{codigoVenta}]]>
 				</textElement>
 				<text><![CDATA[BOLETA DE VENTA]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="663" y="72" width="100" height="20" uuid="da3bb45e-623d-4abb-976d-1e86ea7b742a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numeroBoleta}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>

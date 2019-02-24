@@ -1,29 +1,228 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3356b1a2-66db-423c-b4ac-198c8ea85326">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="11"/>
+	<parameter name="codigoVenta" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT VENTA.CODVEN AS codigoVenta, CONCAT(PERSONA.APEPER,', ',PERSONA.NOMPER) as vendedor, PERSONA1.NOMPER as comprador, DEPARTAMENTO.NOMDEP as departamentoComprador, PROVINCIA.NOMPROV as provinciaComprador, DISTRITO.NOMDIS as distritoComprador,PERSONA1.DIRPER as direccionComprador, PRODUCTO.NOMPRO as nombreProducto, MARCA.NOMMAR as marcaProducto, MODELO.NOMMOD as modeloProducto, VENTA_DETALLE.CANTPROVEN as cantidad, PRODUCTO.PREPRO as precio,  (VENTA_DETALLE.CANTPROVEN * PRODUCTO.PREPRO) as total, VENTA.FECVEN as fechaVenta, PERSONA.TLFPER as telefonoComprador, PERSONA1.DOCPER as documento
+FROM VENTA_DETALLE
+INNER JOIN PRODUCTO ON VENTA_DETALLE.PRODUCTO_CODPRO_PROVEN= PRODUCTO.CODPRO
+INNER JOIN MODELO ON PRODUCTO.MODELO_CODMOD_MODPRO = MODELO.CODMOD
+INNER JOIN MARCA ON MODELO.MARCA_CODMAR_MARMOD = MARCA.CODMAR
+INNER JOIN VENTA ON VENTA_DETALLE.VENTA_CODVEN_VENVEN = VENTA.CODVEN
+INNER JOIN PERSONA ON VENTA.CODPER_VENVEN = PERSONA.CODPER 
+INNER JOIN PERSONA AS PERSONA1 ON VENTA.CODPER_COMVEN = PERSONA1.CODPER
+INNER JOIN DISTRITO ON PERSONA1.DISTRITO_CODDIS_DISPER = DISTRITO.CODDIS
+INNER JOIN PROVINCIA ON DISTRITO.PROVINCIA_CODPROV = PROVINCIA.CODPROV
+INNER JOIN DEPARTAMENTO ON PROVINCIA.DEPARTAMENTO_CODDEP = DEPARTAMENTO.CODDEP
+WHERE VENTA.CODVEN = $P!{codigoVenta}]]>
+	</queryString>
+	<field name="codigoVenta" class="java.lang.Integer"/>
+	<field name="vendedor" class="java.lang.String"/>
+	<field name="comprador" class="java.lang.String"/>
+	<field name="departamentoComprador" class="java.lang.String"/>
+	<field name="provinciaComprador" class="java.lang.String"/>
+	<field name="distritoComprador" class="java.lang.String"/>
+	<field name="direccionComprador" class="java.lang.String"/>
+	<field name="nombreProducto" class="java.lang.String"/>
+	<field name="marcaProducto" class="java.lang.String"/>
+	<field name="modeloProducto" class="java.lang.String"/>
+	<field name="cantidad" class="java.lang.Integer"/>
+	<field name="precio" class="java.lang.Double"/>
+	<field name="total" class="java.lang.Double"/>
+	<field name="fechaVenta" class="java.sql.Date"/>
+	<field name="telefonoComprador" class="java.lang.String"/>
+	<field name="documento" class="java.lang.String"/>
+	<variable name="total_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<variable name="total_2" class="java.lang.Double" resetType="Column" calculation="System">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<variable name="total_SUM" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<variable name="igv" class="java.lang.Float">
+		<variableExpression><![CDATA[0.18]]></variableExpression>
+	</variable>
+	<variable name="totalRial" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="117" splitType="Stretch">
+			<image>
+				<reportElement x="562" y="10" width="204" height="99" uuid="67426072-4bdf-4f86-827c-b5c2111991b5"/>
+				<imageExpression><![CDATA["/home/martin/NetBeansProjects/iVentas/src/img/1.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="10" y="31" width="280" height="68" uuid="ffc05234-dac4-4b67-98c3-0dd6f532e0b2"/>
+				<imageExpression><![CDATA["/home/martin/NetBeansProjects/iVentas/src/img/Empresa.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Transparent" x="562" y="41" width="204" height="34" uuid="c63b8ee0-1c60-4a4e-ad15-e88ac6b394cc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Dialog" size="16" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[FACTURA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="93" splitType="Stretch">
+			<image>
+				<reportElement x="-18" y="26" width="693" height="59" uuid="6b5e984b-1293-4b55-a58b-66db4c6177cb"/>
+				<imageExpression><![CDATA["/home/martin/NetBeansProjects/iVentas/src/img/datos.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="343" y="42" width="170" height="39" uuid="23fb0f29-02ef-4070-9a98-802576a4358d"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{direccionComprador}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="343" y="6" width="170" height="36" uuid="f4947107-c21f-47be-b806-f4bb17f0df99"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaVenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="702" y="6" width="100" height="20" uuid="789fdaf6-7d53-4453-8989-b66781c22751"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigoVenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="2" width="161" height="40" uuid="5c25f030-10e7-41f3-99f0-021f5d938e72"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vendedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="42" width="161" height="39" uuid="247cc189-8af2-427a-85e3-41347f900956"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{comprador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="61" width="100" height="20" uuid="00dfc0cc-ecdd-4ff4-8f40-a83fbaaad9b7"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefonoComprador}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="693" y="70" width="117" height="14" uuid="b8229d12-3fba-4797-a97f-8bfeb56c73a4"/>
+				<imageExpression><![CDATA["/home/martin/NetBeansProjects/iVentas/src/img/RUC.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="736" y="60" width="74" height="20" uuid="ca963a05-cd2a-46aa-a235-f9e7803922de"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{documento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="68" splitType="Stretch">
+			<image>
+				<reportElement x="10" y="0" width="773" height="67" uuid="6ae138d4-bea1-4dfe-b352-3369dada6900"/>
+				<imageExpression><![CDATA["/home/martin/NetBeansProjects/iVentas/src/img/header.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="55" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="2" width="100" height="53" uuid="bab15623-dc59-4a76-9804-ad5548420089"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="139" y="3" width="100" height="52" uuid="5ebf5b0a-7efc-4d76-a92a-6c4db09d159f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{marcaProducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="2" width="125" height="53" uuid="0338a69c-e95d-4bdb-8ecf-e7d6a1351267"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{modeloProducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="364" y="3" width="162" height="52" uuid="9a1e27c2-0563-4693-9cf2-ea75c573c945"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreProducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="545" y="2" width="100" height="53" uuid="f604f23a-f38b-40cc-b4ac-fad7aebf0eed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="666" y="2" width="100" height="53" uuid="fbf75daf-6ea4-468c-ae67-c33e5ae163ed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="139" splitType="Stretch">
+			<image>
+				<reportElement x="105" y="15" width="802" height="124" uuid="fcda888a-b3b3-48f8-b81e-9c7e8ea3aab4"/>
+				<imageExpression><![CDATA["/home/martin/NetBeansProjects/iVentas/src/img/subtIgv.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="666" y="25" width="100" height="22" forecolor="#FEFEFE" uuid="ce6a391c-cfc5-4c7c-8f41-83d385a31360"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="666" y="61" width="100" height="20" forecolor="#FEFEFE" uuid="1fa9c246-83f4-432b-9332-5ac7ba58d5d6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[0.18]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="666" y="92" width="100" height="35" forecolor="#FEFEFE" uuid="7e98575f-0fbc-4384-8a63-08cd8f85250d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($V{total_SUM}*0.18)+$V{total_SUM}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="5" y="93" width="115" height="46" uuid="f55c896f-aa18-440e-95b5-2006e2ca62a3"/>
+				<imageExpression><![CDATA["/home/martin/NetBeansProjects/iVentas/src/img/Cancelado.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
 </jasperReport>
