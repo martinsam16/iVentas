@@ -1,17 +1,20 @@
 package modelo;
 
-import java.sql.Date;
+/**
+ *
+ * @author martin
+ */
+public class StockM {
 
-public class EntradaSalidaM {
-    private int codigoEntrasaSalida, codigoProducto, cantidadEntrada, cantidadSalida, stock;
-    private Date fechaEntrada, fechaSalida;
+    private int codigoProducto, cantidadEntrada, cantidadSalida, cantidadStock;
+    private String fechaEntrada, fechaSalida;
 
-    public int getCodigoEntrasaSalida() {
-        return codigoEntrasaSalida;
-    }
-
-    public void setCodigoEntrasaSalida(int codigoEntrasaSalida) {
-        this.codigoEntrasaSalida = codigoEntrasaSalida;
+    public void clear() {
+        codigoProducto = 0;
+        cantidadEntrada = 0;
+        cantidadSalida = 0;
+        fechaEntrada = null;
+        fechaSalida = null;
     }
 
     public int getCodigoProducto() {
@@ -38,27 +41,27 @@ public class EntradaSalidaM {
         this.cantidadSalida = cantidadSalida;
     }
 
-    public int getStock() {
-        return stock;
+    public int getCantidadStock() {
+        return cantidadStock;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setCantidadStock(int cantidadStock) {
+        this.cantidadStock = cantidadStock;
     }
 
-    public Date getFechaEntrada() {
+    public String getFechaEntrada() {
         return fechaEntrada;
     }
 
-    public void setFechaEntrada(Date fechaEntrada) {
+    public void setFechaEntrada(String fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
 
-    public Date getFechaSalida() {
+    public String getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(Date fechaSalida) {
+    public void setFechaSalida(String fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 }

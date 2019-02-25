@@ -50,6 +50,11 @@ public class ProductoV extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         inputAtributosDelProducto = new javax.swing.JTextArea();
         btnHome = new principal.MaterialButton();
+        jPanel15 = new javax.swing.JPanel();
+        inptFechaIn = new com.toedter.calendar.JDateChooser();
+        inptCantidad = new javax.swing.JSpinner();
+        materialButton3 = new principal.MaterialButton();
+        inptCodPro = new principal.MaterialTextField();
         jPanel7 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -179,7 +184,7 @@ public class ProductoV extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(5, 5, 5)
                 .addComponent(cmbCatPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(inptSerPro, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnUrlImgPro, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,7 +215,7 @@ public class ProductoV extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(inptPrePro, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                .addComponent(inptPrePro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,6 +365,55 @@ public class ProductoV extends javax.swing.JFrame {
             }
         });
 
+        jPanel15.setBackground(new java.awt.Color(254, 254, 254));
+
+        inptFechaIn.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+
+        inptCantidad.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
+        materialButton3.setBackground(new java.awt.Color(75, 244, 139));
+        materialButton3.setForeground(new java.awt.Color(254, 254, 254));
+        materialButton3.setText("R");
+        materialButton3.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        materialButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materialButton3ActionPerformed(evt);
+            }
+        });
+
+        inptCodPro.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(inptCodPro, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(inptFechaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inptCantidad))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(materialButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(inptCodPro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(inptCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addComponent(inptFechaIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(materialButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -381,25 +435,27 @@ public class ProductoV extends javax.swing.JFrame {
                         .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -621,7 +677,7 @@ public class ProductoV extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(inptBusPro, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1007, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnNewPro1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -740,21 +796,6 @@ public class ProductoV extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUrlImgProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUrlImgProActionPerformed
-        productoC.cargarImg(JOptionPane.showInputDialog(null, "Ingrese el Link de la imágen del producto"));
-        this.repaint();
-    }//GEN-LAST:event_btnUrlImgProActionPerformed
-
-    private void btnNewProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewProActionPerformed
-        productoC.limpiar();
-        this.repaint();
-        inptNomPro.requestFocus();
-    }//GEN-LAST:event_btnNewProActionPerformed
-
-    private void cmbMarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMarProActionPerformed
-        cmbModPro.setModel(this.productoC.listarCmb('3', cmbMarPro.getSelectedItem().toString()));
-    }//GEN-LAST:event_cmbMarProActionPerformed
-
     private void btnRegMarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegMarActionPerformed
         try {
             productoC.variablesM('2');
@@ -772,15 +813,6 @@ public class ProductoV extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnRegModActionPerformed
-
-    private void btnRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProductoActionPerformed
-        try {
-            productoC.variablesM('1');
-            productoC.accionProducto('1');
-            productoC.actualizar();
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_btnRegistrarProductoActionPerformed
 
     private void inptBusProCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_inptBusProCaretUpdate
         productoC.buscar(inptBusPro.getText().toUpperCase(), tblProductos);
@@ -807,15 +839,6 @@ public class ProductoV extends javax.swing.JFrame {
         productoC.actualizar();
     }//GEN-LAST:event_btnEditarMarcaActionPerformed
 
-    private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
-        try {
-            productoC.variablesM('1');
-            productoC.accionProducto('2');
-            productoC.actualizar();
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_btnEditarProductoActionPerformed
-
     private void btnEditarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarModeloActionPerformed
         try {
             productoC.nuevo = inptModPro.getText().toUpperCase();
@@ -824,16 +847,6 @@ public class ProductoV extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnEditarModeloActionPerformed
-
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        MenuV home = new MenuV();
-        home.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnHomeActionPerformed
-
-    private void comboProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboProveedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboProveedorActionPerformed
 
     private void materialButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton2ActionPerformed
         productoC.variablesM('5');
@@ -847,6 +860,57 @@ public class ProductoV extends javax.swing.JFrame {
         productoC.accionCategoria('1');
         productoC.actualizar();
     }//GEN-LAST:event_materialButton1ActionPerformed
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        MenuV home = new MenuV();
+        home.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
+        try {
+            productoC.variablesM('1');
+            productoC.accionProducto('2');
+            productoC.actualizar();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnEditarProductoActionPerformed
+
+    private void btnRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProductoActionPerformed
+        try {
+            productoC.variablesM('1');
+            productoC.accionProducto('1');
+            productoC.actualizar();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnRegistrarProductoActionPerformed
+
+    private void btnNewProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewProActionPerformed
+        productoC.limpiar();
+        this.repaint();
+        inptNomPro.requestFocus();
+    }//GEN-LAST:event_btnNewProActionPerformed
+
+    private void comboProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboProveedorActionPerformed
+
+    private void btnUrlImgProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUrlImgProActionPerformed
+        productoC.cargarImg(JOptionPane.showInputDialog(null, "Ingrese el Link de la imágen del producto"));
+        this.repaint();
+    }//GEN-LAST:event_btnUrlImgProActionPerformed
+
+    private void cmbMarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMarProActionPerformed
+        cmbModPro.setModel(this.productoC.listarCmb('3', cmbMarPro.getSelectedItem().toString()));
+    }//GEN-LAST:event_cmbMarProActionPerformed
+
+    private void materialButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton3ActionPerformed
+        try {
+            productoC.registrarStockIn();
+        } catch (Exception e) {
+            
+        }
+    }//GEN-LAST:event_materialButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -898,8 +962,11 @@ public class ProductoV extends javax.swing.JFrame {
     public static javax.swing.JComboBox<String> cmbMarPro1;
     public static javax.swing.JComboBox<String> cmbModPro;
     public static javax.swing.JComboBox comboProveedor;
-    private principal.MaterialTextField inptBusPro;
+    public static principal.MaterialTextField inptBusPro;
+    public static javax.swing.JSpinner inptCantidad;
     public static principal.MaterialTextField inptCategoriaProducto;
+    public static principal.MaterialTextField inptCodPro;
+    public static com.toedter.calendar.JDateChooser inptFechaIn;
     public static principal.MaterialTextField inptMarPro;
     public static principal.MaterialTextField inptModPro;
     public static principal.MaterialTextField inptNomPro;
@@ -917,6 +984,7 @@ public class ProductoV extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -932,6 +1000,7 @@ public class ProductoV extends javax.swing.JFrame {
     public static javax.swing.JLabel lblImg;
     private principal.MaterialButton materialButton1;
     private principal.MaterialButton materialButton2;
+    private principal.MaterialButton materialButton3;
     public static javax.swing.JTable tblProductos;
     // End of variables declaration//GEN-END:variables
 }

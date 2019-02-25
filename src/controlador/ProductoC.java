@@ -18,6 +18,7 @@ import static vista.ProductoV.cmbMarPro1;
 import static vista.ProductoV.cmbModPro;
 import static vista.ProductoV.comboProveedor;
 import static vista.ProductoV.inptCategoriaProducto;
+import static vista.ProductoV.inptCodPro;
 import static vista.ProductoV.inptMarPro;
 import static vista.ProductoV.inptModPro;
 import static vista.ProductoV.inptNomPro;
@@ -28,10 +29,10 @@ import static vista.ProductoV.inputFecGarPro;
 import static vista.ProductoV.lblImg;
 import static vista.ProductoV.tblProductos;
 
-public class ProductoC {
+public class ProductoC extends StockC{
 
     ProductoM producto = new ProductoM();
-    ProductoD dao = new ProductoD();
+    ProductoD daoP = new ProductoD();
     ReportesS servicioR = new ReportesS();
     servicios.CombosAnidados combo = new CombosAnidados();
 
@@ -40,35 +41,35 @@ public class ProductoC {
     
     public void accionCategoria(char  accion){
         try {
-            dao.accionCategoria(producto, nuevo, accion);
+            daoP.accionCategoria(producto, nuevo, accion);
         } catch (Exception e) {
         }
     }
     
     public void accionMarca(char accion) {
         try {
-            dao.accionMarca(producto, nuevo, accion);
+            daoP.accionMarca(producto, nuevo, accion);
         } catch (Exception e) {
         }
     }
 
     public void accionModelo(char accion) {
         try {
-            dao.accionModelo(producto, nuevo, accion);
+            daoP.accionModelo(producto, nuevo, accion);
         } catch (Exception e) {
         }
     }
 
     public void accionProducto(char accion) {
         try {
-            dao.accionProducto(producto, accion);
+            daoP.accionProducto(producto, accion);
         } catch (Exception e) {
         }
     }
 
     public DefaultTableModel listarProductos() {
         try {
-            return dao.listarPro();
+            return daoP.listarPro();
         } catch (Exception e) {
             return null;
         }
@@ -170,6 +171,7 @@ public class ProductoC {
         if (datosTemp != null) {
             String datos[] = datosTemp.split("\\^");
             // CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG,ATRIB,PROVEEDOR,GAR,CAT
+            inptCodPro.setText(datos[0]);
             inptNomPro.setText(datos[1]);
             cmbMarPro.setSelectedItem(datos[2]);
             cmbModPro.setSelectedItem(datos[3]);
@@ -214,6 +216,7 @@ public class ProductoC {
         tblProductos.clearSelection();
         producto.clear();
         nuevo = "";
+        inptCodPro.setText("");
 
     }    
 

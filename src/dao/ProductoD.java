@@ -31,7 +31,7 @@ public class ProductoD extends Conexion {
                 ps.setDouble(4, producto.getPrepo());
                 ps.setString(5, producto.getUrlimgpro());
                 ps.setString(6, producto.getDespro());
-                ps.setString(7, producto.getEstpro());
+                ps.setString(7, "I");
                 ps.setString(8, producto.getFecgarpro());                
                 ps.setInt(9, devolverCodigos('3', producto));
                 ps.setInt(10, devolverCodigos('4', producto));
