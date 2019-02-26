@@ -1,5 +1,6 @@
 package controlador;
 
+import dao.ProductoD;
 import dao.StockD;
 import java.sql.Date;
 import java.text.DateFormat;
@@ -20,6 +21,8 @@ public class StockC {
     StockD daoS = new StockD();
     StockM stock = new StockM();
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    ProductoD gg = new ProductoD();
+   
 
     public DefaultTableModel listarStock() {
         try {
@@ -52,6 +55,8 @@ public class StockC {
     public void registrarStockIn() throws Exception {
         variablesMStock();
         daoS.accionInOut(stock);
+        //cambiar estado producto a Activo
+        gg.cambiarEstadoProducto(stock.getCodigoProducto(), "A");
         limpiarStock();
     }
     

@@ -8,6 +8,20 @@ import modelo.ProductoM;
 
 public class ProductoD extends Conexion {
 
+    public void cambiarEstadoProducto(int codigoProducto, String estado) throws Exception {
+        try {
+            PreparedStatement ps = this.conectar().prepareStatement("UPDATE PRODUCTO SET PRODUCTO.ESTPRO=? WHERE PRODUCTO.CODPRO=?");
+            ps.setString(1, estado);
+            ps.setInt(2, codigoProducto);
+
+            ps.executeUpdate();
+            ps.close();
+            this.desconectar();
+        } catch (Exception e) {
+            System.out.println("gg"+e.getMessage() + e.getCause());
+        }
+    }
+
     public void accionProducto(ProductoM producto, char tipoDeAccion) throws Exception {
         try {
             String sql = null;
@@ -32,7 +46,7 @@ public class ProductoD extends Conexion {
                 ps.setString(5, producto.getUrlimgpro());
                 ps.setString(6, producto.getDespro());
                 ps.setString(7, "I");
-                ps.setString(8, producto.getFecgarpro());                
+                ps.setString(8, producto.getFecgarpro());
                 ps.setInt(9, devolverCodigos('3', producto));
                 ps.setInt(10, devolverCodigos('4', producto));
             }

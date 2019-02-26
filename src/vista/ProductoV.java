@@ -341,6 +341,7 @@ public class ProductoV extends javax.swing.JFrame {
         inputAtributosDelProducto.setColumns(20);
         inputAtributosDelProducto.setForeground(new java.awt.Color(33, 33, 33));
         inputAtributosDelProducto.setRows(5);
+        inputAtributosDelProducto.setText("[\n\"descripcion\":\"Con la increible potencia ...\",\n\"procesador\":\"Intel Core i5\"\n]");
         jScrollPane3.setViewportView(inputAtributosDelProducto);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);

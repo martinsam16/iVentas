@@ -675,6 +675,7 @@
                           <Color blue="21" green="21" red="21" type="rgb"/>
                         </Property>
                         <Property name="rows" type="int" value="5"/>
+                        <Property name="text" type="java.lang.String" value="[&#xa;&quot;descripcion&quot;:&quot;Con la increible potencia ...&quot;,&#xa;&quot;procesador&quot;:&quot;Intel Core i5&quot;&#xa;]"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
