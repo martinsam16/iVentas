@@ -25,12 +25,14 @@ import static vista.VentaV.tblDetVenta;
 import static vista.VentaV.tblProdVen;
 import static vista.VentaV.tblVentas;
 
-public class VentaC extends JTable {
+public class VentaC extends JTable{
 
     VentaD dao = new VentaD();
     VentaM venta = new VentaM();
     VentaDetalleM detalleVenta = new VentaDetalleM();
     servicios.CombosAnidados combo = new CombosAnidados();
+    
+    StockC stock = new StockC();
 
     public void accionVenta(char tipoDeAccion) {
         try {
@@ -82,7 +84,7 @@ public class VentaC extends JTable {
         }
     }
 
-    public void cargarYRegistrarVenta() {
+    public void cargarYRegistrarVenta() throws Exception {
         TablasS.buscar("true", tblProdVen, '1');
         tblProdVen.repaint();
 
@@ -95,6 +97,7 @@ public class VentaC extends JTable {
                 //CÓDIGO,NOMBRE,CATEGORIA,MARCA,MODELO,SERIE,GAR,PRECIO,CANTIDAD,TOTAL,SELEC
                 detalleVenta.setCodigoProducto(Integer.valueOf(tblProdVen.getValueAt(i, 0).toString()));
                 detalleVenta.setCantidadProducto(Integer.valueOf(tblProdVen.getValueAt(i, 8).toString()));
+                stock.registrarStockOut(detalleVenta, venta.getFechaVenta());
                 detalleVenta.setEstadoVenta("A");
                 accionDetalleVenta('1');
             }

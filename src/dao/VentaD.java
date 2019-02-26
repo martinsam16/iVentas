@@ -80,9 +80,9 @@ public class VentaD extends Conexion {
          */
         DefaultTableModel tblTemp = null;
         try {
-            String sql = "SELECT PRODUCTO.CODPRO, PRODUCTO.NOMPRO, CATEGORIA.NOMCAT,MARCA.NOMMAR, MODELO.NOMMOD, PRODUCTO.SERPRO, PRODUCTO.FECGARPRO, PRODUCTO.PREPRO FROM MODELO INNER JOIN PRODUCTO ON PRODUCTO.MODELO_CODMOD_MODPRO = MODELO.CODMOD INNER JOIN MARCA ON MODELO.MARCA_CODMAR_MARMOD = MARCA.CODMAR INNER JOIN CATEGORIA ON PRODUCTO.CATEGORIA_CODCAT_CATPRO = CATEGORIA.CODCAT";
+            String sql = "SELECT PRODUCTO.CODPRO, PRODUCTO.NOMPRO, CATEGORIA.NOMCAT,MARCA.NOMMAR, MODELO.NOMMOD, PRODUCTO.SERPRO, PRODUCTO.FECGARPRO, PRODUCTO.PREPRO, SUM(STOCK.INPSTK)-SUM(STOCK.OUTSTK) AS STOCK FROM MODELO INNER JOIN PRODUCTO ON PRODUCTO.MODELO_CODMOD_MODPRO = MODELO.CODMOD INNER JOIN MARCA ON MODELO.MARCA_CODMAR_MARMOD = MARCA.CODMAR INNER JOIN CATEGORIA ON PRODUCTO.CATEGORIA_CODCAT_CATPRO = CATEGORIA.CODCAT LEFT JOIN STOCK ON STOCK.PRODUCTO_CODPRO_PROSTK = PRODUCTO.CODPRO GROUP BY PRODUCTO.CODPRO";
 
-            String clms = "CÓDIGO,NOMBRE,CATEGORIA,MARCA,MODELO,SERIE,GAR,PRECIO,CANTIDAD,TOTAL,SELEC";
+            String clms = "CÓDIGO,NOMBRE,CATEGORIA,MARCA,MODELO,SERIE,GAR,PRECIO,CANTIDAD,TOTAL,SELEC,STOCK";
 
             tblTemp = new DefaultTableModel(null, clms.split(","));
             Statement s = this.conectar().prepareStatement(sql);
@@ -93,12 +93,13 @@ public class VentaD extends Conexion {
                 for (int i = 0; i < dts.length; i++) {
                     if (i <= 7) {
                         dts[i] = rs.getString(i + 1);
-                    } else if (i == 8) {//cantidad                     
+                    } else if (i == 8) {//cantidad   
+                        dts[11]=rs.getObject(i + 1);
                         dts[i] = 0;
                     } else if (i == 9) {//total
                         dts[i] = 0.0;
                     } else if (i == 10) {//check
-                        dts[i] = false;
+                        dts[i] = false;                        
                     }
                 }
                 tblTemp.addRow(dts);

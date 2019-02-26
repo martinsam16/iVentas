@@ -291,9 +291,13 @@ public class VentaV extends javax.swing.JFrame {
     }//GEN-LAST:event_tblProdVenMouseClicked
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        controlador.cargarYRegistrarVenta();
-        controlador.llenarTblPoductos();
-        controlador.actualizarTblVenta();
+        try {
+            controlador.cargarYRegistrarVenta();
+            controlador.llenarTblPoductos();
+            controlador.actualizarTblVenta();
+        } catch (Exception e) {
+            System.out.println("[ERROR] "+e.getMessage()+e.getCause());
+        }
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void inputBuscadorCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_inputBuscadorCaretUpdate

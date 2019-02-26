@@ -907,6 +907,7 @@ public class ProductoV extends javax.swing.JFrame {
     private void materialButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton3ActionPerformed
         try {
             productoC.registrarStockIn();
+            productoC.actualizar();
         } catch (Exception e) {
             
         }

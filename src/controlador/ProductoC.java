@@ -123,7 +123,6 @@ public class ProductoC extends StockC{
         5   CategoriaEdit
          */
         producto.clear();
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         //CÓDIGO,NOMBRE,MARCA,MODELO,SERIE,PRECIO,URLIMG,ATRIB,PROVEEDOR,GAR,CATEGORIA
         switch (tip) {
             case '1':
