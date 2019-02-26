@@ -12,7 +12,7 @@ import org.jsoup.nodes.Document;
 /**
  * Sirve para hacer querys
  *
- * @version 0.0.1
+ * @version 0.0.2
  * @author Martín Alexis Samán Arata
  */
 public class ConsultaGob extends dao.Conexion {
@@ -33,7 +33,7 @@ public class ConsultaGob extends dao.Conexion {
      */
     public static JSONObject getDatosRuc(String RUC) throws ParseException {
         try {
-            Document doc = Jsoup.connect("https://api.sunat.cloud/ruc/" + RUC).ignoreContentType(true).get();
+            Document doc = Jsoup.connect("https://api.sunat.cloud/ruc/" + RUC).ignoreContentType(true).ignoreHttpErrors(true).validateTLSCertificates(false).get();
             String datos = doc.body().text();
             return (JSONObject) parser.parse(datos);
         } catch (IOException | ParseException e) {
@@ -51,7 +51,7 @@ public class ConsultaGob extends dao.Conexion {
      */
     public static JSONObject getDatosDni(String DNI) throws ParseException {
         try {
-            Document doc = Jsoup.connect("https://api.reniec.cloud/dni/" + DNI).ignoreContentType(true).get();
+            Document doc = Jsoup.connect("https://api.reniec.cloud/dni/" + DNI).ignoreContentType(true).ignoreHttpErrors(true).validateTLSCertificates(false).get();
             String datos = doc.body().text();
             return (JSONObject) parser.parse(datos);
         } catch (Exception e) {
