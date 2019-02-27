@@ -1,6 +1,9 @@
 package vista;
 
 import controlador.VentaC;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class VentaV extends javax.swing.JFrame {
 
@@ -275,9 +278,13 @@ public class VentaV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        MenuV home = new MenuV();
-        home.setVisible(true);
-        dispose();
+        try {
+            MenuV home = new MenuV();
+            home.setVisible(true);
+            dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(VentaV.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void tblProdVenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdVenMouseClicked

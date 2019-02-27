@@ -1,6 +1,9 @@
 package servicios;
 
+import controlador.LoginC;
 import dao.Conexion;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
@@ -54,7 +57,7 @@ public class CombosAnidados extends Conexion {
                     sql = "SELECT PERSONA.DOCPER FROM PERSONA";
                     break;
                 case '8':
-                    sql = "SELECT CONCAT(PERSONA.DOCPER,' | ' ,PERSONA.NOMPER )FROM PERSONA WHERE PERSONA.TIPPER='V' ORDER BY PERSONA.DOCPER ASC";
+                    sql = "SELECT CONCAT(PERSONA.DOCPER,' | ' ,PERSONA.NOMPER )FROM PERSONA WHERE PERSONA.TIPPER='V' AND PERSONA.USRLOGPER='" + LoginC.usuario + "' ORDER BY PERSONA.DOCPER ASC";
                     break;
                 case '9':
                     sql = "SELECT CONCAT(PERSONA.DOCPER,' | ' ,PERSONA.NOMPER,' ',PERSONA.APEPER ) FROM PERSONA WHERE PERSONA.TIPPER='C' OR PERSONA.TIPPER='E' ORDER BY PERSONA.TIPPER ASC";
@@ -95,7 +98,7 @@ public class CombosAnidados extends Conexion {
                     sql = "SELECT PRODUCTO.NOMPRO FROM PRODUCTO";
                     break;
                 case '1':
-                    sql="SELECT CATEGORIA.NOMCAT FROM CATEGORIA";
+                    sql = "SELECT CATEGORIA.NOMCAT FROM CATEGORIA";
                 default:
                     break;
             }

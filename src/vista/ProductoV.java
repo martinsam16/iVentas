@@ -2,6 +2,7 @@ package vista;
 
 import controlador.ProductoC;
 import java.awt.Cursor;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -863,9 +864,13 @@ public class ProductoV extends javax.swing.JFrame {
     }//GEN-LAST:event_materialButton1ActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        MenuV home = new MenuV();
-        home.setVisible(true);
-        dispose();
+        try {
+            MenuV home = new MenuV();
+            home.setVisible(true);
+            dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed

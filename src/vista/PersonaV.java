@@ -2,6 +2,7 @@ package vista;
 
 import controlador.PersonaC;
 import java.awt.print.PrinterException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.parser.ParseException;
@@ -676,9 +677,13 @@ public class PersonaV extends javax.swing.JFrame {
     }//GEN-LAST:event_comboTipoDePersonaActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        MenuV home = new MenuV();
-        home.setVisible(true);
-        dispose();
+        try {
+            MenuV home = new MenuV();
+            home.setVisible(true);
+            dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(PersonaV.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void comboDistritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboDistritoActionPerformed

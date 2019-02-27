@@ -32,6 +32,7 @@ public class VentaC extends JTable{
     VentaDetalleM detalleVenta = new VentaDetalleM();
     servicios.CombosAnidados combo = new CombosAnidados();
     
+    
     StockC stock = new StockC();
 
     public void accionVenta(char tipoDeAccion) {

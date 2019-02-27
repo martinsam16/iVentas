@@ -1,6 +1,13 @@
 package controlador;
 
 import dao.PersonaD;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -21,6 +28,7 @@ public class LoginC {
 
     private final PersonaD DAO = new PersonaD();
     private final PersonaM PERSONA = new PersonaM();
+    public static String tipoDePersona, usuario;
 
     @FXML
     private TextField inptUsr;
@@ -43,29 +51,17 @@ public class LoginC {
                     inptUsr.clear();
                     inptPsw.clear();
                 }
+                
+                tipoDePersona=PERSONA.getTipper();
+                usuario = PERSONA.getUsrper();
 
                 MenuV menu = new MenuV();
-                switch (PERSONA.getTipper()) {
-                    case "A":
-                        menu.setVisible(true);
-                        break;
-                    case "V":
-                        MenuV.pnlPersonas.setVisible(false);
-                        MenuV.pnlProducto.setVisible(false);
-                        menu.setVisible(true);
-                        break;
-                    case "I":
-                        MenuV.pnlPersonas.setVisible(false);
-                        MenuV.pnlVentas.setVisible(false);
-                        menu.setVisible(true);
-                        break;
-                    default:
-                        break;
-                }
+                menu.setVisible(true);
+                
                 final Node source = (Node) e.getSource();
                 final Stage stage = (Stage) source.getScene().getWindow();
                 stage.close();
-                
+
             } else {
                 servicios.SmsS.error("Error", "Usuario y/o contaseña incorrecto.", "Tal vez se equivocó o no esté registrado.");
             }
