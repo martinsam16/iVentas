@@ -17,6 +17,7 @@ public class PersonaV extends javax.swing.JFrame {
     PersonaC personaC = new PersonaC();
 
     public PersonaV() throws Exception {
+        setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);

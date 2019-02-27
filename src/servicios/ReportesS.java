@@ -18,14 +18,12 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Martín Alexis Samán Arata
  * @version 0.0.1
  */
-
-
 public class ReportesS extends Conexion {
 
     /**
      * Genera los reportes a partir del package reportes
      *
-     * @param tipo char: '0': Productos '1': Boleta
+     * @param tipo char: '0': Productos '1': Boleta '2':Factura
      * @param codigo int Código
      */
     public static void generarReportes(char tipo, int codigo) {
@@ -42,8 +40,8 @@ public class ReportesS extends Conexion {
                     parametros.put("codigoVenta", codigo);
                     break;
                 case '2':
-                    path+="FacturaR";
-                    parametros.put("codigoVenta",codigo);
+                    path += "FacturaR";
+                    parametros.put("codigoVenta", codigo);
                     break;
             }
             path += ".jasper";
@@ -61,7 +59,7 @@ public class ReportesS extends Conexion {
             }.getClass().getClassLoader().getResource(path));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, parametros, conectar());
             desconectar();
-            
+
             JasperViewer view = new JasperViewer(jprint, false);
             view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             view.setVisible(true);

@@ -2,7 +2,6 @@ package controlador;
 
 import dao.VentaD;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -85,9 +84,6 @@ public class VentaC extends JTable{
         }
     }
     
-    public void cotizar(){
-        
-    }
 
     public void cargarYRegistrarVenta() throws Exception {
         TablasS.buscar("true", tblProdVen, '1');
@@ -151,20 +147,15 @@ public class VentaC extends JTable{
         comboB.addItem("A");
         comboB.addItem("S");
         comboB.addItem("I");
-        comboB.addActionListener(
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        if (tblDetVenta.getSelectedRow() != -1) {
-                            detalleVenta.setCodigoDetalleVenta(Integer.valueOf(tblDetVenta.getValueAt(tblDetVenta.getSelectedRow(), 0).toString()));
-                            detalleVenta.setEstadoVenta(comboB.getSelectedItem().toString());
-                            accionDetalleVenta('2');
-                        }else{
-                            System.err.print("[WARNING] Seleccione primero una fila.");
-                        }
-                    }
-                }
-        );
+        comboB.addActionListener((ActionEvent e) -> {
+            if (tblDetVenta.getSelectedRow() != -1) {
+                detalleVenta.setCodigoDetalleVenta(Integer.valueOf(tblDetVenta.getValueAt(tblDetVenta.getSelectedRow(), 0).toString()));
+                detalleVenta.setEstadoVenta(comboB.getSelectedItem().toString());
+                accionDetalleVenta('2');
+            }else{
+                System.err.print("[WARNING] Seleccione primero una fila.");
+            }
+        });
         columnaTblDetVenta.setCellEditor(new DefaultCellEditor(comboB));
         tblDetVenta.repaint();
 

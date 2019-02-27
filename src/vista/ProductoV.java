@@ -13,6 +13,7 @@ public class ProductoV extends javax.swing.JFrame {
     boolean activar = false;
 
     public ProductoV() {
+        setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);

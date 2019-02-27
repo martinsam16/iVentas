@@ -10,6 +10,7 @@ public class VentaV extends javax.swing.JFrame {
     VentaC controlador = new VentaC();
 
     public VentaV() {
+        setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -317,7 +318,7 @@ public class VentaV extends javax.swing.JFrame {
     }//GEN-LAST:event_tblVentasMouseClicked
 
     private void btnCotizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCotizarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnCotizarActionPerformed
 
     /**

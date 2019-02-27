@@ -25,7 +25,7 @@ public class BackupDb extends Conexion {
             ruta.showOpenDialog(ruta);
             
             Backup bu = new Backup(conectar());            
-            bu.execute(new PrintStream(ruta.getSelectedFile().getAbsolutePath()+".sql"));
+            bu.execute(new PrintStream(ruta.getSelectedFile().getAbsolutePath().concat(".sql")));
             JOptionPane.showMessageDialog(null, "Backup Exitoso!");
         } catch (Exception e) {
             System.err.println("[ERROR] backup, "+e.getMessage());
