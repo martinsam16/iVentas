@@ -24,7 +24,7 @@ import static vista.CompraV.tblDetTecnico;
 public class CompraC {
 
     ProductoD dao = new ProductoD();
-    JTable tblTemporal = new JTable(dao.listarPro());
+    JTable tblTemporal = new JTable(dao.listarPro('0'));
     int numeroFila = -1;
     int maximo = tblTemporal.getRowCount() - 1;
 

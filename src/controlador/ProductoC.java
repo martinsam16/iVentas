@@ -67,9 +67,9 @@ public class ProductoC extends StockC{
         }
     }
 
-    public DefaultTableModel listarProductos() {
+    public DefaultTableModel listarProductos(char tipo) {
         try {
-            return daoP.listarPro();
+            return daoP.listarPro(tipo);
         } catch (Exception e) {
             return null;
         }
@@ -78,7 +78,7 @@ public class ProductoC extends StockC{
     public void actualizar() {
         actCmb();
         limpiar();
-        tblProductos.setModel(listarProductos());
+        tblProductos.setModel(listarProductos('0'));
     }
 
     public void cargarImg(String link) {

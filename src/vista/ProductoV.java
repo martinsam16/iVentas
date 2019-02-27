@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 public class ProductoV extends javax.swing.JFrame {
 
     ProductoC productoC = new ProductoC();
+    boolean activar = false;
 
     public ProductoV() {
         initComponents();
@@ -73,6 +74,7 @@ public class ProductoV extends javax.swing.JFrame {
         tblProductos = new javax.swing.JTable();
         inptBusPro = new principal.MaterialTextField();
         btnNewPro1 = new principal.MaterialButtonCircle();
+        btnStock = new javax.swing.JToggleButton();
         jPanel9 = new javax.swing.JPanel();
         inptCategoriaProducto = new principal.MaterialTextField();
         materialButton1 = new principal.MaterialButton();
@@ -642,7 +644,7 @@ public class ProductoV extends javax.swing.JFrame {
 
         tblProductos.setBackground(new java.awt.Color(254, 254, 254));
         tblProductos.setForeground(new java.awt.Color(33, 33, 33));
-        tblProductos.setModel(this.productoC.listarProductos());
+        tblProductos.setModel(this.productoC.listarProductos('0'));
         tblProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblProductosMouseClicked(evt);
@@ -669,6 +671,13 @@ public class ProductoV extends javax.swing.JFrame {
             }
         });
 
+        btnStock.setText("Registros");
+        btnStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStockActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -679,6 +688,8 @@ public class ProductoV extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(inptBusPro, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnStock, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnNewPro1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -689,7 +700,8 @@ public class ProductoV extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inptBusPro, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNewPro1, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
+                    .addComponent(btnNewPro1, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                    .addComponent(btnStock))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -832,7 +844,7 @@ public class ProductoV extends javax.swing.JFrame {
     }//GEN-LAST:event_tblProductosMouseClicked
 
     private void btnNewPro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPro1ActionPerformed
-       productoC.generarReporteDeTodosLosProductos();
+        productoC.generarReporteDeTodosLosProductos();
     }//GEN-LAST:event_btnNewPro1ActionPerformed
 
     private void btnEditarMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarMarcaActionPerformed
@@ -852,7 +864,7 @@ public class ProductoV extends javax.swing.JFrame {
 
     private void materialButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialButton2ActionPerformed
         productoC.variablesM('5');
-        productoC.nuevo=inptCategoriaProducto.getText().toUpperCase();
+        productoC.nuevo = inptCategoriaProducto.getText().toUpperCase();
         productoC.accionCategoria('2');
         productoC.actualizar();
     }//GEN-LAST:event_materialButton2ActionPerformed
@@ -915,9 +927,22 @@ public class ProductoV extends javax.swing.JFrame {
             productoC.registrarStockIn();
             productoC.actualizar();
         } catch (Exception e) {
-            
+
         }
     }//GEN-LAST:event_materialButton3ActionPerformed
+
+    private void btnStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStockActionPerformed
+        activar = !activar;
+        if (activar==true) {
+            tblProductos.setModel(productoC.listarProductos('1'));
+        }else{
+            tblProductos.setModel(productoC.listarProductos('0'));
+        }
+        tblProductos.setEnabled(!activar);
+        
+        
+        repaint();
+    }//GEN-LAST:event_btnStockActionPerformed
 
     /**
      * @param args the command line arguments
@@ -963,6 +988,7 @@ public class ProductoV extends javax.swing.JFrame {
     public static principal.MaterialButton btnRegMar;
     public static principal.MaterialButton btnRegMod;
     public static principal.MaterialButton btnRegistrarProducto;
+    private javax.swing.JToggleButton btnStock;
     public static javax.swing.JButton btnUrlImgPro;
     public static javax.swing.JComboBox<String> cmbCatPro;
     public static javax.swing.JComboBox<String> cmbMarPro;

@@ -2,8 +2,6 @@ package servicios;
 
 import controlador.LoginC;
 import dao.Conexion;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;

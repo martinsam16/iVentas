@@ -84,6 +84,10 @@ public class VentaC extends JTable{
             TablasS.buscar(consulta, tblProdVen, '0');
         }
     }
+    
+    public void cotizar(){
+        
+    }
 
     public void cargarYRegistrarVenta() throws Exception {
         TablasS.buscar("true", tblProdVen, '1');
