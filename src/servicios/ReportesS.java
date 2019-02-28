@@ -6,9 +6,11 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.table.TableModel;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -19,14 +21,16 @@ import net.sf.jasperreports.view.JasperViewer;
  * @version 0.0.1
  */
 public class ReportesS extends Conexion {
+    
 
     /**
      * Genera los reportes a partir del package reportes
      *
      * @param tipo char: '0': Productos '1': Boleta '2':Factura
      * @param codigo int Código
+     * @param tbl
      */
-    public static void generarReportes(char tipo, int codigo) {
+    public static void generarReportes(char tipo, int codigo, TableModel tbl) {
         try {
             JasperReport reporte = null;
             String path = "reportes/";
@@ -43,6 +47,9 @@ public class ReportesS extends Conexion {
                     path += "FacturaR";
                     parametros.put("codigoVenta", codigo);
                     break;
+                case '3':
+                    path+="CotizacionR";                    
+                    break;
             }
             path += ".jasper";
             /*
@@ -57,8 +64,16 @@ public class ReportesS extends Conexion {
                     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                 }
             }.getClass().getClassLoader().getResource(path));
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, parametros, conectar());
-            desconectar();
+            JasperPrint jprint = null;
+            
+            if (tbl==null) {
+                jprint = JasperFillManager.fillReport(reporte, parametros, conectar());
+                 desconectar();
+            }else{
+                System.out.println("Cotizar");
+                jprint = JasperFillManager.fillReport(reporte, new HashMap(), new JRTableModelDataSource(tbl));
+            }            
+           
 
             JasperViewer view = new JasperViewer(jprint, false);
             view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -68,4 +83,6 @@ public class ReportesS extends Conexion {
         }
 
     }
+    
+    
 }

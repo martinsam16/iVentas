@@ -318,7 +318,7 @@ public class VentaV extends javax.swing.JFrame {
     }//GEN-LAST:event_tblVentasMouseClicked
 
     private void btnCotizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCotizarActionPerformed
-        
+        controlador.generarReporteVenta();
     }//GEN-LAST:event_btnCotizarActionPerformed
 
     /**

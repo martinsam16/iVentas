@@ -24,14 +24,13 @@ import static vista.VentaV.tblDetVenta;
 import static vista.VentaV.tblProdVen;
 import static vista.VentaV.tblVentas;
 
-public class VentaC extends JTable{
+public class VentaC extends JTable {
 
     VentaD dao = new VentaD();
     VentaM venta = new VentaM();
     VentaDetalleM detalleVenta = new VentaDetalleM();
     servicios.CombosAnidados combo = new CombosAnidados();
-    
-    
+
     StockC stock = new StockC();
 
     public void accionVenta(char tipoDeAccion) {
@@ -83,7 +82,6 @@ public class VentaC extends JTable{
             TablasS.buscar(consulta, tblProdVen, '0');
         }
     }
-    
 
     public void cargarYRegistrarVenta() throws Exception {
         TablasS.buscar("true", tblProdVen, '1');
@@ -95,7 +93,7 @@ public class VentaC extends JTable{
             venta.setCodigoVenta(dao.devolverCodigos(null, '2'));
 
             for (int i = 0; i < tblProdVen.getRowCount(); i++) {
-                //CÓDIGO,NOMBRE,CATEGORIA,MARCA,MODELO,SERIE,GAR,PRECIO,CANTIDAD,TOTAL,SELEC
+                //CÓDIGO,NOMBRE,CATEGORIA,MARCA,MODELO,SERIE,GAR,PRECIO,CANTIDAD,TOTAL,SELEC,STOCK
                 detalleVenta.setCodigoProducto(Integer.valueOf(tblProdVen.getValueAt(i, 0).toString()));
                 detalleVenta.setCantidadProducto(Integer.valueOf(tblProdVen.getValueAt(i, 8).toString()));
                 stock.registrarStockOut(detalleVenta, venta.getFechaVenta());
@@ -152,7 +150,7 @@ public class VentaC extends JTable{
                 detalleVenta.setCodigoDetalleVenta(Integer.valueOf(tblDetVenta.getValueAt(tblDetVenta.getSelectedRow(), 0).toString()));
                 detalleVenta.setEstadoVenta(comboB.getSelectedItem().toString());
                 accionDetalleVenta('2');
-            }else{
+            } else {
                 System.err.print("[WARNING] Seleccione primero una fila.");
             }
         });
@@ -162,10 +160,23 @@ public class VentaC extends JTable{
     }
 
     public void generarReporteVenta() {
-        if ("B".equals(venta.getTipoVenta())) {
-            servicios.ReportesS.generarReportes('1', venta.getCodigoVenta());
-        }else{
-            servicios.ReportesS.generarReportes('2', venta.getCodigoVenta());
+        if (null != venta.getTipoVenta()) {
+            switch (venta.getTipoVenta()) {
+                case "B":
+                    servicios.ReportesS.generarReportes('1', venta.getCodigoVenta(), null);
+                    break;
+                case "F":
+                    servicios.ReportesS.generarReportes('2', venta.getCodigoVenta(), null);
+                    break;
+            }
+        } else {
+            TablasS.buscar("true", tblProdVen, '1');
+            tblProdVen.repaint();
+
+            servicios.ReportesS.generarReportes('3', 0, tblProdVen.getModel());
+            
+            TablasS.buscar("", tblProdVen, '1');
+            tblProdVen.repaint();
         }
 
     }

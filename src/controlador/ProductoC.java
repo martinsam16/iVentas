@@ -198,7 +198,7 @@ public class ProductoC extends StockC{
     }
 
     public void generarReporteDeTodosLosProductos(){
-        ReportesS.generarReportes('0',0);
+        ReportesS.generarReportes('0',0,null);
     }
 
     public void limpiar() {
