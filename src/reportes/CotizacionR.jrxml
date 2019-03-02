@@ -10,9 +10,9 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="74" splitType="Stretch">
 			<staticText>
-				<reportElement x="11" y="16" width="132" height="41" uuid="39732a54-602e-482c-a0ac-e2f12420213e"/>
+				<reportElement x="0" y="0" width="242" height="53" uuid="39732a54-602e-482c-a0ac-e2f12420213e"/>
 				<text><![CDATA[COTIZACION]]></text>
 			</staticText>
 		</band>
