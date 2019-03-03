@@ -36,7 +36,6 @@ public class MenuV extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         pnlSupport = new javax.swing.JPanel();
-        materialButtonCircle1 = new principal.MaterialButtonCircle();
         btnBackup = new principal.MaterialButton();
         jPanel2 = new javax.swing.JPanel();
         pnlPersonas = new javax.swing.JPanel();
@@ -61,11 +60,6 @@ public class MenuV extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(13, 231, 169));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        materialButtonCircle1.setBackground(new java.awt.Color(64, 232, 234));
-        materialButtonCircle1.setForeground(new java.awt.Color(254, 254, 254));
-        materialButtonCircle1.setText("?");
-        materialButtonCircle1.setBorderPainted(false);
-
         btnBackup.setText("Backup");
         btnBackup.setFont(new java.awt.Font("Roboto Medium", 0, 10)); // NOI18N
         btnBackup.addActionListener(new java.awt.event.ActionListener() {
@@ -81,20 +75,17 @@ public class MenuV extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSupportLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
-                .addComponent(materialButtonCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(212, Short.MAX_VALUE))
         );
         pnlSupportLayout.setVerticalGroup(
             pnlSupportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSupportLayout.createSequentialGroup()
-                .addGroup(pnlSupportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(materialButtonCircle1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(btnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(pnlSupport, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 310, -1));
+        jPanel1.add(pnlSupport, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 310, 50));
 
         jPanel2.setBackground(new java.awt.Color(254, 254, 254));
 
@@ -379,7 +370,6 @@ public class MenuV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private principal.MaterialButtonCircle materialButtonCircle1;
     public static javax.swing.JPanel pnlPersonas;
     public static javax.swing.JPanel pnlProducto;
     private javax.swing.JPanel pnlSupport;
